@@ -399,11 +399,6 @@ button{
 	-webkit-touch-callout: none;
 }
 
-/* = Text & Icon Styles
--------------------------------------------------------------- */
-.pressed-t{
-	text-shadow:0 1px 0 #FFF;
-}
 
 
 .card-sq, .card-sq .card-header, .card-sq .card-footer{
@@ -668,20 +663,6 @@ url("img/art1.webp") 2x);background-image: image-set(url("img/art1.png") 1x,
 url("img/art1.png") 2x,url("img/art1.webp") 1x,
 url("img/art1.webp") 2x);
 }
-.img-style{
-	width:201px;
-	height:250px;
-	background-image:url("img/AddOrder_1.png");
-	background-image: -webkit-image-set(url("img/AddOrder_1.webp") 1x,
-url("img/AddOrder_1.webp") 2x);background-image: image-set(url("img/AddOrder_1.png") 1x,
-url("img/AddOrder_1.png") 2x,url("img/AddOrder_1.webp") 1x,
-url("img/AddOrder_1.webp") 2x);
-	background-image: -webkit-image-set(url("img/AddOrder_1.webp") 1x,
-url("img/AddOrder_1.webp") 2x);background-image: image-set(url("img/AddOrder_1.png") 1x,
-url("img/AddOrder_1.png") 2x,url("img/AddOrder_1.webp") 1x,
-url("img/AddOrder_1.webp") 2x);
-	filter:blur(15px);
-}
 .img-5-style{
 	height:250px;
 	width:200px;
@@ -730,9 +711,6 @@ url("img/AddOrder_1.webp") 2x);
 
 /* Text colour styles */
 
-.tc-5489{
-	color:var(--swatch-var-Gray)!important;
-}
 .tc-4088{
 	color:var(--swatch-var-Dark-Gray)!important;
 }
