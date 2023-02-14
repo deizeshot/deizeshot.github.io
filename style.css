@@ -730,11 +730,11 @@ url("img/AddOrder_1.webp") 2x);
 
 /* Text colour styles */
 
-.tc-4088{
-	color:var(--swatch-var-Dark-Gray)!important;
-}
 .tc-5489{
 	color:var(--swatch-var-Gray)!important;
+}
+.tc-4088{
+	color:var(--swatch-var-Dark-Gray)!important;
 }
 
 
