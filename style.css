@@ -592,20 +592,17 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .bgc-5688{
 	background-color:var(--swatch-var-Primary);
 }
-.bgc-5489{
-	background-color:var(--swatch-var-Gray);
-}
 .bgc-3022{
 	background-color:var(--swatch-var-White);
 }
 
 /* Text colour styles */
 
-.tc-5489{
-	color:var(--swatch-var-Gray)!important;
-}
 .tc-4088{
 	color:var(--swatch-var-Dark-Gray)!important;
+}
+.tc-5489{
+	color:var(--swatch-var-Gray)!important;
 }
 
 
