@@ -58,6 +58,22 @@ a:hover{text-decoration: none; cursor:pointer;}
 }
 
 
+/* Background Textures */
+
+.bloc-bg-texture::before{
+	content:"";
+	background-size: 2px 2px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+}
+.texture-darken-strong::before{
+	background: rgba(0,0,0,0.8);
+}
+
+
 /* Dark theme */
 
 .d-bloc{
@@ -660,6 +676,9 @@ url("img/AddOrder_1.webp") 2x);
 	background-blend-mode:screen;
 	z-index:100;
 }
+.black{
+	color:#000000!important;
+}
 
 /* = Colour
 -------------------------------------------------------------- */
@@ -695,6 +714,15 @@ url("img/AddOrder_1.webp") 2x);
 	color:var(--swatch-var-Dark-Gray)!important;
 }
 
+/* Bloc image backgrounds */
+
+.bg-photo508831778-457263918{
+	background-image:url("img/photo508831778_457263918.jpg");
+	background-image: -webkit-image-set(url("img/photo508831778_457263918.webp") 1x,
+url("img/photo508831778_457263918.webp") 2x);background-image: image-set(url("img/photo508831778_457263918.jpg") 1x,
+url("img/photo508831778_457263918.jpg") 2x,url("img/photo508831778_457263918.webp") 1x,
+url("img/photo508831778_457263918.webp") 2x);
+}
 
 
 
