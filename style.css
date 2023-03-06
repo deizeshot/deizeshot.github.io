@@ -368,11 +368,27 @@ button{
 	outline: none!important;
 }
 
-.btn-sq{
-	border-radius: 0px;
+
+
+/* Image Frame */
+.img-frame,.img-frame-md,.img-frame-lg,.img-frame-rd,.img-frame-rd-md,.img-frame-rd-lg{
+	background:#FFF;
+	border:1px solid rgba(0,0,0,0.1);
+	box-shadow:0 2px 2px rgba(0,0,0,0.05);
+	padding:4px;
 }
-
-
+.img-frame{
+	border-radius:3px;
+}
+.img-frame-md,.img-frame-lg{
+	border-radius:6px;
+}
+.img-frame-md,.img-frame-rd-md{
+	padding:8px;
+}
+.img-frame-lg,.img-frame-rd-lg{
+	padding:14px;
+}
 /*  Image Protection */
 .img-protected{
 	-webkit-touch-callout: none;
@@ -427,13 +443,6 @@ button{
 	margin:0;
 }
 
-/* = Forms
--------------------------------------------------------------- */
-
-.form-control{
-	border-color:rgba(0,0,0,.1);
-	box-shadow:none;
-}
 
 
 
@@ -628,28 +637,31 @@ url("img/backbutton.webp") 2x);
 .art{
 	border-radius:20px 20px 20px 20px;
 	border-style:solid;
-	border-width:8px 8px 8px 8px;
+	border-width:0px 0px 0px 0px;
 	border-color:rgba(255,255,255,0.29)!important;
-	background-repeat:no-repeat;
-	background-attachment:local;
-	background-size:contain;
-	background-clip:content-box!important;
-	-webkit-background-clip:content-box!important;
-	background-position:left top;
+	background-size:cover;
 }
 .progress{
 	background-size:length;
 }
-.img-5-style{
-	height:250px;
-	width:200px;
-}
-.img-4-style{
-	height:250px;
-}
 .img-addorder-style{
 	height:250px;
 	width:200px;
+	border-radius:27px 27px 27px 27px;
+	background-size:cover;
+	background-position:center center;
+	background-origin:content-box;
+	background-repeat:round;
+	background-attachment:local;
+	background-image:url("img/AddOrder_1.png");
+	background-image: -webkit-image-set(url("img/AddOrder_1.webp") 1x,
+url("img/AddOrder_1.webp") 2x);background-image: image-set(url("img/AddOrder_1.png") 1x,
+url("img/AddOrder_1.png") 2x,url("img/AddOrder_1.webp") 1x,
+url("img/AddOrder_1.webp") 2x);
+	background-image: -webkit-image-set(url("img/AddOrder_1.webp") 1x,
+url("img/AddOrder_1.webp") 2x);background-image: image-set(url("img/AddOrder_1.png") 1x,
+url("img/AddOrder_1.png") 2x,url("img/AddOrder_1.webp") 1x,
+url("img/AddOrder_1.webp") 2x);
 }
 .blur{
 	filter:blur(18px);
