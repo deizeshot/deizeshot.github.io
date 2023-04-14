@@ -77,6 +77,32 @@ a:hover{text-decoration: none; cursor:pointer;}
 }
 
 
+/* Background Effects */
+
+.parallax__container {
+	clip: rect(0, auto, auto, 0);
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index:-1;
+}
+.parallax {
+	position: fixed;
+	top: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
 /* Dark theme */
 
 .d-bloc{
@@ -778,12 +804,12 @@ url("img/AddOrder_1.webp") 2x);
 
 /* Bloc image backgrounds */
 
-.bg-photo508831778-457263918{
-	background-image:url("img/photo508831778_457263918.jpg");
-	background-image: -webkit-image-set(url("img/photo508831778_457263918.webp") 1x,
-url("img/photo508831778_457263918.webp") 2x);background-image: image-set(url("img/photo508831778_457263918.jpg") 1x,
-url("img/photo508831778_457263918.jpg") 2x,url("img/photo508831778_457263918.webp") 1x,
-url("img/photo508831778_457263918.webp") 2x);
+.bg-DEBRAND-LOGO{
+	background-image:url("img/DEBRAND_LOGO.png");
+	background-image: -webkit-image-set(url("img/DEBRAND_LOGO.webp") 1x,
+url("img/DEBRAND_LOGO.webp") 2x);background-image: image-set(url("img/DEBRAND_LOGO.png") 1x,
+url("img/DEBRAND_LOGO.png") 2x,url("img/DEBRAND_LOGO.webp") 1x,
+url("img/DEBRAND_LOGO.webp") 2x);
 }
 
 
