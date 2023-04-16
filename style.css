@@ -72,6 +72,9 @@ a:hover{text-decoration: none; cursor:pointer;}
 	left:0;
 	right:0;
 }
+.texture-darken::before{
+	background: rgba(0,0,0,0.5);
+}
 .texture-darken-strong::before{
 	background: rgba(0,0,0,0.8);
 }
@@ -409,6 +412,13 @@ a:hover{text-decoration: none; cursor:pointer;}
 	right:100%;
 	left:auto}
 }
+/* = Bric adjustment margins
+-------------------------------------------------------------- */
+
+.mg-md{
+	margin-top:10px;
+	margin-bottom:20px;
+}
 
 /* = Buttons
 -------------------------------------------------------------- */
@@ -423,6 +433,10 @@ button{
 	outline: none!important;
 }
 
+.btn-xl{
+	padding: 16px 40px;
+	font-size: 28px;
+}
 
 /* = Icons
 -------------------------------------------------------------- */
@@ -810,6 +824,9 @@ url("img/AddOrder_1.webp") 2x);
 url("img/DEBRAND_LOGO.webp") 2x);background-image: image-set(url("img/DEBRAND_LOGO.png") 1x,
 url("img/DEBRAND_LOGO.png") 2x,url("img/DEBRAND_LOGO.webp") 1x,
 url("img/DEBRAND_LOGO.webp") 2x);
+}
+.bg-i{
+	background-image:url("img/i.webp");
 }
 
 
