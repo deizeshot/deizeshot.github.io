@@ -60,6 +60,26 @@ a:hover{text-decoration: none; cursor:pointer;}
 	padding:20px;
 }
 
+/* = Full Width Blocs 
+-------------------------------------------------------------- */
+
+.full-width-bloc{
+	padding-left:0;
+	padding-right:0;
+}
+.full-width-bloc .row{
+	margin-left:0;
+	margin-right:0;
+}
+.full-width-bloc .container{
+	width:100%;
+	max-width:100%!important;
+}
+.full-width-bloc .carousel img{
+	width:100%;
+	height:auto;
+}
+
 
 /* Background Textures */
 
@@ -183,6 +203,12 @@ a:hover{text-decoration: none; cursor:pointer;}
 .d-bloc .card .btn-wire,.d-bloc .card .btn-wire:hover,.l-bloc .btn-wire,.l-bloc .btn-wire:hover{
 	color:rgba(0,0,0,.7);
 	border-color:rgba(0,0,0,.3);
+}
+/* Dividers */
+
+.b-divider{
+	border-top:1px solid rgba(0,0,0,.1);
+	border-bottom:1px solid rgba(0,0,0,.1);
 }
 
 
@@ -784,7 +810,7 @@ url("img/AddOrder_1.webp") 2x);
 /* Swatch Variables */
 :root{
 	
-	--swatch-var-White:rgba(0,0,0,1.00);
+	--swatch-var-White:#850000;
 	
 	--swatch-var-Gray:rgba(237,238,240,0.09);
 	
