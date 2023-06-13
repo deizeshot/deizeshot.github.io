@@ -106,6 +106,7 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
+          MyGameInstance = unityInstance;
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
@@ -117,10 +118,6 @@
       document.body.appendChild(script);
 
 
-        }).then((unityInstance) => {
-        loadingBar.style.display = "none";
-        MyGameInstance = unityInstance;
-      });
 
 
     </script>
