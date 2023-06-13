@@ -1,0 +1,18 @@
+"items" : {
+{
+"keyt": "SettingsButton",
+"value": "SETTINGS"
+},
+{
+"keyt": "LangueageText",
+"value": "Language"
+},
+{
+"keyt": "PlayText",
+"value": "PLAY"
+},
+{
+"keyt": "ShopText",
+"value": "SHOP"
+}
+	}

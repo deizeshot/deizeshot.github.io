@@ -1,232 +1,154 @@
-<!doctype html>
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-	<meta name="robots" content="index, follow">
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-    
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css?9088">
-	<link rel="stylesheet" type="text/css" href="style.css?8495">
-	<link rel="stylesheet" type="text/css" href="./css/animate.min.css?4470">
-	<link rel="stylesheet" type="text/css" href="./css/all.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Poppins:100,500,700,40&display=swap&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | НУБИК В БЕГАХ</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" style="position: absolute; width: 100%; height: 100%; left: 0%; top: 0%;">
+      <canvas id="unity-canvas" style="position: absolute; width: 100%; height: 100%;"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer" style="display: none;">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">НУБИК В БЕГАХ</div>
+      </div>
+    </div>
+    <script>
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+      var MyGameInstance;
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/NOOBRUNNER.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/NOOBRUNNER.data.unityweb",
+        frameworkUrl: buildUrl + "/NOOBRUNNER.framework.js.unityweb",
+        codeUrl: buildUrl + "/NOOBRUNNER.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "deizeshot@yandex.ru",
+        productName: "НУБИК В БЕГАХ",
+        productVersion: "1",
+        showBanner: unityShowBanner,
+      };
+
+      // By default Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+        //unityShowBanner('WebGL builds are not supported on mobile devices.');
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+      }
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
 
 
-    
-<!-- Analytics -->
- 
-<!-- Analytics END -->
-    
+        }).then((unityInstance) => {
+        loadingBar.style.display = "none";
+        MyGameInstance = unityInstance;
+      });
+
+
+    </script>
+  </body>
+  <head>
+<!-- Yandex Games SDK -->
+<script src="https://yandex.ru/games/sdk/v2"></script>
+<script>
+YaGames.init({
+adv: {
+onAdvClose: wasShown => {
+console.info('adv closed!');
+}
+}
+})
+.then(ysdk => {
+ysdk.adv.showFullscreenAdv();
+window.ysdk = ysdk;
+});
+function Allgames() {
+document.location.href = "";
+}
+function ShowAd() {
+window.ysdk.adv.showFullscreenAdv();
+}
+function ShowRewardedAd() {
+window.ysdk.adv.showRewardedVideo();
+}
+</script>
 </head>
-<body>
-
-<!-- Preloader -->
-<div id="page-loading-blocs-notifaction" class="page-preloader"></div>
-<!-- Preloader END -->
-
-
-<!-- Main container -->
-<div class="page-container">
-    
-<!-- navigation -->
-<div class="bloc bgc-5688 d-bloc" id="navigation">
-	<div class="container bloc-sm bloc-no-padding-lg">
-		<div class="row">
-			<div class="col">
-				<nav class="navbar row navbar-light" role="navigation">
-					<div class="container-fluid flex-column">
-						<a class="navbar-brand primary-full-stop logotext link-style mx-auto" href="./">DE14CLOUD</a>
-						<button id="nav-toggle" type="button" class="ui-navbar-toggler navbar-toggler border-0 p-0" aria-expanded="false" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target=".navbar-36760">
-							<span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path data-custom-classes=" menu-icon-stroke" class="svg-menu-icon menu-icon-filled menu-icon-squares  menu-icon-stroke" d="m2 14h6v6h-6zm11 0h6v6h-6zm11 0h6v6h-6z"></path></svg></span>
-						</button>
-						<div class="collapse navbar-collapse navbar-36760  fullscreen-nav">
-								<ul class="site-navigation nav navbar-nav mx-auto justify-content-center">
-									<li class="nav-item">
-										<a href="./" class="nav-link a-btn">СТЕНА</a>
-									</li>
-									<li class="nav-item">
-										<a href="./news/" class="nav-link a-btn">НОВОСТИ</a>
-									</li>
-									<li class="nav-item">
-										<a href="./order/" class="nav-link a-btn">ЗАКАЗ</a>
-									</li>
-									<li class="nav-item">
-										<a href="./design/" class="nav-link a-btn">ПОРТФОЛИО</a>
-									</li>
-								</ul>
-							</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- navigation END -->
-
-<!-- bloc-1 -->
-<div class="bloc bloc-bg-texture texture-darken-strong none d-bloc b-parallax" id="bloc-1">
-	<div class="parallax bg-DEBRAND-LOGO">
-	</div>
-	<div class="container bloc-sm bloc-md-lg">
-		<div class="row">
-			<div class="col">
-				<nav class="navbar navbar-light row navbar-expand-md flex-column" role="navigation">
-					<div class="container-fluid flex-column">
-						<button id="nav-toggle" type="button" class="ui-navbar-toggler navbar-toggler border-0 p-0" aria-expanded="false" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target=".navbar-1380">
-							<span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path class="svg-menu-icon" d="m2 9h28m-28 7h28m-28 7h28"></path></svg></span>
-						</button>
-						<div class="collapse navbar-collapse navbar-1380">
-								<ul class="site-navigation nav navbar-nav mx-auto justify-content-center">
-									<li class="nav-item">
-										<a href="./" class="nav-link a-btn">СТЕНА</a>
-									</li>
-									<li class="nav-item">
-										<a href="./news/" class="nav-link">НОВОСТИ</a>
-									</li>
-									<li class="nav-item">
-										<a href="./order/" class="nav-link a-btn">ЗАКАЗ</a>
-									</li>
-									<li class="nav-item">
-										<a href="./design/" class="nav-link a-btn">ПОРТФОЛИО</a>
-									</li>
-								</ul>
-							</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-1 END -->
-
-<!-- bloc-2 -->
-<div class="bloc d-bloc b-parallax bloc-bg-texture texture-darken" id="bloc-2" data-scroll-fx-resistance="10">
-	<div class="parallax bg-i">
-	</div>
-	<div class="container bloc-lg">
-		<div class="row">
-			<div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3 col">
-				<h1 class="mg-md text-center">
-					REBUBBLE
-				</h1>
-				<h4 class="mg-md text-center">
-					Мои дизайны на ваших футболках
-				</h4><a href="https://www.redbubble.com/people/de14cloud/shop?asc=u"><picture><source type="image/webp" srcset="img/imageshobutton.webp"><img src="img/imageshobutton.png" class="img-fluid mx-auto d-block" alt="imageshobutton"></picture></a>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-2 END -->
-
-<!-- gallery -->
-<div class="bloc none bgc-5688 d-bloc" id="gallery">
-	<div class="container bloc-md">
-		<div class="row">
-			<div class="text-center text-md-start col-lg-12 text-sm-start">
-				<div class="blocs-grid-container mb-4 gallery-grid">
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/Dians.png" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art19_1.webp"><img src="img/lazyload-ph.png" data-src="img/art19_1.png" class="img-fluid img-addorder-style nonein mx-auto d-block img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/Ксю.png" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art19.webp"><img src="img/lazyload-ph.png" data-src="img/art19.png" class="img-fluid img-addorder-style nonein mx-auto d-block img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263990.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art16.webp"><img src="img/lazyload-ph.png" data-src="img/art16.png" class="img-fluid mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457264038.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art15.webp"><img src="img/lazyload-ph.png" data-src="img/art15.png" class="img-fluid mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263963.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art17.webp"><img src="img/lazyload-ph.png" data-src="img/art17.png" class="img-fluid mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/123.png" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art18_1.webp"><img src="img/lazyload-ph.png" data-src="img/art18_1.png" class="img-fluid mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263946%20%281%29.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art14.webp"><img src="img/lazyload-ph.png" data-src="img/art14.png" class="img-fluid mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art11.webp"><img src="img/lazyload-ph.png" data-src="img/art11.png" class="img-fluid img-protected mx-auto d-block img-frame img-addorder-style lazyload" alt="placeholder image" width="190" height="240"></picture>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="vid/Euphoria%20Rue%20digital%20art%20speed%20pain.mp4" data-gallery-id="gallery-1" data-autoplay="0" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art13.webp"><img src="img/lazyload-ph.png" data-src="img/art13.png" class="img-fluid img-protected mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263922.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art12.webp"><img src="img/lazyload-ph.png" data-src="img/art12.png" class="img-fluid img-protected mx-auto d-block img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263611.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art1.webp"><img src="img/lazyload-ph.png" data-src="img/art1.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263592.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art2.webp"><img src="img/lazyload-ph.png" data-src="img/art2.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/SpeedArt-06_12_17.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art8.webp"><img src="img/lazyload-ph.png" data-src="img/art8.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/IMAGE.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art3.webp"><img src="img/lazyload-ph.png" data-src="img/art3.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263895.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art5.webp"><img src="img/lazyload-ph.png" data-src="img/art5.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263901.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art9.webp"><img src="img/lazyload-ph.png" data-src="img/art9.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-					<div class="grid-card">
-						<a href="#" data-lightbox="img/photo508831778_457263897.jpg" data-gallery-id="gallery-1" data-frame="light-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/art7.webp"><img src="img/lazyload-ph.png" data-src="img/art7.png" class="img-fluid mx-auto d-block img-protected img-addorder-style img-frame lazyload" alt="placeholder image" width="190" height="240"></picture></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- gallery END -->
-
-<!-- ScrollToTop Button -->
-<a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1',this)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path class="scroll-to-top-btn-icon" d="M30,22.656l-14-13-14,13"/></svg></a>
-<!-- ScrollToTop Button END-->
-
-
-<!-- bloc-5 -->
-<div class="bloc l-bloc" id="bloc-5">
-	<div class="container bloc-lg">
-		<div class="row">
-			<div class="col">
-				<div class="text-center">
-					<h1 class="mb-4">
-						СВЯЗЬ СО МНОЙ
-					</h1>
-					<div class="text-center">
-						<span class="icon-md fa fa-arrow-down"></span>
-					</div>
-					<h4 class="mb-4 h1-style mt-lg-3">
-						<u>DEIZESHOT@GMAIL.COM</u>
-					</h4><a href="https://t.me/VPNZONER" target="_blank"><span class="icon-xl fab fa-telegram"></span></a><a href="https://vk.com/moscow_deize" target="_blank"><span class="icon-xl fab fa-vk"></span></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-5 END -->
-
-</div>
-<!-- Main container END -->
-    
-
-
-<!-- Additional JS -->
-<script src="./js/bootstrap.bundle.min.js?5418"></script>
-<script src="./js/blocs.min.js?1085"></script>
-<script src="./js/lazysizes.min.js" defer></script>
-<script src="./js/universal-parallax.min.js?9647"></script>
-<script src="./js/scrollFX.js?8710"></script>
-<!-- Additional JS END -->
-
-
-</body>
 </html>

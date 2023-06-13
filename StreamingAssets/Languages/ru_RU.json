@@ -1,0 +1,18 @@
+"items" : {
+{
+"keyt": "SettingsButton",
+"value": "Настройки"
+},
+{
+"keyt": "LangueageText",
+"value": "Язык игры"
+},
+{
+"keyt": "PlayText",
+"value": "Играть"
+},
+{
+"keyt": "ShopText",
+"value": "Магазин"
+}
+	}
