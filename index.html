@@ -19,21 +19,32 @@
                     $("#unity-logo").removeClass("bounce-animation");
                 }, 1000);
             });
+
             function shakeButton() {
-            playButton.classList.add("shake");
-            setTimeout(function() {
-            playButton.classList.remove("shake");
-            }, 3000);
+  playButton.classList.add("shake");
+  setTimeout(function() {
+    playButton.classList.remove("shake");
+  }, 1000);
 }
 
 function startShakeAnimation() {
-  setInterval(function() {
-    var delay = Math.random() * 5000; // Рандомная задержка от 0 до 5 секунд
-    setTimeout(shakeButton, delay);
-  }, 7000); // Задержка между анимациями 7 секунд
+  function getRandomDelay() {
+    return Math.random() * 3000 + 4000; // Рандомная задержка от 4 до 7 секунд
+  }
+
+  function animateButton() {
+    shakeButton();
+    setTimeout(animateButton, getRandomDelay());
+  }
+
+  shakeButton(); // Проиграть анимацию один раз быстро
+  setTimeout(animateButton, getRandomDelay()); // Начать повторение через случайное время
 }
 
 startShakeAnimation();
+
+
+
         });
     </script>
 
