@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>SkibidiWhack</title>
+    <title>SkibidiWhack</title>  <!-- НЕ ДЛЯ ШАБЛОНА -->
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <script src="https://yandex.ru/games/sdk/v2"></script>
     <link rel="stylesheet" href="TemplateData/style.css">
@@ -13,7 +13,7 @@
     <audio id="sound2" src="TemplateData/2.mp3"></audio>
     <audio id="sound3" src="TemplateData/3.mp3"></audio>
     
-    <script>
+            <script>
             $(document).ready(function() {
             $("#unity-logo").mousedown(function() {
                 $(this).addClass("bounce-animation");
@@ -22,37 +22,29 @@
                     $("#unity-logo").removeClass("bounce-animation");
                 }, 1000);
             });
+            function shakeButton() {
+            playButton.classList.add("shake");
+            setTimeout(function() {
+            playButton.classList.remove("shake");
+            }, 1000);
+            }
+            function startShakeAnimation() {
+            function getRandomDelay() {
+            return Math.random() * 3000 + 4000; // Рандомная задержка от 4 до 7 секунд
+            }
 
-  function shakeButton() {
-  playButton.classList.add("shake");
-  setTimeout(function() {
-    playButton.classList.remove("shake");
-  }, 1000);
-}
-
-function startShakeAnimation() {
-  function getRandomDelay() {
-    return Math.random() * 3000 + 4000; // Рандомная задержка от 4 до 7 секунд
-  }
-
-  function animateButton() {
-    shakeButton();
-    setTimeout(animateButton, getRandomDelay());
-  }
-
-  shakeButton(); // Проиграть анимацию один раз быстро
-  setTimeout(animateButton, getRandomDelay()); // Начать повторение через случайное время
-}
-
-startShakeAnimation();
-
-
-
-        });
-</script>
+            function animateButton() {
+            shakeButton();
+            setTimeout(animateButton, getRandomDelay());
+            }
+            shakeButton(); // Проиграть анимацию один раз быстро
+            setTimeout(animateButton, getRandomDelay()); // Начать повторение через случайное время
+            }
+            startShakeAnimation();
+            });
+            </script>
 
 <script>
-
 $(document).ready(function() {
   var messages = ["SWEETY", "KITTY", "GAMES"];
   var sounds = ["sound1", "sound2", "sound3"];
@@ -78,27 +70,7 @@ $(document).ready(function() {
     playRandomSound();
   });
 });
-
-
-
 </script>
-
-<!-- <script>
-  function playRandomSound() {
-  const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-  const audio = document.getElementById(randomSound);
-  audio.play();
-}
-
-  document.getElementById("unity-logo").onclick = function() {
-  const messageContainer = document.getElementById("message-container");
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-  messageContainer.textContent = randomMessage;
-
-  playRandomSound();
-};
-</script> -->
-
 </head>
 
 <body class="dark">
@@ -106,12 +78,12 @@ $(document).ready(function() {
     <canvas id="unity-canvas"></canvas>
     <div id="background-layer"></div>
     <div id="tile-layer"></div>
-</div>
-<div id="loading-cover" style="display:none;">
+    </div>
+    <div id="loading-cover" style="display:none;">
 
     <div id="unity-loading-bar">
 
-        <div id="unity-logo" onclick="playRandomSound()">
+            <div id="unity-logo" onclick="playRandomSound()">
             <div id="message-overlay"></div> 
             <div id="layer1" class="logo-layer"></div>
             <div id="layer2" class="logo-layer"></div>
@@ -141,14 +113,14 @@ $(document).ready(function() {
     <script>
         const hideFullScreenButton = "";
         const buildUrl = "Build";
-        const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
+        const loaderUrl = buildUrl + "/YandexSkibidi.loader.js"; /* НЕ ДЛЯ ШАБЛОНА */
         const config = {
-            dataUrl: buildUrl + "/YandexSkibidi.data.unityweb",
-            frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb",
-            codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",
+            dataUrl: buildUrl + "/YandexSkibidi.data.unityweb", /* НЕ ДЛЯ ШАБЛОНА */
+            frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb", /* НЕ ДЛЯ ШАБЛОНА */
+            codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",  /* НЕ ДЛЯ ШАБЛОНА */
             streamingAssetsUrl: "StreamingAssets",
             companyName: "CyberCats",
-            productName: "SkibidiWhack",
+            productName: "SkibidiWhack", /* НЕ ДЛЯ ШАБЛОНА */
             productVersion: "1.0",
         };
 
