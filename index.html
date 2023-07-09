@@ -60,8 +60,8 @@
               </script>
           </div>
           
-          <div id="play-button-container" style="display: none;">
-            <button id="play-button">Играть</button>
+          <div id="play-button-container">
+            <button id="play-button" disabled>Играть</button>
         </div>
         <div id="unity-progress-bar-empty">
             <div id="unity-progress-bar-full" class="white-progress-bar"></div>
@@ -159,9 +159,14 @@
                 progressBarFull.style.width = `${100 * progress}%`;
 
                 if (progress === 1) {
-                    progressBarEmpty.style.display = "none";
-                    showPlayButton();
-                }
+    progressBarEmpty.style.display = "none";
+    progressBarFull.style.width = "100%";
+    showPlayButton();
+    playButton.disabled = false;
+    playButton.style.cursor = "pointer";
+    playButton.style.opacity = "1";
+}
+
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
                 loadingCover.style.display = "none";

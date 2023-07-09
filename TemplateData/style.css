@@ -53,6 +53,7 @@ body {
   background-repeat: repeat;
   animation: tileMovement 100s linear infinite, opacityAnimation 20s alternate infinite;
   }
+  
 #unity-loading-bar {
     flex: 1 1 auto;
     display: flex;
@@ -60,9 +61,12 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 #play-button-container {
   text-align: center;
+  position: relative;
   margin-top: 20px;
+  z-index: 1;
 }
 
 #play-button {
@@ -72,12 +76,23 @@ body {
   color: white;
   font-size: 18px;
   border: none;
-  cursor: pointer;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
-#play-button:hover {
-  background-color: #45a049;
+#unity-progress-bar-empty {
+  position: relative;
+  height: 4px;
+  background-color: white;
 }
+
+#unity-progress-bar-full {
+  height: 100%;
+  background-color: #4CAF50;
+  width: 0%;
+  transition: width 0.2s ease-in-out;
+}
+
 #unity-logo {
   position: relative;
   width: 350px; 
