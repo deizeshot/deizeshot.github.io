@@ -9,6 +9,9 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <script src="https://yandex.ru/games/sdk/v2"></script>
     <link rel="stylesheet" href="TemplateData/style.css">
+    <audio id="sound1" src="TemplateData/1.mp3"></audio>
+    <audio id="sound2" src="TemplateData/2.mp3"></audio>
+    <audio id="sound3" src="TemplateData/3.mp3"></audio>
     
     <script>
         $(document).ready(function() {
@@ -20,7 +23,7 @@
                 }, 1000);
             });
 
-            function shakeButton() {
+  function shakeButton() {
   playButton.classList.add("shake");
   setTimeout(function() {
     playButton.classList.remove("shake");
@@ -64,6 +67,15 @@ startShakeAnimation();
     setInterval(showMessage, 5000);
 });
 </script>
+
+<script>
+  function playRandomSound() {
+  var sounds = ["sound1", "sound2", "sound3"];
+  var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+  var audio = document.getElementById(randomSound);
+  audio.play();
+}
+</script>
 </head>
 
 <body class="dark">
@@ -76,7 +88,7 @@ startShakeAnimation();
 
     <div id="unity-loading-bar">
 
-        <div id="unity-logo">
+        <div id="unity-logo" onclick="playRandomSound()">
             <div id="message-overlay"></div> 
             <div id="layer1" class="logo-layer"></div>
             <div id="layer2" class="logo-layer"></div>
