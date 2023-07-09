@@ -129,18 +129,22 @@
 
     const script = document.createElement("script");
     script.src = loaderUrl;
+    
     script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-            spinner.style.display = "none";
-            progressBarEmpty.style.display = "";
-            progressBarFull.style.width = `${100 * progress}%`;
-        }).then((unityInstance) => {
-            myGameInstance = unityInstance;
-            loadingCover.style.display = "none";
-        }).catch((message) => {
-            alert(message);
-        });
-    };
+    createUnityInstance(canvas, config, (progress) => {
+        spinner.style.display = "none";
+        progressBarEmpty.style.display = "";
+        progressBarFull.style.width = `${100 * progress}%`;
+    }).then((unityInstance) => {
+        myGameInstance = unityInstance;
+        loadingCover.style.display = "none";
+        backgroundLayer.style.display = "none"; // Скрыть фон после загрузки
+        tileLayer.style.display = "none"; // Скрыть тайл после загрузки
+    }).catch((message) => {
+        alert(message);
+    });
+};
+
 
 
 
