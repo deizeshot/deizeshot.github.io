@@ -14,7 +14,7 @@
     <audio id="sound3" src="TemplateData/3.mp3"></audio>
     
     <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
             $("#unity-logo").mousedown(function() {
                 $(this).addClass("bounce-animation");
 
@@ -49,33 +49,56 @@ startShakeAnimation();
 
 
         });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-    var messages = ["SWEETY", "KITTY", ":)"];
-    var messageIndex = 0;
-
-    function showMessage() {
-    $("#message-overlay").text(messages[messageIndex]);
-    $("#message-overlay").addClass("show-message");
-    setTimeout(function() {
-        $("#message-overlay").removeClass("show-message");
-    }, 2000);
-    messageIndex = (messageIndex + 1) % messages.length;
-    }
-    setInterval(showMessage, 5000);
-});
 </script>
 
 <script>
-  function playRandomSound() {
+
+$(document).ready(function() {
+  var messages = ["SWEETY", "KITTY", "GAMES"];
   var sounds = ["sound1", "sound2", "sound3"];
-  var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-  var audio = document.getElementById(randomSound);
+  var messageIndex = 0;
+
+  function showMessage() {
+    $("#message-overlay").text(messages[messageIndex]);
+    $("#message-overlay").addClass("show-message");
+    setTimeout(function() {
+      $("#message-overlay").removeClass("show-message");
+    }, 2000);
+    messageIndex = (messageIndex + 1) % messages.length;
+  }
+
+  function playRandomSound() {
+    var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+    var audio = document.getElementById(randomSound);
+    audio.play();
+  }
+
+  $("#unity-logo").click(function() {
+    showMessage();
+    playRandomSound();
+  });
+});
+
+
+
+</script>
+
+<!-- <script>
+  function playRandomSound() {
+  const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+  const audio = document.getElementById(randomSound);
   audio.play();
 }
-</script>
+
+  document.getElementById("unity-logo").onclick = function() {
+  const messageContainer = document.getElementById("message-container");
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+  messageContainer.textContent = randomMessage;
+
+  playRandomSound();
+};
+</script> -->
+
 </head>
 
 <body class="dark">
