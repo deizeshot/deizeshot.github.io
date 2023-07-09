@@ -21,7 +21,17 @@ body {
 #unity-canvas {
     width: 100%;
     height: 100%;
-    background: #1F1F20;
+    /* background: #1F1F20; */
+}
+#loading-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #background-layer {
   position: absolute;
@@ -43,16 +53,6 @@ body {
   background-repeat: repeat;
   animation: tileMovement 100s linear infinite, opacityAnimation 20s alternate infinite;
   }
-/* #loading-cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 #unity-loading-bar {
     flex: 1 1 auto;
     display: flex;
