@@ -59,121 +59,105 @@
                 $("#layer2").addClass("logo-layer");
               </script>
           </div>
-        <button id="play-button">Играть</button>
-    </div>
-        <div id="unity-progress-bar-empty" style="display: none;">
-        <div id="unity-progress-bar-full" class="white-progress-bar"></div>
+            <button id="play-button">Играть</button>
+            <div id="unity-progress-bar-empty" style="display: none;">
+            <div id="unity-progress-bar-full" class="white-progress-bar"></div>
         </div>
-
         <div class="spinner"></div>
     </div>
-</div>
+    <script>
+        const hideFullScreenButton = "";
+        const buildUrl = "Build";
+        const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
+        const config = {
+            dataUrl: buildUrl + "/YandexSkibidi.data.unityweb",
+            frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb",
+            codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "CyberCats",
+            productName: "SkibidiWhack",
+            productVersion: "1.0",
+        };
 
-<script>
-    const hideFullScreenButton = "";
-    const buildUrl = "Build";
-    const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
-    const config = {
-        dataUrl: buildUrl + "/YandexSkibidi.data.unityweb",
-        frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb",
-        codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "CyberCats",
-        productName: "SkibidiWhack",
-        productVersion: "1.0",
-    };
+        const container = document.querySelector("#unity-container");
+        const canvas = document.querySelector("#unity-canvas");
+        const loadingCover = document.querySelector("#loading-cover");
+        const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+        const progressBarFull = document.querySelector("#unity-progress-bar-full");
+        const spinner = document.querySelector('.spinner');
 
-    const container = document.querySelector("#unity-container");
-    const canvas = document.querySelector("#unity-canvas");
-    const loadingCover = document.querySelector("#loading-cover");
-    const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-    const progressBarFull = document.querySelector("#unity-progress-bar-full");
-    const spinner = document.querySelector('.spinner');
-
-    const canFullscreen = (function () {
-        for (const key of [
-            'exitFullscreen',
-            'webkitExitFullscreen',
-            'webkitCancelFullScreen',
-            'mozCancelFullScreen',
-            'msExitFullscreen',
-        ]) {
-            if (key in document) {
-                return true;
+        const canFullscreen = (function () {
+            for (const key of [
+                'exitFullscreen',
+                'webkitExitFullscreen',
+                'webkitCancelFullScreen',
+                'mozCancelFullScreen',
+                'msExitFullscreen',
+            ]) {
+                if (key in document) {
+                    return true;
+                }
             }
+            return false;
+        }());
+
+        function showPlayButton() {
+            const playButton = document.getElementById("play-button");
+            playButton.style.display = "block";
         }
-        return false;
-    }());
 
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-    }
+        function hidePlayButton() {
+            const playButton = document.getElementById("play-button");
+            playButton.style.display = "none";
+        }
 
-    // canvas.style.background = "url('background.png') center / cover";
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            container.className = "unity-mobile";
+        }
 
-    loadingCover.style.display = "";
+        // canvas.style.background = "url('background.png') center / cover";
 
-    canvas.addEventListener("touchstart", () => { window.focus() });
-    canvas.addEventListener("pointerdown", () => { window.focus() }); 
+        loadingCover.style.display = "";
 
-    let player;
-    let leaderboard;
-    let myGameInstance = null;
-    let payments = null;
-    let promptCanShow = false;
-    let reviewCanShow = false;
-    let initSDK = false;
-    let initGame = false;
-    let photoSizeForInit;
-    let scopesForInit;
-    let firstAd = true;
+        canvas.addEventListener("touchstart", () => { window.focus() });
+        canvas.addEventListener("pointerdown", () => { window.focus() }); 
 
-    const script = document.createElement("script");
-    script.src = loaderUrl;
-    
-    function showPlayButton() {
-        const playButton = document.createElement("button");
-        playButton.textContent = "Играть";
-        playButton.addEventListener("click", () => {
-            hidePlayButton();
-            myGameInstance.Module.canvas.style.display = "block";
-            myGameInstance.Module.canvas.focus();
-        });
+        let player;
+        let leaderboard;
+        let myGameInstance = null;
+        let payments = null;
+        let promptCanShow = false;
+        let reviewCanShow = false;
+        let initSDK = false;
+        let initGame = false;
+        let photoSizeForInit;
+        let scopesForInit;
+        let firstAd = true;
 
-        loadingCover.appendChild(playButton);
-    }
+        const script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                spinner.style.display = "none";
+                progressBarEmpty.style.display = "";
+                progressBarFull.style.width = `${100 * progress}%`;
 
-    function hidePlayButton() {
-        const playButton = document.querySelector("#loading-cover button");
-        playButton.remove();
-    }
+                if (progress === 1) {
+                    showPlayButton();
+                }
+            }).then((unityInstance) => {
+                myGameInstance = unityInstance;
+                loadingCover.style.display = "none";
+                const backgroundLayer = document.querySelector("#background-layer");
+                const tileLayer = document.querySelector("#tile-layer");
+                backgroundLayer.style.display = "none"; // Скрыть фон после загрузки
+                tileLayer.style.display = "none"; // Скрыть тайл после загрузки
+            }).catch((message) => {
+                alert(message);
+            });
+        };
 
-    script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-            spinner.style.display = "none";
-            progressBarEmpty.style.display = "";
-            progressBarFull.style.width = `${100 * progress}%`;
-
-            if (progress === 1) {
-                showPlayButton();
-            }
-        }).then((unityInstance) => {
-            myGameInstance = unityInstance;
-            loadingCover.style.display = "none";
-            const backgroundLayer = document.querySelector("#background-layer");
-            const tileLayer = document.querySelector("#tile-layer");
-            backgroundLayer.style.display = "none"; // Скрыть фон после загрузки
-            tileLayer.style.display = "none"; // Скрыть тайл после загрузки
-        }).catch((message) => {
-            alert(message);
-        });
-    };
-    document.body.appendChild(script);
-</script>
-
-
-
-
+        document.body.appendChild(script);
 
     YaGames.init()
         .then(ysdk => {
