@@ -127,6 +127,11 @@
             hidePlayButton();
             myGameInstance.Module.canvas.style.display = "block";
             myGameInstance.Module.canvas.focus();
+            const backgroundLayer = document.querySelector("#background-layer");
+            const tileLayer = document.querySelector("#tile-layer");
+            loadingCover.style.display = "none";
+            backgroundLayer.style.display = "none";
+            tileLayer.style.display = "none";
         }
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -169,15 +174,10 @@
 
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
-
-
-                playButton.addEventListener("click", startGame);
-            }).catch((message) => {
-                loadingCover.style.display = "none";
                 const backgroundLayer = document.querySelector("#background-layer");
                 const tileLayer = document.querySelector("#tile-layer");
-                backgroundLayer.style.display = "none";
-                tileLayer.style.display = "none";
+                playButton.addEventListener("click", startGame);
+            }).catch((message) => {
                 alert(message);
             });
         };
