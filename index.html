@@ -85,6 +85,7 @@
         const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
         const progressBarFull = document.querySelector("#unity-progress-bar-full");
         const spinner = document.querySelector('.spinner');
+        const playButton = document.querySelector("#play-button");
 
         const canFullscreen = (function () {
             for (const key of [
@@ -102,13 +103,19 @@
         }());
 
         function showPlayButton() {
-            const playButton = document.getElementById("play-button");
             playButton.style.display = "block";
+            playButton.addEventListener("click", startGame);
         }
 
         function hidePlayButton() {
-            const playButton = document.getElementById("play-button");
             playButton.style.display = "none";
+            playButton.removeEventListener("click", startGame);
+        }
+
+        function startGame() {
+            hidePlayButton();
+            myGameInstance.Module.canvas.style.display = "block";
+            myGameInstance.Module.canvas.focus();
         }
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -158,6 +165,12 @@
         };
 
         document.body.appendChild(script);
+
+
+
+        
+
+        // YANDEX
 
     YaGames.init()
         .then(ysdk => {
