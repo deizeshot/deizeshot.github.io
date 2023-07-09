@@ -59,12 +59,24 @@
                 $("#layer2").addClass("logo-layer");
               </script>
           </div>
+          
+          <div id="play-button-container" style="display: none;">
             <button id="play-button">Играть</button>
-            <div id="unity-progress-bar-empty" style="display: none;">
+        </div>
+        <div id="unity-progress-bar-empty">
             <div id="unity-progress-bar-full" class="white-progress-bar"></div>
         </div>
         <div class="spinner"></div>
     </div>
+
+
+
+
+    <!-- SCRIPTS -->
+
+
+
+
     <script>
         const hideFullScreenButton = "";
         const buildUrl = "Build";
@@ -85,6 +97,7 @@
         const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
         const progressBarFull = document.querySelector("#unity-progress-bar-full");
         const spinner = document.querySelector('.spinner');
+        const playButtonContainer = document.querySelector("#play-button-container");
         const playButton = document.querySelector("#play-button");
 
         const canFullscreen = (function () {
@@ -103,13 +116,11 @@
         }());
 
         function showPlayButton() {
-            playButton.style.display = "block";
-            playButton.addEventListener("click", startGame);
+            playButtonContainer.style.display = "block";
         }
 
         function hidePlayButton() {
-            playButton.style.display = "none";
-            playButton.removeEventListener("click", startGame);
+            playButtonContainer.style.display = "none";
         }
 
         function startGame() {
@@ -121,8 +132,6 @@
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             container.className = "unity-mobile";
         }
-
-        // canvas.style.background = "url('background.png') center / cover";
 
         loadingCover.style.display = "";
 
@@ -150,6 +159,7 @@
                 progressBarFull.style.width = `${100 * progress}%`;
 
                 if (progress === 1) {
+                    progressBarEmpty.style.display = "none";
                     showPlayButton();
                 }
             }).then((unityInstance) => {
@@ -157,12 +167,14 @@
                 loadingCover.style.display = "none";
                 const backgroundLayer = document.querySelector("#background-layer");
                 const tileLayer = document.querySelector("#tile-layer");
-                backgroundLayer.style.display = "none"; // Скрыть фон после загрузки
-                tileLayer.style.display = "none"; // Скрыть тайл после загрузки
+                backgroundLayer.style.display = "none";
+                tileLayer.style.display = "none";
             }).catch((message) => {
                 alert(message);
             });
         };
+
+        playButton.addEventListener("click", startGame);
 
         document.body.appendChild(script);
 
