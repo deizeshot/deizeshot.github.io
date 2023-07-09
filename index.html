@@ -105,26 +105,16 @@
         return false;
     }());
 
-    function showPlayButton() {
-        const playButton = document.getElementById("play-button");
-        playButton.style.display = "block";
-    }
-
-    function hidePlayButton() {
-        const playButton = document.getElementById("play-button");
-        playButton.style.display = "none";
-    }
-
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
     }
 
-    canvas.style.background = "url('background.png') center / cover";
+    // canvas.style.background = "url('background.png') center / cover";
 
     loadingCover.style.display = "";
 
     canvas.addEventListener("touchstart", () => { window.focus() });
-    canvas.addEventListener("pointerdown", () => { window.focus() });
+    canvas.addEventListener("pointerdown", () => { window.focus() }); 
 
     let player;
     let leaderboard;
@@ -140,6 +130,24 @@
 
     const script = document.createElement("script");
     script.src = loaderUrl;
+    
+    function showPlayButton() {
+        const playButton = document.createElement("button");
+        playButton.textContent = "Играть";
+        playButton.addEventListener("click", () => {
+            hidePlayButton();
+            myGameInstance.Module.canvas.style.display = "block";
+            myGameInstance.Module.canvas.focus();
+        });
+
+        loadingCover.appendChild(playButton);
+    }
+
+    function hidePlayButton() {
+        const playButton = document.querySelector("#loading-cover button");
+        playButton.remove();
+    }
+
     script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
             spinner.style.display = "none";
@@ -152,12 +160,10 @@
         }).then((unityInstance) => {
             myGameInstance = unityInstance;
             loadingCover.style.display = "none";
-            const playButton = document.getElementById("play-button");
-            playButton.addEventListener("click", () => {
-                hidePlayButton();
-                myGameInstance.Module.canvas.style.display = "block";
-                myGameInstance.Module.canvas.focus();
-            });
+            const backgroundLayer = document.querySelector("#background-layer");
+            const tileLayer = document.querySelector("#tile-layer");
+            backgroundLayer.style.display = "none"; // Скрыть фон после загрузки
+            tileLayer.style.display = "none"; // Скрыть тайл после загрузки
         }).catch((message) => {
             alert(message);
         });
@@ -166,11 +172,6 @@
 </script>
 
 
-
-
-
-
-    // YANDEX
 
 
 
