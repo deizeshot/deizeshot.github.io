@@ -76,11 +76,9 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
-
 #play-button.show {
   display: block;
 }
-
 #unity-logo {
   position: relative;
   width: 350px; 
