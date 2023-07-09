@@ -19,6 +19,21 @@
                     $("#unity-logo").removeClass("bounce-animation");
                 }, 1000);
             });
+            function shakeButton() {
+            playButton.classList.add("shake");
+            setTimeout(function() {
+            playButton.classList.remove("shake");
+            }, 3000);
+}
+
+function startShakeAnimation() {
+  setInterval(function() {
+    var delay = Math.random() * 5000; // Рандомная задержка от 0 до 5 секунд
+    setTimeout(shakeButton, delay);
+  }, 7000); // Задержка между анимациями 7 секунд
+}
+
+startShakeAnimation();
         });
     </script>
 
@@ -61,7 +76,7 @@
           </div>
           
           <div id="play-button-container">
-            <button id="play-button" disabled>Играть</button>
+            <button id="play-button" disabled class="shake">Играть</button>
         </div>
         <div id="unity-progress-bar-empty">
             <div id="unity-progress-bar-full" class="white-progress-bar"></div>

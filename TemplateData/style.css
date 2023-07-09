@@ -73,7 +73,7 @@ body {
   display: inline-block;
   padding: 10px 20px;
   background-color: #ffffff;
-  color: white;
+  color: rgba(255, 255, 255, 0);
   font-size: 25px;
   border: none;
   cursor: not-allowed;
@@ -310,4 +310,17 @@ transform: translateY(0) scale(1);
 }
 .bounce-animation {
 animation: bounce 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+#play-button.shake {
+  animation: shake 3s infinite;
 }
