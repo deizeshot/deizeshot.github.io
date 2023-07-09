@@ -169,12 +169,12 @@
                 const tileLayer = document.querySelector("#tile-layer");
                 backgroundLayer.style.display = "none";
                 tileLayer.style.display = "none";
+
+                playButton.addEventListener("click", startGame);
             }).catch((message) => {
                 alert(message);
             });
         };
-
-        playButton.addEventListener("click", startGame);
 
         document.body.appendChild(script);
 
