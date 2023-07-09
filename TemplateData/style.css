@@ -163,7 +163,7 @@ body {
 }
 
 
-/* <style> */
+/* <style>
         
 /* #unityContainer {
     position: absolute;
@@ -171,7 +171,6 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-} */
 
 #background-layer {
 position: absolute;
@@ -230,8 +229,8 @@ background-color: white;
 
 #unity-logo {
 position: relative;
-width: 350px; /* Замените на нужный размер */
-height: 350px; /* Замените на нужный размер */
+width: 350px; 
+height: 350px; 
 }
 
 .logo-layer {
@@ -244,7 +243,7 @@ background-size: cover;
 }
 
 #layer1 {
-background-image: url('logo.png'); /* Замените на путь к вашему изображению */
+background-image: url('logo.png'); 
 z-index: 2;
 animation: pulse-scale 10s infinite;
 }
@@ -268,8 +267,8 @@ transform: scale(1);
 }
 
 #layer2 {
-background-image: url('logo.png'); /* Замените на путь к вашему изображению */
-filter: blur(0px); /* Изначальная степень размытия */
+background-image: url('logo.png'); 
+filter: blur(0px); 
 z-index: 1;
 animation: pulse 10s infinite;
 }
@@ -312,4 +311,4 @@ animation: bounce 0.5s;
 
 
 
-/* </style> */
+</style> */
