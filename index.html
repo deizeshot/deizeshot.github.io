@@ -167,13 +167,13 @@
     playButton.style.opacity = "1";
 }
 
-            }).then((unityInstance) => {
-                myGameInstance = unityInstance;
-                loadingCover.style.display = "none";
-                const backgroundLayer = document.querySelector("#background-layer");
-                const tileLayer = document.querySelector("#tile-layer");
-                backgroundLayer.style.display = "none";
-                tileLayer.style.display = "none";
+            // }).then((unityInstance) => {
+            //     myGameInstance = unityInstance;
+            //     loadingCover.style.display = "none";
+            //     const backgroundLayer = document.querySelector("#background-layer");
+            //     const tileLayer = document.querySelector("#tile-layer");
+            //     backgroundLayer.style.display = "none";
+            //     tileLayer.style.display = "none";
 
                 playButton.addEventListener("click", startGame);
             }).catch((message) => {
