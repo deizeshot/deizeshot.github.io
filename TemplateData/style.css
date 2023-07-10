@@ -376,6 +376,7 @@ animation: bounce 0.5s;
 #play-button.shake {
   animation: shake 1s infinite;
 }
+
 .button-list {
   list-style: none;
   padding: 25px;
@@ -395,7 +396,7 @@ animation: bounce 0.5s;
   height: 100%;
   padding: 0;
   border: none;
-  background-color: #ffffff;
+  background-color: #ffffff00;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -405,4 +406,25 @@ animation: bounce 0.5s;
 .button-list li img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.button-list.horizontal {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+  background-color: #ffffff00;
+  padding: 10px;
+}
+
+.button-list.horizontal li {
+  margin-right: 10px;
+}
+
+.button-list.horizontal li:last-child {
+  margin-right: 0;
 }
