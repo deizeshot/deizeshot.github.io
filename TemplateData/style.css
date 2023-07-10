@@ -324,3 +324,11 @@ animation: bounce 0.5s;
 #play-button.shake {
   animation: shake 1s infinite;
 }
+.airtable-container {
+  background-color: black;
+}
+
+.airtable-embed {
+  background-color: transparent;
+  border: 1px solid #ccc;
+}
