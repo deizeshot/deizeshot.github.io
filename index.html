@@ -74,43 +74,35 @@ $(document).ready(function() {
 </head>
 
 <body class="dark">
+
 <div id="unity-container" class="unity-desktop">
-    <canvas id="unity-canvas"></canvas>
-    <div id="background-layer"></div>
-    <div id="tile-layer"></div>
-    </div>
-    <div id="loading-cover" style="display:none;">
+  <canvas id="unity-canvas"></canvas>
+  <div id="background-layer"></div>
+  <div id="tile-layer"></div>
+</div>
 
-    <div id="unity-loading-bar">
-
-            <div id="unity-logo" onclick="playRandomSound()">
-            <div id="message-overlay"></div> 
-            <div id="layer1" class="logo-layer"></div>
-            <div id="layer2" class="logo-layer"></div>
-
-            <script>
-                $("#layer2").addClass("logo-layer");
-              </script>
-          </div>
-          
-          <div id="play-button-container">
-            <button id="play-button" disabled class="shake">Играть</button>
-        </div>
-        <div id="unity-progress-bar-empty">
-            <div id="unity-progress-bar-full" class="white-progress-bar"></div>
-        </div>
-        <div class="spinner"></div>
+<div id="loading-cover" style="display:none;">
+  <div id="unity-loading-bar">
+    <div id="unity-logo" onclick="playRandomSound()">
+      <div id="message-overlay"></div> 
+      <div id="layer1" class="logo-layer"></div>
+      <div id="layer2" class="logo-layer"></div>
     </div>
     
-    <div id="list-widget"></div>
-
-
-<!--     <div class="airtable-container">
-    <iframe class="airtable-embed" src="https://airtable.com/embed/shrUTHJyN8y9ummSM?backgroundColor=gray" frameborder="0" onmousewheel="" width="100%" height="533"></iframe>
+    <div id="play-button-container">
+      <button id="play-button" disabled class="shake">Играть</button>
     </div>
- -->
 
-    <!-- SCRIPTS -->
+    <div id="unity-progress-bar-empty">
+      <div id="unity-progress-bar-full" class="white-progress-bar"></div>
+    </div>
+    
+    <div class="spinner"></div>
+  </div>
+  <div id="list-widget"></div>
+
+</div>
+
 
     <script>
         // Подключение Airtable API
@@ -157,114 +149,108 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
 
 
     <script>
-        const hideFullScreenButton = "";
-        const buildUrl = "Build";
-        const loaderUrl = buildUrl + "/YandexSkibidi.loader.js"; /* НЕ ДЛЯ ШАБЛОНА */
-        const config = {
-            dataUrl: buildUrl + "/YandexSkibidi.data.unityweb", /* НЕ ДЛЯ ШАБЛОНА */
-            frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb", /* НЕ ДЛЯ ШАБЛОНА */
-            codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",  /* НЕ ДЛЯ ШАБЛОНА */
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "CyberCats",
-            productName: "SkibidiWhack", /* НЕ ДЛЯ ШАБЛОНА */
-            productVersion: "1.0",
-        };
+const hideFullScreenButton = "";
+const buildUrl = "Build";
+const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
+const config = {
+  dataUrl: buildUrl + "/YandexSkibidi.data.unityweb",
+  frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb",
+  codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",
+  streamingAssetsUrl: "StreamingAssets",
+  companyName: "CyberCats",
+  productName: "SkibidiWhack",
+  productVersion: "1.0",
+};
 
-        const container = document.querySelector("#unity-container");
-        const canvas = document.querySelector("#unity-canvas");
-        const loadingCover = document.querySelector("#loading-cover");
-        const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-        const progressBarFull = document.querySelector("#unity-progress-bar-full");
-        const spinner = document.querySelector('.spinner');
-        const playButtonContainer = document.querySelector("#play-button-container");
-        const playButton = document.querySelector("#play-button");
+const container = document.querySelector("#unity-container");
+const canvas = document.querySelector("#unity-canvas");
+const loadingCover = document.querySelector("#loading-cover");
+const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+const progressBarFull = document.querySelector("#unity-progress-bar-full");
+const spinner = document.querySelector('.spinner');
+const playButtonContainer = document.querySelector("#play-button-container");
+const playButton = document.querySelector("#play-button");
 
-        const canFullscreen = (function () {
-            for (const key of [
-                'exitFullscreen',
-                'webkitExitFullscreen',
-                'webkitCancelFullScreen',
-                'mozCancelFullScreen',
-                'msExitFullscreen',
-            ]) {
-                if (key in document) {
-                    return true;
-                }
-            }
-            return false;
-        }());
+const canFullscreen = (function () {
+  for (const key of [
+    'exitFullscreen',
+    'webkitExitFullscreen',
+    'webkitCancelFullScreen',
+    'mozCancelFullScreen',
+    'msExitFullscreen',
+  ]) {
+    if (key in document) {
+      return true;
+    }
+  }
+  return false;
+}());
 
-        function showPlayButton() {
-            playButtonContainer.style.display = "block";
-        }
-
-        function hidePlayButton() {
-            playButtonContainer.style.display = "none";
-        }
-
-        function startGame() {
-            hidePlayButton();
-            myGameInstance.Module.canvas.style.display = "block";
-            myGameInstance.Module.canvas.focus();
-            const backgroundLayer = document.querySelector("#background-layer");
-            const tileLayer = document.querySelector("#tile-layer");
-            loadingCover.style.display = "none";
-            backgroundLayer.style.display = "none";
-            tileLayer.style.display = "none";
-        }
-
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            container.className = "unity-mobile";
-        }
-
-        loadingCover.style.display = "";
-
-        canvas.addEventListener("touchstart", () => { window.focus() });
-        canvas.addEventListener("pointerdown", () => { window.focus() }); 
-
-        let player;
-        let leaderboard;
-        let myGameInstance = null;
-        let payments = null;
-        let promptCanShow = false;
-        let reviewCanShow = false;
-        let initSDK = false;
-        let initGame = false;
-        let photoSizeForInit;
-        let scopesForInit;
-        let firstAd = true;
-
-        const script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-            createUnityInstance(canvas, config, (progress) => {
-                spinner.style.display = "none";
-                progressBarEmpty.style.display = "";
-                progressBarFull.style.width = `${100 * progress}%`;
-
-                if (progress === 1) {
-    progressBarEmpty.style.display = "none";
-    progressBarFull.style.width = "100%";
-    showPlayButton();
-    playButton.disabled = false;
-    playButton.style.cursor = "pointer";
-    playButton.style.opacity = "1";
+function showPlayButton() {
+  playButtonContainer.style.display = "block";
 }
 
-            }).then((unityInstance) => {
-                myGameInstance = unityInstance;
-                const backgroundLayer = document.querySelector("#background-layer");
-                const tileLayer = document.querySelector("#tile-layer");
-                playButton.addEventListener("click", startGame);
-            }).catch((message) => {
-                alert(message);
-            });
-        };
+function hidePlayButton() {
+  playButtonContainer.style.display = "none";
+}
 
-        document.body.appendChild(script);
+function startGame() {
+  hidePlayButton();
+  myGameInstance.Module.canvas.style.display = "block";
+  myGameInstance.Module.canvas.focus();
+  const backgroundLayer = document.querySelector("#background-layer");
+  const tileLayer = document.querySelector("#tile-layer");
+  loadingCover.style.display = "none";
+  backgroundLayer.style.display = "none";
+  tileLayer.style.display = "none";
+}
 
+if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+  container.className = "unity-mobile";
+}
 
+loadingCover.style.display = "";
 
+canvas.addEventListener("touchstart", () => { window.focus() });
+canvas.addEventListener("pointerdown", () => { window.focus() });
+
+let player;
+let leaderboard;
+let myGameInstance = null;
+let payments = null;
+let promptCanShow = false;
+let reviewCanShow = false;
+let initSDK = false;
+let initGame = false;
+let photoSizeForInit;
+let scopesForInit;
+let firstAd = true;
+
+const script = document.createElement("script");
+script.src = loaderUrl;
+script.onload = () => {
+  createUnityInstance(canvas, config, (progress) => {
+    spinner.style.display = "none";
+    progressBarEmpty.style.display = "";
+    progressBarFull.style.width = `${100 * progress}%`;
+
+    if (progress === 1) {
+      progressBarEmpty.style.display = "none";
+      progressBarFull.style.width = "100%";
+      showPlayButton();
+      playButton.disabled = false;
+      playButton.style.cursor = "pointer";
+      playButton.style.opacity = "1";
+    }
+  }).then((unityInstance) => {
+    myGameInstance = unityInstance;
+    playButton.addEventListener("click", startGame);
+  }).catch((message) => {
+    alert(message);
+  });
+};
+
+document.body.appendChild(script);
 
 
         // YANDEX

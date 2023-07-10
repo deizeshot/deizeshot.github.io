@@ -82,6 +82,7 @@ body {
 }
 
 #unity-progress-bar-empty {
+  display: none;
   position: relative;
   height: 4px;
   background-color: white;
