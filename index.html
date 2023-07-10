@@ -92,16 +92,17 @@
         <div id="message-overlay"></div>
         <div id="layer1" class="logo-layer"></div>
         <div id="layer2" class="logo-layer"></div>
+        <div id="play-button-container" style="display:none;">
+            <div id="play-button-progress" class="progress-bar">
+              <div id="play-button-fill"></div>
+            </div>
+            <button id="play-button" disabled class="shake">
+              <span id="play-button-label">Играть</span>
+            </button>
+          </div>
       </div>
 
-      <div id="play-button-container" style="display:none;">
-        <div id="play-button-progress" class="progress-bar">
-          <div id="play-button-fill"></div>
-        </div>
-        <button id="play-button" disabled class="shake">
-          <span id="play-button-label">Играть</span>
-        </button>
-      </div>
+      
 
       <div class="spinner"></div>
     </div>
@@ -181,7 +182,7 @@
 
     document.body.appendChild(script);
 
-    
+
         // YANDEX
 
     YaGames.init()
