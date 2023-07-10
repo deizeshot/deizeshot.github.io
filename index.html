@@ -90,8 +90,12 @@ $(document).ready(function() {
     </div>
     
     <div id="play-button-container">
-      <button id="play-button" disabled class="shake">Играть</button>
-    </div>
+  <button id="play-button" disabled class="shake">
+    <div id="play-button-progress" class="progress-bar"></div>
+    <span id="play-button-label">Играть</span>
+  </button>
+</div>
+
 
     <div id="unity-progress-bar-empty">
       <div id="unity-progress-bar-full" class="white-progress-bar"></div>
@@ -203,6 +207,9 @@ function startGame() {
   loadingCover.style.display = "none";
   backgroundLayer.style.display = "none";
   tileLayer.style.display = "none";
+  
+  const playButtonProgress = document.querySelector("#play-button-progress");
+  playButtonProgress.style.width = "100%";
 }
 
 if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
