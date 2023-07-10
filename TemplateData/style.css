@@ -78,6 +78,7 @@ body {
   opacity: 1;
   transition: opacity 0.3s ease;
   animation: pulseButton 1.5s ease-in-out infinite;
+  z-index: 3;
 }
 
 #play-button-label {
@@ -150,6 +151,8 @@ body {
     filter: blur(0px); 
     z-index: 1;
     animation: pulse 10s infinite;
+    pointer-events: none;
+
     }
 #unity-progress-bar-empty {
     width: 10%;
@@ -295,13 +298,13 @@ background-color: white;
 transform: scale(1);
 }
 50% {
-transform: scale(1.2);
-}
-60% {
 transform: scale(1.1);
 }
+60% {
+transform: scale(1.05);
+}
 70% {
-transform: scale(1.2);
+transform: scale(1.1);
 }
 100% {
 transform: scale(1);
