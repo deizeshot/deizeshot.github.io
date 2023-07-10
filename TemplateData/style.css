@@ -72,16 +72,16 @@ body {
   top: 50px;
   width: 100px;
   height: 100px;
-  background-color: #000;
+  background-color: #ffffff;
   border: none;
-  border-radius: 25px;
+  border-radius: 100px;
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 #play-button-label {
-  color: #fff;
+  color: #000000;
   font-size: 18px;
 }
 
