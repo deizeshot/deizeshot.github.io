@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en-us">
 
@@ -93,7 +94,7 @@
         <div id="layer2" class="logo-layer"></div>
       </div>
 
-      <div id="play-button-container">
+      <div id="play-button-container" style="display:none;">
         <div id="play-button-progress" class="progress-bar">
           <div id="play-button-fill"></div>
         </div>
@@ -109,7 +110,6 @@
   </div>
 
   <script>
-    const hideFullScreenButton = "";
     const buildUrl = "Build";
     const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
     const config = {
@@ -130,37 +130,19 @@
     const playButtonProgress = document.querySelector("#play-button-progress");
     const playButtonFill = document.querySelector("#play-button-fill");
 
-    // const progressBarEmpty = document.createElement("div");
-    // progressBarEmpty.id = "unity-progress-bar-empty";
-    // progressBarEmpty.innerHTML = `<div id="unity-progress-bar-full" class="white-progress-bar"></div>`;
-    // loadingCover.appendChild(progressBarEmpty);
-
     const spinner = document.querySelector('.spinner');
 
     const backgroundLayer = document.querySelector("#background-layer");
     const tileLayer = document.querySelector("#tile-layer");
 
-    const canFullscreen = (function() {
-      for (const key of [
-          'exitFullscreen',
-          'webkitExitFullscreen',
-          'webkitCancelFullScreen',
-          'mozCancelFullScreen',
-          'msExitFullscreen',
-        ]) {
-        if (key in document) {
-          return true;
-        }
-      }
-      return false;
-    }());
-
     function showPlayButton() {
       playButtonContainer.style.display = "block";
+      spinner.style.display = "none";
     }
 
     function hidePlayButton() {
       playButtonContainer.style.display = "none";
+      spinner.style.display = "block";
     }
 
     function startGame() {
@@ -174,43 +156,19 @@
       playButtonFill.style.backgroundColor = "#fff";
     }
 
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      container.className = "unity-mobile";
-    }
-
     loadingCover.style.display = "";
-
-    canvas.addEventListener("touchstart", () => {
-      window.focus()
-    });
-    canvas.addEventListener("pointerdown", () => {
-      window.focus()
-    });
-
-    let player;
-    let leaderboard;
-    let myGameInstance = null;
-    let payments = null;
-    let promptCanShow = false;
-    let reviewCanShow = false;
-    let initSDK = false;
-    let initGame = false;
-    let photoSizeForInit;
-    let scopesForInit;
-    let firstAd = true;
 
     const script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
-        spinner.style.display = "none";
         playButtonProgress.style.width = `${100 * progress}%`;
 
         if (progress === 1) {
           playButtonProgress.style.width = "100%";
           showPlayButton();
           playButton.disabled = false;
-            playButton.style.cursor = "pointer";
+          playButton.style.cursor = "pointer";
           playButton.style.opacity = "1";
         }
       }).then((unityInstance) => {
