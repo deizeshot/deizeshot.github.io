@@ -1,259 +1,227 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>SkibidiWhack</title>  <!-- НЕ ДЛЯ ШАБЛОНА -->
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <script src="https://yandex.ru/games/sdk/v2"></script>
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <audio id="sound1" src="TemplateData/1.mp3"></audio>
-    <audio id="sound2" src="TemplateData/2.mp3"></audio>
-    <audio id="sound3" src="TemplateData/3.mp3"></audio>
-    
-            <script>
-            $(document).ready(function() {
-            $("#unity-logo").mousedown(function() {
-                $(this).addClass("bounce-animation");
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>SkibidiWhack</title>
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <script src="https://yandex.ru/games/sdk/v2"></script>
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <audio id="sound1" src="TemplateData/1.mp3"></audio>
+  <audio id="sound2" src="TemplateData/2.mp3"></audio>
+  <audio id="sound3" src="TemplateData/3.mp3"></audio>
 
-                setTimeout(function() {
-                    $("#unity-logo").removeClass("bounce-animation");
-                }, 1000);
-            });
-            function shakeButton() {
-            playButton.classList.add("shake");
-            setTimeout(function() {
-            playButton.classList.remove("shake");
-            }, 1000);
-            }
-            function startShakeAnimation() {
-            function getRandomDelay() {
-            return Math.random() * 3000 + 4000; // Рандомная задержка от 4 до 7 секунд
-            }
+  <script>
+    $(document).ready(function() {
+      $("#unity-logo").mousedown(function() {
+        $(this).addClass("bounce-animation");
 
-            function animateButton() {
-            shakeButton();
-            setTimeout(animateButton, getRandomDelay());
-            }
-            shakeButton(); // Проиграть анимацию один раз быстро
-            setTimeout(animateButton, getRandomDelay()); // Начать повторение через случайное время
-            }
-            startShakeAnimation();
-            });
-            </script>
+        setTimeout(function() {
+          $("#unity-logo").removeClass("bounce-animation");
+        }, 1000);
+      });
 
-<script>
-$(document).ready(function() {
-  var messages = ["SWEETY", "KITTY", "GAMES"];
-  var sounds = ["sound1", "sound2", "sound3"];
-  var messageIndex = 0;
+      function shakeButton() {
+        playButton.classList.add("shake");
+        setTimeout(function() {
+          playButton.classList.remove("shake");
+        }, 1000);
+      }
 
-  function showMessage() {
-    $("#message-overlay").text(messages[messageIndex]);
-    $("#message-overlay").addClass("show-message");
-    setTimeout(function() {
-      $("#message-overlay").removeClass("show-message");
-    }, 2000);
-    messageIndex = (messageIndex + 1) % messages.length;
-  }
+      function startShakeAnimation() {
+        function getRandomDelay() {
+          return Math.random() * 3000 + 4000;
+        }
 
-  function playRandomSound() {
-    var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-    var audio = document.getElementById(randomSound);
-    audio.play();
-  }
+        function animateButton() {
+          shakeButton();
+          setTimeout(animateButton, getRandomDelay());
+        }
 
-  $("#unity-logo").click(function() {
-    showMessage();
-    playRandomSound();
-  });
-});
-</script>
+        shakeButton();
+        setTimeout(animateButton, getRandomDelay());
+      }
+
+      startShakeAnimation();
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      var messages = ["SWEETY", "KITTY", "GAMES"];
+      var sounds = ["sound1", "sound2", "sound3"];
+      var messageIndex = 0;
+
+      function showMessage() {
+        $("#message-overlay").text(messages[messageIndex]);
+        $("#message-overlay").addClass("show-message");
+        setTimeout(function() {
+          $("#message-overlay").removeClass("show-message");
+        }, 2000);
+        messageIndex = (messageIndex + 1) % messages.length;
+      }
+
+      function playRandomSound() {
+        var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+        var audio = document.getElementById(randomSound);
+        audio.play();
+      }
+
+      $("#unity-logo").click(function() {
+        showMessage();
+        playRandomSound();
+      });
+    });
+  </script>
 </head>
 
 <body class="dark">
-    <div id="unity-container" class="unity-desktop">
-        <canvas id="unity-canvas"></canvas>
-        <div id="background-layer"></div>
-        <div id="tile-layer"></div>
+  <div id="unity-container" class="unity-desktop">
+    <canvas id="unity-canvas"></canvas>
+    <div id="background-layer"></div>
+    <div id="tile-layer"></div>
+  </div>
+
+  <div id="loading-cover" style="display:none;">
+    <div id="unity-loading-bar">
+      <div id="unity-logo" onclick="playRandomSound()">
+        <div id="message-overlay"></div>
+        <div id="layer1" class="logo-layer"></div>
+        <div id="layer2" class="logo-layer"></div>
       </div>
-      
-      <div id="loading-cover" style="display:none;">
-        <div id="unity-loading-bar">
-          <div id="unity-logo" onclick="playRandomSound()">
-            <div id="message-overlay"></div> 
-            <div id="layer1" class="logo-layer"></div>
-            <div id="layer2" class="logo-layer"></div>
-          </div>
-      
-          <div id="play-button-container">
-            <div id="play-button-progress" class="progress-bar">
-              <div id="play-button-fill"></div>
-            </div>
-            <button id="play-button" disabled class="shake">
-              <span id="play-button-label">Играть</span>
-            </button>
-          </div>
-      
-          <!-- <div id="unity-progress-bar-empty">
-            <div id="unity-progress-bar-full" class="white-progress-bar"></div>
-          </div> -->
-      
-          <!-- <div class="spinner"></div>
-        </div> -->
-      
-        <div id="list-widget"></div>
+
+      <div id="play-button-container">
+        <div id="play-button-progress" class="progress-bar">
+          <div id="play-button-fill"></div>
+        </div>
+        <button id="play-button" disabled class="shake">
+          <span id="play-button-label">Играть</span>
+        </button>
       </div>
-      
-      <script>
-        // Подключение Airtable API
-const apiKey = 'key9kpLHqsdRFXvS2';
-const baseId = 'appaePimTt1Ji6hSr';
-const tableName = 'tblivWUpxtGbTszm3';
 
-fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    const listWidget = document.getElementById('list-widget');
+      <div class="spinner"></div>
+    </div>
 
-    const ul = document.createElement('ul');
-    ul.classList.add('button-list');
+    <div id="list-widget"></div>
+  </div>
 
-    data.records.forEach(record => {
-      const fields = record.fields;
-      const name = fields['Name']; // Замените 'Name' на название соответствующего поля в вашей таблице
-      const imageUrl = fields['Image']; // Замените 'Image' на название соответствующего поля в вашей таблице
-      const url = fields['URL']; // Замените 'URL' на название соответствующего поля в вашей таблице
+  <script>
+    const hideFullScreenButton = "";
+    const buildUrl = "Build";
+    const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
+    const config = {
+      dataUrl: buildUrl + "/YandexSkibidi.data.unityweb",
+      frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb",
+      codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "CyberCats",
+      productName: "SkibidiWhack",
+      productVersion: "1.0",
+    };
 
-      const button = document.createElement('button');
-      const img = document.createElement('img');
-      img.src = imageUrl;
-      img.alt = name;
-      button.appendChild(img);
-      button.addEventListener('click', () => {
-        window.location.href = url; // Переход по указанному URL
-      });
+    const container = document.querySelector("#unity-container");
+    const canvas = document.querySelector("#unity-canvas");
+    const loadingCover = document.querySelector("#loading-cover");
+    const playButtonContainer = document.querySelector("#play-button-container");
+    const playButton = document.querySelector("#play-button");
+    const playButtonProgress = document.querySelector("#play-button-progress");
+    const playButtonFill = document.querySelector("#play-button-fill");
 
-      const li = document.createElement('li');
-      li.appendChild(button);
-      ul.appendChild(li);
-    });
+    const progressBarEmpty = document.createElement("div");
+    progressBarEmpty.id = "unity-progress-bar-empty";
+    progressBarEmpty.innerHTML = `<div id="unity-progress-bar-full" class="white-progress-bar"></div>`;
+    loadingCover.appendChild(progressBarEmpty);
 
-    listWidget.appendChild(ul);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-</script>
+    const spinner = document.querySelector('.spinner');
 
-      <script>
-      const hideFullScreenButton = "";
-      const buildUrl = "Build";
-      const loaderUrl = buildUrl + "/YandexSkibidi.loader.js";
-      const config = {
-        dataUrl: buildUrl + "/YandexSkibidi.data.unityweb",
-        frameworkUrl: buildUrl + "/YandexSkibidi.framework.js.unityweb",
-        codeUrl: buildUrl + "/YandexSkibidi.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "CyberCats",
-        productName: "SkibidiWhack",
-        productVersion: "1.0",
-      };
-      
-const container = document.querySelector("#unity-container");
-const canvas = document.querySelector("#unity-canvas");
-const loadingCover = document.querySelector("#loading-cover");
-const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-const progressBarFull = document.querySelector("#unity-progress-bar-full");
-const spinner = document.querySelector('.spinner');
-const playButtonContainer = document.querySelector("#play-button-container");
-const playButton = document.querySelector("#play-button");
-      
-      const canFullscreen = (function () {
-        for (const key of [
+    const backgroundLayer = document.querySelector("#background-layer");
+    const tileLayer = document.querySelector("#tile-layer");
+
+    const canFullscreen = (function() {
+      for (const key of [
           'exitFullscreen',
           'webkitExitFullscreen',
           'webkitCancelFullScreen',
           'mozCancelFullScreen',
           'msExitFullscreen',
         ]) {
-          if (key in document) {
-            return true;
-          }
+        if (key in document) {
+          return true;
         }
-        return false;
-      }());
-      
-      function showPlayButton() {
-        playButtonContainer.style.display = "block";
       }
-      
-      function hidePlayButton() {
-        playButtonContainer.style.display = "none";
-      }
-      
-      function startGame() {
-        hidePlayButton();
-        myGameInstance.Module.canvas.style.display = "block";
-        myGameInstance.Module.canvas.focus();
-        const backgroundLayer = document.querySelector("#background-layer");
-        const tileLayer = document.querySelector("#tile-layer");
-        loadingCover.style.display = "none";
-        backgroundLayer.style.display = "none";
-        tileLayer.style.display = "none";
-      
-        const playButtonProgress = document.querySelector("#play-button-progress");
-        playButtonProgress.style.width = "100%";
-      
-        const playButtonFill = document.querySelector("#play-button-fill");
-        playButtonFill.style.backgroundColor = "#fff";
-      }
-      
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-      }
-      
-      loadingCover.style.display = "";
-      
-      canvas.addEventListener("touchstart", () => { window.focus() });
-      canvas.addEventListener("pointerdown", () => { window.focus() });
-      
-      let player;
-      let leaderboard;
-      let myGameInstance = null;
-      let payments = null;
-      let promptCanShow = false;
-      let reviewCanShow = false;
-      let initSDK = false;
-      let initGame = false;
-      let photoSizeForInit;
-      let scopesForInit;
-      let firstAd = true;
-      
-      script.onload = () => {
-  createUnityInstance(canvas, config, (progress) => {
-    spinner.style.display = "none";
-    progressBarEmpty.style.display = "";
-    progressBarFull.style.width = `${100 * progress}%`;
+      return false;
+    }());
 
-    if (progress === 1) {
-      progressBarEmpty.style.display = "none";
-      progressBarFull.style.width = "100%";
-      showPlayButton();
+    function showPlayButton() {
+      playButtonContainer.style.display = "block";
     }
-  }).then((unityInstance) => {
-    myGameInstance = unityInstance;
-    playButton.addEventListener("click", startGame);
-  }).catch((message) => {
-    alert(message);
-  });
-};
 
+    function hidePlayButton() {
+      playButtonContainer.style.display = "none";
+    }
 
-document.body.appendChild(script);
+    function startGame() {
+      hidePlayButton();
+      myGameInstance.Module.canvas.style.display = "block";
+      myGameInstance.Module.canvas.focus();
+      loadingCover.style.display = "none";
+      backgroundLayer.style.display = "none";
+      tileLayer.style.display = "none";
+      playButtonProgress.style.width = "100%";
+      playButtonFill.style.backgroundColor = "#fff";
+    }
 
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      container.className = "unity-mobile";
+    }
+
+    loadingCover.style.display = "";
+
+    canvas.addEventListener("touchstart", () => {
+      window.focus()
+    });
+    canvas.addEventListener("pointerdown", () => {
+      window.focus()
+    });
+
+    let player;
+    let leaderboard;
+    let myGameInstance = null;
+    let payments = null;
+    let promptCanShow = false;
+    let reviewCanShow = false;
+    let initSDK = false;
+    let initGame = false;
+    let photoSizeForInit;
+    let scopesForInit;
+    let firstAd = true;
+
+    const script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        spinner.style.display = "none";
+        playButtonProgress.style.width = `${100 * progress}%`;
+
+        if (progress === 1) {
+          playButtonProgress.style.width = "100%";
+          showPlayButton();
+          playButton.disabled = false;
+            playButton.style.cursor = "pointer";
+          playButton.style.opacity = "1";
+        }
+      }).then((unityInstance) => {
+        myGameInstance = unityInstance;
+        playButton.addEventListener("click", startGame);
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+
+    document.body.appendChild(script);
         // YANDEX
 
     YaGames.init()
