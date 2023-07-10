@@ -82,6 +82,7 @@ body {
 }
 
 #play-button-label {
+  right: 5px;
   align-items: center;
   color: #000000;
   font-size: 40px;
