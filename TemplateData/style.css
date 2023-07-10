@@ -62,24 +62,16 @@ body {
     align-items: center;
 }
 
-#play-button-container {
-  text-align: center;
-  position: relative;
-  margin-top: 20px;
-  z-index: 1;
-}
-
 #play-button {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.484);
-  color: black;
+  background-color: #000;
+  color: #fff;
   border: none;
-  width: 250px;
+  width: 150px;
   height: 30px;
   padding: 0;
   overflow: hidden;
   border-radius: 25px;
-  font-size: 20px;
 }
 
 #play-button-progress {
@@ -88,14 +80,20 @@ body {
   left: 0;
   height: 100%;
   width: 0;
-  background-color: #ffffff;
+  background-color: #fff;
   transition: width 0.5s;
+}
+
+#play-button-fill {
+  height: 100%;
+  background-color: #000;
 }
 
 #play-button-label {
   position: relative;
   z-index: 1;
 }
+
 
 
 #unity-progress-bar-empty {
