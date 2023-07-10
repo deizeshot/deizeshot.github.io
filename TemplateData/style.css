@@ -89,7 +89,7 @@ body {
   z-index: 1;
 }
 
-#play-button::before {
+/* #play-button::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -104,7 +104,7 @@ body {
   z-index: 0;
   pointer-events: none;
   opacity: 0.7;
-}
+} */
 
 #play-button:hover {
   opacity: 0.8;
