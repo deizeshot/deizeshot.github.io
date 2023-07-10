@@ -69,6 +69,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 50px;
   width: 200px;
   height: 50px;
   background-color: #000;
@@ -362,7 +363,6 @@ animation: bounce 0.5s;
 
 #play-button.shake {
   animation: shake 1s infinite;
-<<<<<<< HEAD
 }
 .button-list {
   list-style: none;
@@ -394,6 +394,3 @@ animation: bounce 0.5s;
   max-width: 100%;
   max-height: 100%;
 }
-=======
-}
->>>>>>> parent of ba61589 (update)
