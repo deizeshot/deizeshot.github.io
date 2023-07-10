@@ -71,7 +71,7 @@ body {
 
 #play-button {
   position: relative;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.484);
   color: black;
   border: none;
   width: 250px;
@@ -88,7 +88,7 @@ body {
   left: 0;
   height: 100%;
   width: 0;
-  background-color: #000;
+  background-color: #ffffff;
   transition: width 0.5s;
 }
 
