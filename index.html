@@ -101,8 +101,8 @@ $(document).ready(function() {
             <div id="unity-progress-bar-full" class="white-progress-bar"></div>
           </div> -->
       
-          <div class="spinner"></div>
-        </div>
+          <!-- <div class="spinner"></div>
+        </div> -->
       
         <div id="list-widget"></div>
       </div>
@@ -165,8 +165,8 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
       const container = document.querySelector("#unity-container");
       const canvas = document.querySelector("#unity-canvas");
       const loadingCover = document.querySelector("#loading-cover");
-    //   const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-    //   const progressBarFull = document.querySelector("#unity-progress-bar-full");
+      const progressBarEmpty = document.querySelector("#play-button-progress");
+      const progressBarFull = document.querySelector("#play-button-fill");
       const spinner = document.querySelector('.spinner');
       const playButtonContainer = document.querySelector("#play-button-container");
       const playButton = document.querySelector("#play-button");

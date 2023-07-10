@@ -349,13 +349,13 @@ animation: bounce 0.5s;
 }
 .button-list {
   list-style: none;
-  padding: 0;
+  padding: 25px;
   margin: 0;
 }
 
 .button-list li {
 /*  width: 200px;*/
-  height: 150px;
+  height: 100px;
   margin-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
