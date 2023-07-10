@@ -89,17 +89,17 @@ $(document).ready(function() {
           </div>
       
           <div id="play-button-container">
-            <div id="play-button-progress" class="progress-bar">
-              <div id="play-button-fill"></div>
-            </div>
             <button id="play-button" disabled class="shake">
               <span id="play-button-label">Играть</span>
+              <div id="play-button-progress" class="progress-bar">
+                <div id="play-button-fill"></div>
+              </div>
             </button>
           </div>
       
-          <div id="unity-progress-bar-empty">
+          <!-- <div id="unity-progress-bar-empty">
             <div id="unity-progress-bar-full" class="white-progress-bar"></div>
-          </div>
+          </div> -->
       
           <div class="spinner"></div>
         </div>
@@ -107,6 +107,47 @@ $(document).ready(function() {
         <div id="list-widget"></div>
       </div>
       
+      <script>
+        // Подключение Airtable API
+const apiKey = 'key9kpLHqsdRFXvS2';
+const baseId = 'appaePimTt1Ji6hSr';
+const tableName = 'tblivWUpxtGbTszm3';
+
+fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
+  .then(response => response.json())
+  .then(data => {
+    const listWidget = document.getElementById('list-widget');
+
+    const ul = document.createElement('ul');
+    ul.classList.add('button-list');
+
+    data.records.forEach(record => {
+      const fields = record.fields;
+      const name = fields['Name']; // Замените 'Name' на название соответствующего поля в вашей таблице
+      const imageUrl = fields['Image']; // Замените 'Image' на название соответствующего поля в вашей таблице
+      const url = fields['URL']; // Замените 'URL' на название соответствующего поля в вашей таблице
+
+      const button = document.createElement('button');
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.alt = name;
+      button.appendChild(img);
+      button.addEventListener('click', () => {
+        window.location.href = url; // Переход по указанному URL
+      });
+
+      const li = document.createElement('li');
+      li.appendChild(button);
+      ul.appendChild(li);
+    });
+
+    listWidget.appendChild(ul);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+</script>
+
       <script>
       const hideFullScreenButton = "";
       const buildUrl = "Build";
@@ -124,8 +165,8 @@ $(document).ready(function() {
       const container = document.querySelector("#unity-container");
       const canvas = document.querySelector("#unity-canvas");
       const loadingCover = document.querySelector("#loading-cover");
-      const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-      const progressBarFull = document.querySelector("#unity-progress-bar-full");
+    //   const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+    //   const progressBarFull = document.querySelector("#unity-progress-bar-full");
       const spinner = document.querySelector('.spinner');
       const playButtonContainer = document.querySelector("#play-button-container");
       const playButton = document.querySelector("#play-button");
@@ -191,32 +232,30 @@ $(document).ready(function() {
       let scopesForInit;
       let firstAd = true;
       
-      const script = document.createElement("script");
-      script.src = loaderUrl;
       script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          spinner.style.display = "none";
-          progressBarEmpty.style.display = "";
-          progressBarFull.style.width = `${100 * progress}%`;
-      
-          if (progress === 1) {
-            progressBarEmpty.style.display = "none";
-            progressBarFull.style.width = "100%";
-            showPlayButton();
-            playButton.disabled = false;
-            playButton.style.cursor = "pointer";
-            playButton.style.opacity = "1";
-          }
-        }).then((unityInstance) => {
-          myGameInstance = unityInstance;
-          playButton.addEventListener("click", startGame);
-        }).catch((message) => {
-          alert(message);
-        });
-      };
-      
-      document.body.appendChild(script);
+  createUnityInstance(canvas, config, (progress) => {
+    spinner.style.display = "none";
+    // progressBarEmpty.style.display = "none";
+    playButtonFill.style.width = `${100 * progress}%`;
 
+    if (progress === 1) {
+    //   progressBarEmpty.style.display = "none";
+      playButtonFill.style.width = "100%";
+      showPlayButton();
+      playButton.disabled = false;
+      playButton.style.cursor = "pointer";
+      playButton.style.opacity = "1";
+    }
+  }).then((unityInstance) => {
+    myGameInstance = unityInstance;
+    playButton.addEventListener("click", startGame);
+  }).catch((message) => {
+    alert(message);
+  });
+};
+
+
+document.body.appendChild(script);
 
         // YANDEX
 
