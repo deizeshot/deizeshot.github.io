@@ -64,7 +64,6 @@ body {
 
 
 
-/* Кнопка играть */
 #play-button {
   display: flex;
   align-items: center;
@@ -78,6 +77,7 @@ body {
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.3s ease;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
 #play-button-label {
@@ -117,6 +117,17 @@ body {
   }
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 /* #unity-progress-bar-empty {
