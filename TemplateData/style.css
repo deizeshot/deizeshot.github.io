@@ -73,7 +73,7 @@ body {
   height: 50px;
   background-color: #ffffff;
   border: none;
-  border-radius: 100px;
+  border-radius: 10px;
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -83,7 +83,7 @@ body {
 
 #play-button-label {
   color: #000000;
-  font-size: 18px;
+  font-size: 50px;
 }
 
 #play-button:hover {
