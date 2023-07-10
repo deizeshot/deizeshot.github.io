@@ -162,14 +162,14 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
         productVersion: "1.0",
       };
       
-      const container = document.querySelector("#unity-container");
-      const canvas = document.querySelector("#unity-canvas");
-      const loadingCover = document.querySelector("#loading-cover");
-      const progressBarEmpty = document.querySelector("#play-button-progress");
-      const progressBarFull = document.querySelector("#play-button-fill");
-      const spinner = document.querySelector('.spinner');
-      const playButtonContainer = document.querySelector("#play-button-container");
-      const playButton = document.querySelector("#play-button");
+const container = document.querySelector("#unity-container");
+const canvas = document.querySelector("#unity-canvas");
+const loadingCover = document.querySelector("#loading-cover");
+const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+const progressBarFull = document.querySelector("#unity-progress-bar-full");
+const spinner = document.querySelector('.spinner');
+const playButtonContainer = document.querySelector("#play-button-container");
+const playButton = document.querySelector("#play-button");
       
       const canFullscreen = (function () {
         for (const key of [
@@ -235,16 +235,13 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
       script.onload = () => {
   createUnityInstance(canvas, config, (progress) => {
     spinner.style.display = "none";
-    progressBarEmpty.style.display = "none";
-    playButtonFill.style.width = `${100 * progress}%`;
+    progressBarEmpty.style.display = "";
+    progressBarFull.style.width = `${100 * progress}%`;
 
     if (progress === 1) {
       progressBarEmpty.style.display = "none";
-      playButtonFill.style.width = "100%";
+      progressBarFull.style.width = "100%";
       showPlayButton();
-      playButton.disabled = false;
-      playButton.style.cursor = "pointer";
-      playButton.style.opacity = "1";
     }
   }).then((unityInstance) => {
     myGameInstance = unityInstance;
