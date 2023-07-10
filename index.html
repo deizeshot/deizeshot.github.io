@@ -74,40 +74,39 @@ $(document).ready(function() {
 </head>
 
 <body class="dark">
-
-<div id="unity-container" class="unity-desktop">
-  <canvas id="unity-canvas"></canvas>
-  <div id="background-layer"></div>
-  <div id="tile-layer"></div>
-</div>
-
-<div id="loading-cover" style="display:none;">
-  <div id="unity-loading-bar">
-    <div id="unity-logo" onclick="playRandomSound()">
-      <div id="message-overlay"></div> 
-      <div id="layer1" class="logo-layer"></div>
-      <div id="layer2" class="logo-layer"></div>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas"></canvas>
+      <div id="background-layer"></div>
+      <div id="tile-layer"></div>
     </div>
-    
-    <div id="play-button-container">
-        <button id="play-button" disabled class="shake">
+  
+    <div id="loading-cover" style="display:none;">
+      <div id="unity-loading-bar">
+        <div id="unity-logo" onclick="playRandomSound()">
+          <div id="message-overlay"></div> 
+          <div id="layer1" class="logo-layer"></div>
+          <div id="layer2" class="logo-layer"></div>
+        </div>
+      
+        <div id="play-button-container">
           <div id="play-button-progress" class="progress-bar">
             <div id="play-button-fill"></div>
           </div>
-          <span id="play-button-label">Играть</span>
-        </button>
+          <button id="play-button" disabled class="shake">
+            <span id="play-button-label">Играть</span>
+          </button>
+        </div>
+        
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full" class="white-progress-bar"></div>
+        </div>
+        
+        <div class="spinner"></div>
       </div>
       
-    <div id="unity-progress-bar-empty">
-      <div id="unity-progress-bar-full" class="white-progress-bar"></div>
+      <div id="list-widget"></div>
     </div>
-    
-    <div class="spinner"></div>
-  </div>
-  <div id="list-widget"></div>
-
-</div>
-
+  
 
     <script>
         // Подключение Airtable API
