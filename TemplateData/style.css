@@ -68,7 +68,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 50px;
+  top: 100px;
   width: 70px;
   height: 70px;
   background-color: #ffffff;
@@ -82,8 +82,9 @@ body {
 }
 
 #play-button-label {
+  align-items: center;
   color: #000000;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 #play-button:hover {
