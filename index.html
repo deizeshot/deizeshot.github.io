@@ -85,38 +85,43 @@
     const tableName = 'tblivWUpxtGbTszm3';
   
     fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
-      .then(response => response.json())
-      .then(data => {
-        const listWidget = document.getElementById('list-widget');
-  
-        const ul = document.createElement('ul');
-        ul.classList.add('button-list', 'horizontal');
-  
-        data.records.forEach(record => {
-          const fields = record.fields;
-          const name = fields['Name'];
-          const imageUrl = fields['Image'];
-          const url = fields['URL']; 
-  
-          const button = document.createElement('button');
-          const img = document.createElement('img');
-          img.src = imageUrl;
-          img.alt = name;
-          button.appendChild(img);
-          button.addEventListener('click', () => {
-            window.location.href = url;
-          });
-  
-          const li = document.createElement('li');
-          li.appendChild(button);
-          ul.appendChild(li);
-        });
-  
-        listWidget.appendChild(ul);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  .then(response => response.json())
+  .then(data => {
+    const listWidget = document.getElementById('list-widget');
+
+    const ul = document.createElement('ul');
+    ul.classList.add('button-list', 'horizontal');
+
+    data.records.forEach(record => {
+  const fields = record.fields;
+  const name = fields['Name'];
+  const imageUrl = fields['Image'];
+  const url = fields['URL'];
+
+  const button = document.createElement('button');
+  const img = document.createElement('img');
+  img.src = imageUrl;
+  img.alt = name;
+  button.appendChild(img);
+
+  const span = document.createElement('span');
+  span.innerText = ""; // Удалить текстовое содержимое
+  span.classList.add('image-text'); // Добавьте этот класс для стилизации текста
+  img.parentNode.insertBefore(span, img.nextSibling); // Вставьте span после img внутри кнопки
+
+  button.addEventListener('click', () => {
+    window.location.href = url;
+  });
+
+  const li = document.createElement('li');
+  li.appendChild(button);
+  ul.appendChild(li);
+});    listWidget.appendChild(ul);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
   </script>
   
 
@@ -128,6 +133,14 @@
     <div id="background-layer"></div>
     <div id="tile-layer"></div>
   </div>
+
+  <div id="top-panel">
+    <div class="round-button">
+        >
+    </div>
+    SWEETY KITTY GAMES
+  </div>
+  
 
   <div id="loading-cover" style="display:none;">
     <div id="unity-loading-bar">
