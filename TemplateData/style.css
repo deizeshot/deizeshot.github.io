@@ -71,7 +71,8 @@ body {
   top: 20px;
   width: 80px;
   height: 80px;
-  background-color: #ffffff;
+  background-color: #ffffff4d;
+  backdrop-filter: blur(10px);
   border: none;
   border-radius: 100px;
   cursor: pointer;
@@ -82,7 +83,7 @@ body {
 }
 
 #play-button-label {
-  color: #000000;
+  color: #ffffff;
   font-size: 30px;
   position: relative;
   z-index: 1;
