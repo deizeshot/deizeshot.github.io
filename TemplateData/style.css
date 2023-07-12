@@ -398,6 +398,8 @@ animation: bounce 0.5s;
   max-height: 100%;
 }
 
+
+
 .button-list.horizontal {
   display: flex;
   list-style: none;
@@ -415,6 +417,7 @@ animation: bounce 0.5s;
   margin-right: 10px;
   overflow: hidden;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
 .button-list.horizontal li button {
@@ -427,6 +430,7 @@ animation: bounce 0.5s;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .button-list.horizontal li img {
@@ -434,6 +438,15 @@ animation: bounce 0.5s;
   height: 100%;
   object-fit: cover;
 }
+
+.button-list.horizontal li:hover {
+  transform: scale(1.1);
+}
+
+.button-list.horizontal li button:hover {
+  transform: scale(1.1);
+}
+
 
 
 
