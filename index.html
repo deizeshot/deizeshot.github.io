@@ -108,6 +108,13 @@
       SWEETY KITTY GAMES
     </div>
   
+    <div id="logo-panel">
+        <div class="round-button">
+          <!-- <i class="fa-solid fa-cat fa-bounce"></i> -->
+        </div>
+        "Sweety Kitty Games: волшебный мир развлечений для любителей котиков! У нас вы найдете захватывающие игры с участием милых котиков, загадочных приключений и увлекательных головоломок. Погрузитесь в виртуальную реальность, где вы станете лучшим другом котиков и поможете им преодолеть все преграды на пути к победе. Готовы ли вы окунуться в мир Sweety Kitty Games и стать настоящим героем котиков?"
+      </div>
+
     <div id="loading-cover">
       <div id="unity-loading-bar">
         <div id="unity-logo" onclick="playRandomSound()">
@@ -115,10 +122,11 @@
           <div id="layer1" class="logo-layer"></div>
           <div id="layer2" class="logo-layer"></div>
         </div>
-        <div id="list-widget" style="display:none;"></div>
       </div>
+      <div id="list-widget" style="display:none;"></div>
     </div>
-  
+    
+
     <script>
       $(document).ready(function() {
         var messages = ["SWEETY", "KITTY", "GAMES"];
@@ -145,7 +153,7 @@
           playRandomSound();
         });
       });
-  
+
       const apiKey = 'key9kpLHqsdRFXvS2';
       const baseId = 'appaePimTt1Ji6hSr';
       const tableName = 'tblivWUpxtGbTszm3';
@@ -162,21 +170,21 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
     data.records.sort((a, b) => a.fields.Num - b.fields.Num);
 
     data.records.forEach(record => {
-      const fields = record.fields;
-      const name = fields.Name;
-      const imageUrl = fields.Image;
-      const url = fields.URL;
+  const fields = record.fields;
+  const name = fields.Name;
+  const imageUrl = fields.Image;
+  const url = fields.URL;
 
-      const button = document.createElement('button');
-      const img = document.createElement('img');
-      img.src = imageUrl;
-      img.alt = name;
-      button.appendChild(img);
+  const button = document.createElement('button');
+  const img = document.createElement('img');
+  img.src = imageUrl;
+  img.alt = name;
+  button.appendChild(img);
 
-      const span = document.createElement('span');
-      span.innerText = "";
-      span.classList.add('image-text');
-      img.parentNode.insertBefore(span, img.nextSibling);
+  const span = document.createElement('span');
+  span.innerText = name; // Устанавливаем название игры в текст элемента <span>
+  span.classList.add('image-text');
+  img.parentNode.insertBefore(span, img.nextSibling);
 
       button.addEventListener('click', () => {
         window.location.href = url;
@@ -192,7 +200,7 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
 
     setTimeout(function() {
       document.getElementById('list-widget').style.display = 'block';
-      document.getElementById('unity-logo').style.display = 'none';
+    //   document.getElementById('unity-logo').style.display = 'none';
 
       // Постепенное отображение кнопок
       const listItems = ul.querySelectorAll('li');
@@ -207,7 +215,16 @@ fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
     console.error(error);
   });
 
-
+  $(document).ready(function() {
+  $(".button-list.horizontal li").hover(
+    function() {
+      $(this).find("span").css("display", "block"); // Показываем текст при наведении
+    },
+    function() {
+      $(this).find("span").css("display", "none"); // Скрываем текст при уходе курсора
+    }
+  );
+});
 
     </script>
 
