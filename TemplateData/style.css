@@ -33,6 +33,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+.centered-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 2s, top 2s;
+  transform: none;
+}
 #background-layer {
   position: absolute;
   left: 0;
@@ -61,8 +69,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
 
 #play-button {
   display: flex;
@@ -124,25 +130,6 @@ body {
     transform: scale(1);
   }
 }
-
-
-
-
-
-/* #unity-progress-bar-empty {
-  display: none;
-  position: relative;
-  height: 4px;
-  background-color: white;
-  opacity: 0;
-}
-
-#unity-progress-bar-full {
-  height: 100%;
-  background-color: #4CAF50;
-  width: 0%;
-  transition: width 0.2s ease-in-out;
-} */
 
 #unity-logo {
   position: relative;
@@ -208,15 +195,7 @@ body {
         transform: scale(1);
       }
 }
-/* #unity-progress-bar-full::after {
-    content: attr(data-progress) "%";
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ffffff;
-    font-size: 50px;
-} */
+
 .light #unity-progress-bar-empty {
     border-color: black;
 }
@@ -250,38 +229,6 @@ body {
     transform: rotate(360deg);
   }
 }
-/* #message-overlay {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18px;
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-  color: white;
-  padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  pointer-events: none;
-  animation-name: fadeOut;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-@keyframes fadeOut {
-  0% {
-      opacity: 1;
-  }
-  100% {
-      opacity: 0;
-  }
-}
-.show-message {
-  opacity: 1 !important;
-  pointer-events: auto;
-} */
-
 
 #message-overlay {
   position: absolute;
@@ -449,13 +396,15 @@ animation: bounce 0.5s;
   list-style: none;
   padding: 0;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   justify-content: center;
+  align-items: center;
   background-color: #ffffff00;
   padding: 10px;
 }
+
 
 .button-list.horizontal li {
   margin-right: 10px;
