@@ -14,7 +14,7 @@
   <audio id="sound3" src="TemplateData/3.mp3"></audio>
   <script src="https://kit.fontawesome.com/85707f8d4b.js" crossorigin="anonymous"></script>
 
-  <style>
+  <!-- <style>
     .centered-logo {
       position: fixed;
       top: 50%;
@@ -27,7 +27,7 @@
       top: 0;
       left: 0;
     }
-  </style>
+  </style> -->
   
   <script>
     $(document).ready(function() {
@@ -180,6 +180,7 @@
             });
   
             const li = document.createElement('li');
+            li.classList.add('show'); // Добавить класс "show"
             li.appendChild(button);
             ul.appendChild(li);
           });

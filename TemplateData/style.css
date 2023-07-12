@@ -363,16 +363,23 @@ animation: bounce 0.5s;
 .button-list {
   list-style: none;
   padding: 25px;
+  /* width: 200px; */
   margin: 0;
 }
 
 .button-list li {
-/*  width: 200px;*/
   height: 100px;
   margin-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
+  opacity: 0; /* Устанавливаем начальное значение непрозрачности 0 */
+  transition: opacity 0.5s ease; /* Добавляем анимацию перехода для свойства opacity */
 }
+
+.button-list li.show {
+  opacity: 1; /* При применении класса "show" устанавливаем непрозрачность 1 */
+}
+
 
 .button-list li button {
   width: 100%;
@@ -380,7 +387,7 @@ animation: bounce 0.5s;
   padding: 0;
   border: none;
   background-color: #ffffff00;
-  border-radius: 10px;
+  border-radius: 10px; /* Добавьте это свойство */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -395,28 +402,41 @@ animation: bounce 0.5s;
   display: flex;
   list-style: none;
   padding: 0;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   background-color: #ffffff00;
   padding: 10px;
+  flex-wrap: wrap; /* Добавляем свойство flex-wrap для переноса элементов списка на новую строку */
+  max-width: 600px; /* Задаем максимальную ширину контейнера списка */
 }
-
 
 .button-list.horizontal li {
+  width: calc(33.33% - 10px);
   margin-right: 10px;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-.button-list.horizontal li:last-child {
-  margin-right: 0;
-}
 .button-list.horizontal li button {
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+
+.button-list.horizontal li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
 
 .image-text {
   color: white;
