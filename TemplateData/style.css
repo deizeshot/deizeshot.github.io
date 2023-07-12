@@ -408,9 +408,23 @@ animation: bounce 0.5s;
   align-items: center;
   background-color: #ffffff00;
   padding: 10px;
-  flex-wrap: wrap; /* Добавляем свойство flex-wrap для переноса элементов списка на новую строку */
-  max-width: 600px; /* Задаем максимальную ширину контейнера списка */
+  flex-wrap: wrap;
+  max-width: 600px;
+  animation: floatingAnimation 10s ease-in-out infinite;
 }
+
+@keyframes floatingAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 .button-list.horizontal li {
   width: calc(33.33% - 10px);
