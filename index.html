@@ -83,91 +83,62 @@
 </html>
 
 <script>
-      $(document).ready(function() {
-        var messages = ["SWEETY", "KITTY", "GAMES"];
-        var sounds = ["sound1", "sound2", "sound3"];
-        var messageIndex = 0;
-  
-        function showMessage() {
-          $("#message-overlay").text(messages[messageIndex]);
-          $("#message-overlay").addClass("show-message");
-          setTimeout(function() {
-            $("#message-overlay").removeClass("show-message");
-          }, 2000);
-          messageIndex = (messageIndex + 1) % messages.length;
-        }
-  
-        function playRandomSound() {
-          var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-          var audio = document.getElementById(randomSound);
-          audio.play();
-        }
-  
-        $("#unity-logo").click(function() {
-          showMessage();
-          playRandomSound();
+  const apiKey = 'key9kpLHqsdRFXvS2';
+  const baseId = 'appaePimTt1Ji6hSr';
+  const tableName = 'tblivWUpxtGbTszm3';
+
+  fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      const listWidget = document.getElementById('list-widget');
+      const ul = document.createElement('ul');
+      ul.classList.add('button-list', 'horizontal');
+
+      // Сортировка данных по полю "Num"
+      data.records.sort((a, b) => a.fields.Num - b.fields.Num);
+
+      data.records.forEach(record => {
+        const fields = record.fields;
+        const name = fields.Name;
+        const imageUrl = fields.Image;
+        const url = fields.URL;
+
+        const button = document.createElement('button');
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = name;
+        button.appendChild(img);
+
+        const span = document.createElement('span');
+        span.innerText = name; // Устанавливаем название игры в текст элемента <span>
+        span.classList.add('image-text');
+        img.parentNode.insertBefore(span, img.nextSibling);
+
+        button.addEventListener('click', () => {
+          window.location.href = url;
         });
+
+        const li = document.createElement('li');
+        li.classList.add('hide'); // Добавить класс "hide"
+        li.appendChild(button);
+        ul.appendChild(li);
       });
 
-      const apiKey = 'key9kpLHqsdRFXvS2';
-      const baseId = 'appaePimTt1Ji6hSr';
-      const tableName = 'tblivWUpxtGbTszm3';
-  
-fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    const listWidget = document.getElementById('list-widget');
-    const unityLogo = document.getElementById('unity-logo');
-    const ul = document.createElement('ul');
-    ul.classList.add('button-list', 'horizontal');
+      listWidget.appendChild(ul);
 
-    // Сортировка данных по полю "Num"
-    data.records.sort((a, b) => a.fields.Num - b.fields.Num);
+      setTimeout(function() {
+        document.getElementById('list-widget').style.display = 'block';
 
-    data.records.forEach(record => {
-  const fields = record.fields;
-  const name = fields.Name;
-  const imageUrl = fields.Image;
-  const url = fields.URL;
-
-  const button = document.createElement('button');
-  const img = document.createElement('img');
-  img.src = imageUrl;
-  img.alt = name;
-  button.appendChild(img);
-
-  const span = document.createElement('span');
-  span.innerText = name; // Устанавливаем название игры в текст элемента <span>
-  span.classList.add('image-text');
-  img.parentNode.insertBefore(span, img.nextSibling);
-
-      button.addEventListener('click', () => {
-        window.location.href = url;
-      });
-
-      const li = document.createElement('li');
-      li.classList.add('hide'); // Добавить класс "hide"
-      li.appendChild(button);
-      ul.appendChild(li);
+        // Постепенное отображение кнопок
+        const listItems = ul.querySelectorAll('li');
+        listItems.forEach((item, index) => {
+          setTimeout(function() {
+            item.classList.add('show');
+          }, index * 50); // Установите более короткую задержку, например, 50 мс, чтобы кнопки появлялись быстрее
+        });
+      }, 100);
+    })
+    .catch(error => {
+      console.error(error);
     });
-
-    listWidget.appendChild(ul);
-
-    setTimeout(function() {
-      document.getElementById('list-widget').style.display = 'block';
-    //   document.getElementById('unity-logo').style.display = 'none';
-
-      // Постепенное отображение кнопок
-      const listItems = ul.querySelectorAll('li');
-      listItems.forEach((item, index) => {
-        setTimeout(function() {
-          item.classList.add('show');
-        }, index * 100); // Установите задержку в зависимости от позиции кнопки
-      });
-    }, 2000);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-
-    </script>
+</script>
