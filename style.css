@@ -321,10 +321,61 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 /* Bloc image backgrounds */
 
 .bg-background {
-  background-image: url("background.png"), url("tile.png");
-  background-repeat: no-repeat, repeat;
-  background-position: center, center;
-  background-size: cover, auto;
+    position: relative;
+    overflow: hidden; /* Чтобы обрезать лишнюю часть тайла */
+
+}
+
+.bg-background::before,
+.bg-background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+
+}
+
+.bg-background::before {
+    background-image: url("background.png");
+    opacity: 1;
+}
+
+.bg-background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50000%; /* Увеличиваем ширину для бесконечного эффекта */
+    height: 100%;
+    background-image: url("tile.png");
+    background-repeat: repeat;
+    background-position: 0;
+    background-size: auto;
+    animation: slideAnimation 190000s linear infinite;
+    opacity: 0.1;
+}
+
+@keyframes slideAnimation {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes slideAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 
