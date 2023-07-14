@@ -116,6 +116,7 @@
         const name = fields.Name;
         const imageUrl = fields.Image;
         const url = fields.URL;
+        const power = fields.Power;
 
         const button = document.createElement('button');
         const img = document.createElement('img');
@@ -124,16 +125,24 @@
         button.appendChild(img);
 
         const span = document.createElement('span');
-        span.innerText = name; // Устанавливаем название игры в текст элемента <span>
+        span.innerText = name;
         span.classList.add('image-text');
         img.parentNode.insertBefore(span, img.nextSibling);
 
-        button.addEventListener('click', () => {
-          window.location.href = url;
-        });
-
         const li = document.createElement('li');
-        li.classList.add('hide'); // Добавить класс "hide"
+
+        // Проверка значения поля "Power" и установка классов CSS
+        if (power === "ON") {
+          button.classList.add('button-on');
+          button.addEventListener('click', () => {
+            window.location.href = url;
+          });
+        } else if (power === "OFF") {
+          button.classList.add('button-off');
+          button.disabled = true;
+        }
+
+        li.classList.add('hide');
         li.appendChild(button);
         ul.appendChild(li);
       });
@@ -143,12 +152,11 @@
       setTimeout(function() {
         document.getElementById('list-widget').style.display = 'block';
 
-        // Постепенное отображение кнопок
         const listItems = ul.querySelectorAll('li');
         listItems.forEach((item, index) => {
           setTimeout(function() {
             item.classList.add('show');
-          }, index * 50); // Установите более короткую задержку, например, 50 мс, чтобы кнопки появлялись быстрее
+          }, index * 50);
         });
       }, 100);
     })
@@ -156,4 +164,3 @@
       console.error(error);
     });
 </script>
-
