@@ -612,3 +612,28 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .blurred {
     filter: blur(30px);
 }
+
+.toppanel {
+	position: fixed;
+	top: 5px;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 50px;
+	padding: 30px;
+	background-color: rgba(255, 255, 255, 0.079);
+	backdrop-filter: blur(3px);
+	border-radius: 15px;
+	border: 1px solid rgba(255, 255, 255, 0.3); /* Добавлено: рамка со стеклянным эффектом */
+	box-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 6px rgba(255, 255, 255, 0.3) inset; /* Добавлено: эффект стекла и перелива */
+  }
+  
+  .toppanel span {
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+  }
+  
