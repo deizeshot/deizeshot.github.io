@@ -62,14 +62,8 @@
 <div id="list-widget" style="display:none;"></div>
 
 <!-- Yandex.RTB R-A-2515093-1 -->
-<div id="yandex_rtb_R-A-2515093-1"></div>
-<script>window.yaContextCb.push(()=>{
-	Ya.Context.AdvManager.render({
-		"blockId": "R-A-2515093-1",
-		"renderTo": "yandex_rtb_R-A-2515093-1"
-	})
-})
-</script>
+<div id="yandex_rtb_R-A-2515093-1" style="max-height: 300px;"></div>
+				
 				</div>
 			</div>
 		</div>
@@ -82,16 +76,34 @@
 <button aria-label="Scroll to top button" class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1',this)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path class="scroll-to-top-btn-icon" d="M30,22.656l-14-13-14,13"/></svg></button>
 <!-- ScrollToTop Button END-->
 
-
 </div>
 <!-- Main container END -->
-    
+
 
 <!-- Additional JS -->
 <script src="./js/bootstrap.bundle.min.js?6767"></script>
 <script src="./js/blocs.min.js?1048"></script>
 <script src="./js/lazysizes.min.js" defer></script><!-- Additional JS END -->
 
+
+<!-- Script for scrolling to the overlay text -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const overlayText = document.querySelector(".overlay-text");
+        window.scrollTo({
+            top: overlayText.offsetTop,
+            behavior: "smooth"
+        });
+    });
+</script>
+
+<script>window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-2515093-1",
+		"renderTo": "yandex_rtb_R-A-2515093-1"
+	})
+})
+</script>
 
 </body>
 </html>
