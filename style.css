@@ -269,10 +269,6 @@ button{
 	width: 100%;
 }
 }
-
-
-
-
 /* ScrollToTop button */
 
 .scrollToTop{
@@ -337,7 +333,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 
 .bg-background {
     position: relative;
-    overflow: hidden; /* Чтобы обрезать лишнюю часть тайла */
+    overflow: hidden;
 
 }
 
@@ -365,7 +361,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
     position: absolute;
     top: 0;
     left: 0;
-    width: 50000%; /* Увеличиваем ширину для бесконечного эффекта */
+    width: 50000%;
     height: 100%;
     background-image: url("tile.png");
     background-repeat: repeat;
@@ -407,14 +403,14 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	margin-bottom: 10px;
 	border-radius: 10px;
 	overflow: hidden;
-	opacity: 0; /* Устанавливаем начальное значение непрозрачности 0 */
-	transition: opacity 0.5s ease; /* Добавляем анимацию перехода для свойства opacity */
-	/* right: 200px; */
+	opacity: 0;
+	transition: opacity 0.5s ease;
 	max-width: 500px;
+    backdrop-filter: blur(3px);
   }
   
   .button-list li.show {
-	opacity: 1; /* При применении класса "show" устанавливаем непрозрачность 1 */
+	opacity: 1;
   }
   
   
@@ -424,7 +420,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	padding: 0;
 	border: none;
 	background-color: #ffffff00;
-	border-radius: 10px; /* Добавьте это свойство */
+	border-radius: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -467,7 +463,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	overflow: hidden;
 	border-radius: 10px;
 	transition: transform 0.3s ease;
-	position: relative; /* Добавляем позиционирование */
+	position: relative;
   }
   
   .button-list.horizontal li button {
@@ -481,7 +477,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	align-items: center;
 	overflow: hidden;
 	transition: transform 0.3s ease;
-	position: relative; /* Добавляем позиционирование */
+	position: relative;
   }
   
   .button-list.horizontal li img {
@@ -499,19 +495,19 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
   }
   
   .button-list.horizontal li button .hover-effect {
-	position: absolute; /* Добавляем позиционирование */
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
-	opacity: 0; /* Изначально делаем непрозрачным */
+	opacity: 0;
 	transition: opacity 0.3s ease;
-	pointer-events: none; /* Исключаем события мыши для элемента */
+	pointer-events: none;
   }
   
   .button-list.horizontal li button:hover .hover-effect {
-	opacity: 1; /* Плавно делаем прозрачным при наведении */
+	opacity: 1;
   }
   
   .button-list.horizontal li button span {
@@ -618,7 +614,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .logo {
     position: absolute;
     top: 0;
-    left: -100px; /* Измените значение left на ваше предпочтение */
+    left: -100px;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -627,32 +623,8 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .blurred {
     filter: blur(30px);
 }
-
-.toppanel {
-	position: fixed;
-	top: 5px;
-	left: 50%;
-	transform: translateX(-50%);
-	height: 50px;
-	padding: 30px;
-	background-color: rgba(255, 255, 255, 0.079);
-	backdrop-filter: blur(3px);
-	border-radius: 15px;
-	border: 1px solid rgba(255, 255, 255, 0.3); /* Добавлено: рамка со стеклянным эффектом */
-	box-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 6px rgba(255, 255, 255, 0.3) inset; /* Добавлено: эффект стекла и перелива */
-  }
-  
-  .toppanel span {
-	color: white;
-	font-size: 25px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-  }
   
   .button-off {
-	opacity: 0.5; /* Устанавливаем непрозрачность кнопки */
-	pointer-events: none; /* Отключаем интерактивность кнопки */
+	opacity: 0.5;
+	pointer-events: none;
   }
