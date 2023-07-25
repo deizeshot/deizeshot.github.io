@@ -1,0 +1,36 @@
+/* Стили для чата */
+.chat-container {
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+  
+  .chat-messages {
+	height: 150px;
+	overflow-y: auto;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	padding: 5px;
+  }
+  
+  .chat-input input {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 5px;
+  }
+  
+  .chat-input button {
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  .chat-input button:hover {
+	background-color: #45a049;
+  }
+  
