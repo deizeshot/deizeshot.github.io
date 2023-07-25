@@ -114,38 +114,49 @@
 })
 </script>
 
-<!-- WebSocket connection -->
 <script>
-  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
+const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
 
-  ws.onopen = () => {
-    console.log('Connected to the WebSocket server.');
-  };
+ws.onopen = () => {
+  console.log('Connected to the WebSocket server.');
+};
 
-  ws.onmessage = (event) => {
-    const message = JSON.parse(event.data);
-    console.log('Received message:', message);
-    const chatMessages = document.getElementById('chatMessages');
-    const messageElement = document.createElement('div');
-    messageElement.innerText = message.text;
-    chatMessages.appendChild(messageElement);
-  };
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
 
-  function sendMessageToServer(message) {
-    ws.send(JSON.stringify(message));
+  if (data.type === 'chat-history') {
+    const history = data.messages;
+    // Очищаем текущий чат перед отображением истории сообщений
+    document.getElementById('chatMessages').innerHTML = '';
+    history.forEach(message => displayMessage(message));
+  } else if (data.type === 'chat-message') {
+    const message = data.message;
+    displayMessage(message);
   }
+};
 
-  // Пример отправки сообщения на сервер при клике на кнопку "Отправить"
-  const sendButton = document.getElementById('sendButton');
-  sendButton.addEventListener('click', () => {
-    const messageInput = document.getElementById('messageInput');
-    const message = messageInput.value.trim();
+function displayMessage(message) {
+  const chatMessages = document.getElementById('chatMessages');
+  const messageDiv = document.createElement('div');
+  messageDiv.textContent = message.text;
+  chatMessages.appendChild(messageDiv);
+}
 
-    if (message !== '') {
-      sendMessageToServer({ type: 'chat', text: message });
-      messageInput.value = '';
-    }
-  });
+function sendMessageToServer(message) {
+  ws.send(JSON.stringify(message));
+}
+
+// Пример отправки сообщения на сервер при клике на кнопку "Отправить"
+const sendButton = document.getElementById('sendButton');
+sendButton.addEventListener('click', () => {
+  const messageInput = document.getElementById('messageInput');
+  const message = messageInput.value.trim();
+
+  if (message !== '') {
+    sendMessageToServer({ type: 'chat', text: message });
+    messageInput.value = '';
+  }
+});
 </script>
 
 </body>
