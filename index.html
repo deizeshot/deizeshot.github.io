@@ -74,10 +74,9 @@
 
 <!-- <div id="yandex_rtb_R-A-2515093-1" style="max-height: 250px;"></div> -->
 
-				</div>
-			</div>
-		</div>
-	</div>
+</div>
+</div>
+</div>
 </div>
 <!-- background END -->
 
@@ -126,7 +125,10 @@
   ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
     console.log('Received message:', message);
-    // Здесь вы можете добавить логику для обновления списка кнопок или что-то еще на вашем сайте
+    const chatMessages = document.getElementById('chatMessages');
+    const messageElement = document.createElement('div');
+    messageElement.innerText = message.text;
+    chatMessages.appendChild(messageElement);
   };
 
   function sendMessageToServer(message) {
@@ -146,10 +148,9 @@
   });
 </script>
 
-<script src="log.php"></script>
-
 </body>
 </html>
+
 
 <script>
   const apiKey = 'key9kpLHqsdRFXvS2';
