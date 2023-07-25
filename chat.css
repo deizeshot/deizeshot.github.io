@@ -2,7 +2,7 @@
 .chat-container {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: 400px; /* Уменьшим высоту чата на 400 пикселей (по вашему желанию) */
 	border: 1px solid #dcdcdc;
 	border-radius: 8px;
 	overflow: hidden;
