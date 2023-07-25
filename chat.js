@@ -46,33 +46,23 @@ function displayLastMessages(messages) {
   
 	if (message !== '') {
 	  sendMessage(message); // Отправляем сообщение на сервер
-	  // Не очищаем поле ввода здесь, чтобы убедиться, что новое сообщение отобразится в чате
-	  // messageInput.value = '';
+	  messageInput.value = ''; // Очищаем поле ввода после отправки
 	}
   });
   
   function getMessagesFromServer(callback) {
-	// Здесь мы будем выполнять AJAX запрос к файлу messages.php на сервере.
-	// В случае реального сервера, убедитесь, что путь к файлу messages.php правильный.
-	const request = new XMLHttpRequest();
-	request.open('GET', 'messages.php', true);
+	const ws = new WebSocket('https://intermediate-easy-ship.glitch.me/');
   
-	request.onload = function () {
-	  if (request.status >= 200 && request.status < 400) {
-		// В случае успешного запроса, парсим полученные данные JSON
-		const messages = JSON.parse(request.responseText);
-		callback(messages);
-	  } else {
-		console.error('Ошибка при получении сообщений с сервера.');
-	  }
+	ws.onopen = () => {
+	  console.log('Connected to the server.');
 	};
   
-	request.onerror = function () {
-	  console.error('Ошибка сети при получении сообщений с сервера.');
+	ws.onmessage = (event) => {
+	  const messages = JSON.parse(event.data);
+	  callback(messages);
 	};
-  
-	request.send();
   }
+  
   
   // Обновление чата (получение сообщений с сервера и отображение последних 5)
   function updateChat() {
