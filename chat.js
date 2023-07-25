@@ -28,7 +28,8 @@ function displayLastMessages(messages) {
 	  data: { message: message },
 	  success: function (data) {
 		console.log(`Сообщение успешно отправлено на сервер: "${message}"`);
-		updateChat(); // В случае успеха, обновляем чат
+		// После успешной отправки сообщения обновляем чат, чтобы показать новое сообщение
+		updateChat();
 	  },
 	  error: function (xhr, status, error) {
 		console.error(`Ошибка при отправке сообщения на сервер: "${message}"`);
@@ -45,22 +46,32 @@ function displayLastMessages(messages) {
   
 	if (message !== '') {
 	  sendMessage(message); // Отправляем сообщение на сервер
-	  messageInput.value = ''; // Очищаем поле ввода
+	  // Не очищаем поле ввода здесь, чтобы убедиться, что новое сообщение отобразится в чате
+	  // messageInput.value = '';
 	}
   });
   
-  // Заглушка для получения сообщений с сервера (замените этот код на свою логику получения сообщений с сервера)
   function getMessagesFromServer(callback) {
-	// Вместо этой заглушки реализуйте логику получения сообщений с сервера,
-	// например, через AJAX запрос к своему серверу или используя WebSockets.
-	const messages = [
-	  'Hello!',
-	  'How are you?',
-	  'I like cats!',
-	  'This chat is awesome!',
-	  'Goodbye!'
-	];
-	callback(messages);
+	// Здесь мы будем выполнять AJAX запрос к файлу messages.php на сервере.
+	// В случае реального сервера, убедитесь, что путь к файлу messages.php правильный.
+	const request = new XMLHttpRequest();
+	request.open('GET', 'messages.php', true);
+  
+	request.onload = function () {
+	  if (request.status >= 200 && request.status < 400) {
+		// В случае успешного запроса, парсим полученные данные JSON
+		const messages = JSON.parse(request.responseText);
+		callback(messages);
+	  } else {
+		console.error('Ошибка при получении сообщений с сервера.');
+	  }
+	};
+  
+	request.onerror = function () {
+	  console.error('Ошибка сети при получении сообщений с сервера.');
+	};
+  
+	request.send();
   }
   
   // Обновление чата (получение сообщений с сервера и отображение последних 5)
@@ -71,5 +82,7 @@ function displayLastMessages(messages) {
   }
   
   // Отображение последних сообщений при загрузке страницы
-  updateChat();
+  document.addEventListener('DOMContentLoaded', () => {
+	updateChat();
+  });
   
