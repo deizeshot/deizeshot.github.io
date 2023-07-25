@@ -11,14 +11,6 @@
     align-self: flex-end; /* Выравниваем чат по правой стороне */
 }
 
-/* Контейнер сообщений */
-.chat-messages {
-    flex: 1;
-    display: flex;
-    flex-direction: column-reverse; /* Разворачиваем порядок сообщений */
-    padding: 10px;
-    overflow-y: auto;
-}
 
 /* Контейнер ввода сообщения */
 .chat-input {
@@ -48,10 +40,9 @@
     width: 30px;
     height: 30px;
     border: none;
-    background: url('путь_к_вашей_иконке_самолетика.png') no-repeat center/contain;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 /* Стиль кнопки отправки при наведении */
@@ -83,30 +74,4 @@
     background-color: #444;
     align-self: flex-start;
     text-align: left; /* Выравниваем текст по левому краю */
-}
-
-/* Стили для облачка отправленных сообщений */
-.chat-message.sent::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    bottom: 0;
-    right: -10px;
-    border-width: 10px 0 0 10px;
-    border-style: solid;
-    border-color: transparent transparent transparent #007bff;
-}
-
-/* Стили для облачка полученных сообщений */
-.chat-message.received::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    bottom: 0;
-    left: -10px;
-    border-width: 10px 10px 0 0;
-    border-style: solid;
-    border-color: transparent #444 transparent transparent;
 }
