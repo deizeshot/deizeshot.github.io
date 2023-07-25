@@ -53,8 +53,15 @@
               <div class="chat-container">
                 <div class="chat-messages" id="chatMessages">
                     <!-- Здесь будут отображаться сообщения чата -->
-                    <div class="chat-message sent">Отправленное сообщение</div>
-                    <div class="chat-message received">Полученное сообщение</div>
+                    <div class="chat-message sent">
+                      <div class="message-content">Отправленное сообщение</div>
+                      <div class="message-time">12:34 PM</div> <!-- Время отправки сообщения -->
+                  </div>
+                  
+                  <div class="chat-message received">
+                    <div class="message-content">Полученное сообщение</div>
+                    <div class="message-time">1:45 PM</div> <!-- Время отправки сообщения -->
+                </div>
                 </div>
                 <div class="chat-input">
                     <input type="text" id="messageInput" placeholder="Введите ваше сообщение...">
