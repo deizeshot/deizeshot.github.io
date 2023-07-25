@@ -2,8 +2,8 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    max-height: 200px; /* Высота для 5 сообщений, увеличьте/уменьшите по желанию */
-    max-width: 400px; /* Уменьшаем ширину чата до 70% */
+    max-height: 200px; 
+    max-width: 400px; 
     border-radius: 10px;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.184); /* Черный цвет с прозрачностью 0.8 (80%) */
@@ -51,7 +51,7 @@
     border: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    color: #444; /* Изменили цвет на черный */
+    color: #ffffff; /* Изменили цвет на черный */
     background: none; /* Убрали задник кнопки */
 }
 
@@ -67,7 +67,8 @@
     padding: 10px;
     border-radius: 10px;
     color: #fff; /* Цвет текста сообщения */
-    font-size: 16px; /* Размер шрифта сообщения */
+    font-size: 14px; /* Размер шрифта сообщения */
+    line-height: 1; /* Уменьшили высоту "облачка" сообщения */
     max-width: 80%;
     position: relative; /* Добавляем позиционирование для облачков */
 }
@@ -77,12 +78,14 @@
     background-color: #007bff;
     align-self: flex-end;
     text-align: right; /* Выравниваем текст по правому краю */
+    font-size: 14px; /* Уменьшили размер шрифта для отправленных сообщений */
 }
-
 
 /* Стиль полученных сообщений */
 .chat-message.received {
     background-color: #444;
     align-self: flex-start;
     text-align: left; /* Выравниваем текст по левому краю */
+    font-size: 14px; /* Уменьшили размер шрифта для полученных сообщений */
 }
+
