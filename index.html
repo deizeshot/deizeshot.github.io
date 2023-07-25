@@ -115,7 +115,36 @@
 })
 </script>
 
-<script src="chat.js"></script>
+<!-- WebSocket connection -->
+<script>
+  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
+
+  ws.onopen = () => {
+    console.log('Connected to the WebSocket server.');
+  };
+
+  ws.onmessage = (event) => {
+    const message = JSON.parse(event.data);
+    console.log('Received message:', message);
+    // Здесь вы можете добавить логику для обновления списка кнопок или что-то еще на вашем сайте
+  };
+
+  function sendMessageToServer(message) {
+    ws.send(JSON.stringify(message));
+  }
+
+  // Пример отправки сообщения на сервер при клике на кнопку "Отправить"
+  const sendButton = document.getElementById('sendButton');
+  sendButton.addEventListener('click', () => {
+    const messageInput = document.getElementById('messageInput');
+    const message = messageInput.value.trim();
+
+    if (message !== '') {
+      sendMessageToServer({ type: 'chat', text: message });
+      messageInput.value = '';
+    }
+  });
+</script>
 
 <script src="log.php"></script>
 
