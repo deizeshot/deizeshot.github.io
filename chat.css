@@ -3,12 +3,23 @@
     display: flex;
     flex-direction: column;
     max-height: 200px; /* Высота для 5 сообщений, увеличьте/уменьшите по желанию */
-    width: 70%; /* Уменьшаем ширину чата до 70% */
-    border-radius: 30px;
+    max-width: 400px; /* Уменьшаем ширину чата до 70% */
+    border-radius: 10px;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.8); /* Черный цвет с прозрачностью 0.8 (80%) */
-    backdrop-filter: blur(10px); /* Добавляем эффект backdrop блюр */
+    background-color: rgba(0, 0, 0, 0.184); /* Черный цвет с прозрачностью 0.8 (80%) */
+    backdrop-filter: blur(3px); /* Добавляем эффект backdrop блюр */
     align-self: flex-end; /* Выравниваем чат по правой стороне */
+}
+
+/* Контейнер сообщений */
+.chat-messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Заменили на column */
+    padding: 10px;
+    overflow-y: auto;
+	word-wrap: break-word; /* Добавляем перенос слов при необходимости */
+
 }
 
 
@@ -17,19 +28,17 @@
     display: flex;
     align-items: center;
     padding: 5px;
-    background-color: rgba(0, 0, 0, 0.8); /* Черный цвет с прозрачностью 0.8 (80%) */
-    backdrop-filter: blur(10px); /* Добавляем эффект backdrop блюр */
+    background-color: rgba(0, 0, 0, 0.127); /* Черный цвет с прозрачностью 0.8 (80%) */
+    backdrop-filter: blur(3px); /* Добавляем эффект backdrop блюр */
 }
 
 /* Поле ввода сообщения */
 .chat-input input[type="text"] {
     flex: 1;
     padding: 10px;
-    border: 1px solid #dcdcdc;
-    border-radius: 20px;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.8); /* Белый цвет с прозрачностью 0.8 (80%) */
-    color: #333; /* Цвет текста */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0); /* Белый цвет с прозрачностью 0.8 (80%) */
+    color: #ffffff; /* Цвет текста */
     font-size: 16px; /* Размер шрифта */
 }
 
@@ -42,13 +51,15 @@
     border: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    opacity: 1;
+    color: #444; /* Изменили цвет на черный */
+    background: none; /* Убрали задник кнопки */
 }
 
 /* Стиль кнопки отправки при наведении */
 .chat-input button:hover {
-    opacity: 1;
+    opacity: 0.8; /* Изменили значение непрозрачности при наведении */
 }
+
 
 /* Стиль сообщения */
 .chat-message {

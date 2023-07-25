@@ -22,10 +22,19 @@ function displayMessage(message) {
   const chatMessages = document.getElementById('chatMessages');
   const messageDiv = document.createElement('div');
   messageDiv.textContent = message.text;
-  chatMessages.appendChild(messageDiv);
 
-  console.log(message.text); // Вывод текста сообщения в консоль
+  // Добавляем класс в зависимости от типа сообщения (отправленное или полученное)
+  if (message.type === 'chat') {
+    messageDiv.classList.add('chat-message', 'sent'); // Здесь можно использовать класс 'received' для полученных сообщений
+  }
+
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+
 }
+
+
 
 function sendMessageToServer(message) {
   ws.send(JSON.stringify(message));
