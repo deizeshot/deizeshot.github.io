@@ -23,6 +23,8 @@ function displayMessage(message) {
   const messageDiv = document.createElement('div');
   messageDiv.textContent = message.text;
   chatMessages.appendChild(messageDiv);
+
+  console.log(message.text); // Вывод текста сообщения в консоль
 }
 
 function sendMessageToServer(message) {
