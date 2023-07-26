@@ -1,6 +1,8 @@
 /* Контейнер чата */
 .chat-container {
     display: flex;
+	top: 500px;
+	bottom: 100px;
     flex-direction: column;
     max-height: 200px; 
     max-width: 400px; 

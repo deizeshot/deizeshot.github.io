@@ -45,77 +45,38 @@ function getTimeString() {
   return `${hours}:${minutes}`;
 }
 
-// Пример отправки сообщения на сервер при клике на кнопку "Отправить"
-const sendButton = document.getElementById('sendButton');
-sendButton.addEventListener('click', () => {
+function sendMessage() {
   const messageInput = document.getElementById('messageInput');
   let messageText = messageInput.value.trim();
 
   if (messageText !== '') {
-    // Проверяем, содержит ли сообщение текст вида "id-0123456" и извлекаем chat_id
-    const chatIdMatch = messageText.match(/id-(\d+)/);
-    if (chatIdMatch) {
-      const chatId = chatIdMatch[1];
-      messageText = messageText.replace(/id-(\d+)/, ''); // Удаляем из сообщения текст с форматом id-0123456
-      sendMessageToServer({ type: 'chat', text: messageText, chatId: chatId });
+    // Проверяем, содержит ли сообщение текст вида "/bot @username" и извлекаем @имя пользователя
+    const usernameMatch = messageText.match(/@(\w+)/);
+    if (usernameMatch) {
+      const username = usernameMatch[1];
+      messageText = messageText.replace(/@(\w+)/, ''); // Удаляем из сообщения текст с @именем пользователя
+      sendMessageToServer({ type: 'chat', text: messageText, username: username });
     } else {
       sendMessageToServer({ type: 'chat', text: messageText });
     }
 
     messageInput.value = '';
   }
+}
+
+async function sendMessageToServer(message) {
+  const currentTime = getTimeString(); // Получаем текущее время в формате "HH:mm"
+  message.time = currentTime; // Добавляем поле "time" с текущим временем в объект сообщения
+
+  ws.send(JSON.stringify(message));
+}
+
+// Обработчик события нажатия клавиши Enter
+document.getElementById('messageInput').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    sendMessage();
+  }
 });
 
-async function sendMessageToServer(message) {
-  const currentTime = getTimeString(); // Получаем текущее время в формате "HH:mm"
-  message.time = currentTime; // Добавляем поле "time" с текущим временем в объект сообщения
-
-  // Получаем YOUR_TELEGRAM_USER_ID с сервера
-  const YOUR_TELEGRAM_USER_ID = await getYourTelegramUserId();
-
-  // Добавляем YOUR_TELEGRAM_USER_ID в сообщение
-  message.YOUR_TELEGRAM_USER_ID = YOUR_TELEGRAM_USER_ID;
-
-  ws.send(JSON.stringify(message));
-}
-
-
-async function getYourTelegramUserId() {
-  try {
-    const response = await fetch('/get-your-telegram-user-id'); // Здесь '/get-your-telegram-user-id' - путь к вашему серверному маршруту для получения chatIds.json
-    const data = await response.json();
-    return data.YOUR_TELEGRAM_USER_ID; // Ваш YOUR_TELEGRAM_USER_ID будет содержаться в поле data.YOUR_TELEGRAM_USER_ID
-  } catch (error) {
-    console.error('Error getting YOUR_TELEGRAM_USER_ID:', error);
-    return null;
-  }
-}
-
-// Функция для отправки запроса на сервер для добавления chatId
-async function addChatIdToServer(chatId) {
-  try {
-    const response = await fetch(`/add-chat-id/${chatId}`, { method: 'POST' });
-    const data = await response.json();
-    console.log(data.message);
-  } catch (error) {
-    console.error('Error adding chatId:', error);
-  }
-}
-
-// В функции sendMessageToServer извлекаем chatId из текста сообщения и добавляем его в массив chatIds на сервере
-async function sendMessageToServer(message) {
-  const currentTime = getTimeString(); // Получаем текущее время в формате "HH:mm"
-  message.time = currentTime; // Добавляем поле "time" с текущим временем в объект сообщения
-
-  // Извлекаем chatId из текста сообщения, если он есть (формат id-1234567)
-  const chatIdMatch = message.text.match(/id-(\d+)/);
-  if (chatIdMatch) {
-    const chatId = chatIdMatch[1];
-    addChatIdToServer(chatId); // Отправляем запрос на сервер для добавления chatId
-    // Удаляем из сообщения текст с форматом id-1234567
-    message.text = message.text.replace(/id-(\d+)/, '');
-  }
-
-  ws.send(JSON.stringify(message));
-}
-
+// Пример отправки сообщения на сервер при клике на кнопку "Отправить"
+document.getElementById('sendButton').addEventListener('click', sendMessage);
