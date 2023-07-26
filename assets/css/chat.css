@@ -2,6 +2,7 @@
 
 html, body {
   height: 100vh;
+  width: 100vh;
   margin: 0;
   padding: 0;
   overflow: auto;
@@ -12,14 +13,15 @@ html, body {
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 400px;
   width: 100%;
+  max-width: 600px;
   border-radius: 10px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.184);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  align-self: flex-end;
+  align-self: center;
 }
 
 .chat-messages {
