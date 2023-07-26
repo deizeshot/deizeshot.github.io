@@ -18,6 +18,15 @@ ws.onmessage = (event) => {
   }
 };
 
+// Отображаем фейковое приветственное сообщение при открытии чата, если нет истории сообщений
+if (document.getElementById('chatMessages').children.length === 0) {
+  displayMessage({
+    type: 'chat',
+    text: 'Привет! Напиши /bot, чтобы отправить бетсигнал.',
+    time: getTimeString(),
+  });
+}
+
 function displayMessage(message) {
   const chatMessages = document.getElementById('chatMessages');
   const messageDiv = document.createElement('div');
