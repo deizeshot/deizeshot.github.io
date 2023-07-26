@@ -110,3 +110,26 @@
   background-color: #0ca40c;
 }
 
+/* Стили для текста и информации над контейнером чата */
+
+.chat-info {
+  color: white;
+  text-align: left;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+}
+
+.chat-info h2 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.chat-info p {
+  font-size: 18px;
+  text-align: left;
+}
+
