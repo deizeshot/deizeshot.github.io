@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="width: 100%;height: 100vh;background: url(&quot;assets/img/background.webp&quot;) center / cover repeat, rgba(0,0,0,0);margin: 0;padding: 0;overflow: hidden;">
+<html lang="en" style="width: 100%; height: 100vh; background: url(&quot;assets/img/background.webp&quot;) center / cover repeat, rgba(0,0,0,0); margin: 0; padding: 0; overflow: hidden;">
 
 <head>
     <meta charset="utf-8">
@@ -13,190 +13,53 @@
     <link rel="stylesheet" href="assets/css/tileback.css">
 </head>
 
-<body style="background: rgba(255,255,255,0);height: 100vh;width: 100%;overflow: hidden;"><img style="width: 100%;height: 100vh;background: url(&quot;assets/img/tile.png&quot;) center / auto repeat;position: absolute;overflow: hidden;opacity: 0.09;text-align: left;z-index: -1;animation: slideAnima 190000s linear infinite;"><strong style="color: rgb(255,255,255);font-size: 45px;margin: 10px;"><img src="assets/img/logo.webp" width="38" height="61" style="margin: 13px;">SWKG</strong>
+<body style="background: rgba(255,255,255,0); height: 100vh; width: 100%; overflow: hidden;">
+    <img style="width: 100%; height: 100vh; background: url(&quot;assets/img/tile.png&quot;) center / auto repeat; position: absolute; overflow: hidden; opacity: 0.09; text-align: left; z-index: -1; animation: slideAnima 190000s linear infinite;">
+    <strong style="color: rgb(255,255,255); font-size: 45px; margin: 10px;">
+        <img src="assets/img/logo.webp" width="38" height="61" style="margin: 13px;">SWKG
+    </strong>
     <div>
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item" role="presentation"><a class="nav-link active flex-grow-1" role="tab" data-bs-toggle="tab" href="#tab-1" style="color: var(--bs-nav-tabs-link-active-bg);font-weight: bold;text-shadow: 0px 0px 20px var(--bs-nav-tabs-link-active-bg);text-stroke: 2px;background: var(--bs-border-color-translucent);border-color: var(--bs-border-color-translucent);">GAMES</a></li>
-            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="border-color: rgba(255,255,255,0);color: var(--bs-nav-tabs-link-active-bg);font-weight: bold;text-shadow: 0px 0px 20px var(--bs-nav-tabs-link-active-bg);background: var(--bs-border-color-translucent);">CHAT</a></li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active flex-grow-1" role="tab" data-bs-toggle="tab" href="#tab-1" style="color: var(--bs-nav-tabs-link-active-bg); font-weight: bold; text-shadow: 0px 0px 20px var(--bs-nav-tabs-link-active-bg); background: var(--bs-border-color-translucent); border-color: var(--bs-border-color-translucent);">
+                    GAMES
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="border-color: rgba(255,255,255,0); color: var(--bs-nav-tabs-link-active-bg); font-weight: bold; text-shadow: 0px 0px 20px var(--bs-nav-tabs-link-active-bg); background: var(--bs-border-color-translucent);">
+                    CHAT
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" role="tabpanel" id="tab-1">
-                <main style="width: 100%;height: 100%;right: 50%;left: 50%;"><div class="button-list-container">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                  <div id="list-widget" style="display: none;"></div>
-<script>
-  const apiKey = 'key9kpLHqsdRFXvS2';
-  const baseId = 'appaePimTt1Ji6hSr';
-  const tableName = 'tblivWUpxtGbTszm3';
-
-  fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?api_key=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-      const listWidget = document.getElementById('list-widget');
-      const ul = document.createElement('ul');
-      ul.classList.add('button-list', 'horizontal');
-
-      // Сортировка данных по полю "Num"
-      data.records.sort((a, b) => a.fields.Num - b.fields.Num);
-
-      data.records.forEach(record => {
-        const fields = record.fields;
-        const name = fields.Name;
-        const imageUrl = fields.Image;
-        const url = fields.URL;
-        const power = fields.Power;
-
-        const button = document.createElement('button');
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        img.alt = name;
-        button.appendChild(img);
-
-        const span = document.createElement('span');
-        span.innerText = name;
-        span.classList.add('image-text');
-        img.parentNode.insertBefore(span, img.nextSibling);
-
-        const li = document.createElement('li');
-
-        // Проверка значения поля "Power" и установка классов CSS
-        if (power === "ON") {
-          button.classList.add('button-on');
-          button.addEventListener('click', () => {
-            window.location.href = url;
-          });
-        } else if (power === "OFF") {
-          button.classList.add('button-off');
-          button.disabled = true;
-        }
-
-        li.classList.add('hide');
-        li.appendChild(button);
-        ul.appendChild(li);
-      });
-
-      listWidget.appendChild(ul);
-
-      setTimeout(function() {
-        document.getElementById('list-widget').style.display = 'block';
-
-        const listItems = ul.querySelectorAll('li');
-        listItems.forEach((item, index) => {
-          setTimeout(function() {
-            item.classList.add('show');
-          }, index * 50);
-        });
-      }, 100);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-</script>
-</div></main>
+                <main style="width: 100%; height: 100%; right: 50%; left: 50%;">
+                    <div class="button-list-container">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                        <div id="list-widget" style="display: none;"></div>
+                        <script src="assets/js/gamepanel.js"></script>
+                    </div>
+                </main>
             </div>
             <div class="tab-pane fade" role="tabpanel" id="tab-2">
-                <main style="width: 100%;height: 100%;/*margin: 100px;*/">
-                    <div class="col" style="width: 100vh;height: 100vh;"><div class="chat-container">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="chat-message sent">
-                      
-                  </div>
-                  
-                  <div class="chat-message received">
-                    
-                </div>
-                </div>
-                <div class="chat-input">
-                    <input type="text" id="messageInput" placeholder="Cообщение...">
-                    <button id="sendButton">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-<script>
-const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
-
-ws.onopen = () => {
-  console.log('Connected to the WebSocket server.');
-};
-
-ws.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-
-  if (data.type === 'chat-history') {
-    const history = data.messages;
-    // Очищаем текущий чат перед отображением истории сообщений
-    document.getElementById('chatMessages').innerHTML = '';
-    history.forEach(message => displayMessage(message));
-  } else if (data.type === 'chat-message') {
-    const message = data.message;
-    displayMessage(message);
-  }
-};
-
-function displayMessage(message) {
-  const chatMessages = document.getElementById('chatMessages');
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('chat-message');
-
-  // Добавляем текст сообщения с пробелом и временем
-  const messageTextWithTime = document.createElement('div');
-  messageTextWithTime.textContent = message.text + ' ' + message.time;
-  messageDiv.appendChild(messageTextWithTime);
-
-  // Добавляем класс в зависимости от типа сообщения (отправленное или полученное)
-  if (message.type === 'chat') {
-    messageDiv.classList.add('sent'); // Здесь можно использовать класс 'received' для полученных сообщений
-  }
-
-  chatMessages.appendChild(messageDiv);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Функция для получения текущего времени в формате "HH:mm"
-function getTimeString() {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  return `${hours}:${minutes}`;
-}
-
-function sendMessage() {
-  const messageInput = document.getElementById('messageInput');
-  let messageText = messageInput.value.trim();
-
-  if (messageText !== '') {
-    // Проверяем, содержит ли сообщение текст вида "/bot @username" и извлекаем @имя пользователя
-    const usernameMatch = messageText.match(/@(\w+)/);
-    if (usernameMatch) {
-      const username = usernameMatch[1];
-      messageText = messageText.replace(/@(\w+)/, ''); // Удаляем из сообщения текст с @именем пользователя
-      sendMessageToServer({ type: 'chat', text: messageText, username: username });
-    } else {
-      sendMessageToServer({ type: 'chat', text: messageText });
-    }
-
-    messageInput.value = '';
-  }
-}
-
-async function sendMessageToServer(message) {
-  const currentTime = getTimeString(); // Получаем текущее время в формате "HH:mm"
-  message.time = currentTime; // Добавляем поле "time" с текущим временем в объект сообщения
-
-  ws.send(JSON.stringify(message));
-}
-
-// Обработчик события нажатия клавиши Enter
-document.getElementById('messageInput').addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    sendMessage();
-  }
-});
-
-// Пример отправки сообщения на сервер при клике на кнопку "Отправить"
-document.getElementById('sendButton').addEventListener('click', sendMessage);
-</script></div>
+                <main style="width: 100%; height: 100%;">
+                    <div class="col" style="width: 100vh; height: 100vh;">
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="chat-message sent">
+                                </div>
+                                <div class="chat-message received">
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="messageInput" placeholder="Cообщение...">
+                                <button id="sendButton">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <script src="assets/js/chat.js"></script>
+                    </div>
                 </main>
             </div>
         </div>
