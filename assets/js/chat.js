@@ -55,23 +55,29 @@ function getTimeString() {
 }
 
 function sendMessage() {
-  const messageInput = document.getElementById('messageInput');
-  let messageText = messageInput.value.trim();
-
-  if (messageText !== '') {
-    // Проверяем, содержит ли сообщение текст вида "/bot @username" и извлекаем @имя пользователя
-    const usernameMatch = messageText.match(/@(\w+)/);
-    if (usernameMatch) {
-      const username = usernameMatch[1];
-      messageText = messageText.replace(/@(\w+)/, ''); // Удаляем из сообщения текст с @именем пользователя
-      sendMessageToServer({ type: 'chat', text: messageText, username: username });
-    } else {
-      sendMessageToServer({ type: 'chat', text: messageText });
+    const messageInput = document.getElementById('messageInput');
+    let messageText = messageInput.value.trim();
+  
+    if (messageText !== '') {
+      // Проверяем, является ли сообщение командой /regtg
+      if (messageText.toLowerCase() === '/regtg') {
+        // Открываем чат с ботом в новой вкладке браузера
+        window.open('tg://resolve?domain=decloudpay_bot', '_blank');
+      } else {
+        // Проверяем, содержит ли сообщение текст вида "/bot @username" и извлекаем @имя пользователя
+        const usernameMatch = messageText.match(/@(\w+)/);
+        if (usernameMatch) {
+          const username = usernameMatch[1];
+          messageText = messageText.replace(/@(\w+)/, ''); // Удаляем из сообщения текст с @именем пользователя
+          sendMessageToServer({ type: 'chat', text: messageText, username: username });
+        } else {
+          sendMessageToServer({ type: 'chat', text: messageText });
+        }
+      }
+  
+      messageInput.value = '';
     }
-
-    messageInput.value = '';
   }
-}
 
 async function sendMessageToServer(message) {
   const currentTime = getTimeString(); // Получаем текущее время в формате "HH:mm"
@@ -89,3 +95,28 @@ document.getElementById('messageInput').addEventListener('keydown', (event) => {
 
 // Пример отправки сообщения на сервер при клике на кнопку "Отправить"
 document.getElementById('sendButton').addEventListener('click', sendMessage);
+
+// Код на стороне клиента для обработки ссылки с протоколом tg://
+function handleMessage(message) {
+    const parsedMessage = JSON.parse(message);
+  
+    if (parsedMessage.type === 'chat-message') {
+      const { text, time } = parsedMessage.message;
+  
+      // Проверяем, содержит ли сообщение ссылку с протоколом tg://
+      if (text.includes("tg://")) {
+        // Создаем ссылку и добавляем её в чат
+        const linkText = "Нажмите здесь, чтобы начать диалог с ботом";
+        const linkUrl = text.split(" ")[1];
+        const link = `<a href="${linkUrl}">${linkText}</a>`;
+  
+        const messageElement = createChatMessageElement(`${time} ${link}`);
+        chatMessages.appendChild(messageElement);
+      } else {
+        // Добавляем обычное сообщение в чат
+        const messageElement = createChatMessageElement(`${time} ${text}`);
+        chatMessages.appendChild(messageElement);
+      }
+    }
+  }
+  
