@@ -18,6 +18,20 @@ ws.onmessage = (event) => {
   }
 };
 
+// Обработчик события нажатия кнопки "ChatRefresh"
+document.getElementById('chatRefreshButton').addEventListener('click', () => {
+    // Очистим текущий чат перед обновлением
+    document.getElementById('chatMessages').innerHTML = '';
+    // Запросим историю чата заново с сервера
+    ws.send(JSON.stringify({ type: 'get-chat-history' }));
+  });
+
+// Обработка команды /get-chat-history
+if (parsedMessage.type === 'get-chat-history') {
+    // Отправляем историю чата текущему клиенту
+    ws.send(JSON.stringify({ type: 'chat-history', messages: messages.slice(-maxMessages) }));
+  }
+
 // Отображаем фейковое приветственное сообщение при открытии чата, если нет истории сообщений
 if (document.getElementById('chatMessages').children.length === 0) {
   displayMessage({
