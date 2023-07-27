@@ -1,7 +1,10 @@
+
 const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
 
 ws.onopen = () => {
   console.log('Connected to the WebSocket server.');
+  loadChatHistory();
+  
 };
 
 ws.onmessage = (event) => {
@@ -18,47 +21,32 @@ ws.onmessage = (event) => {
   }
 };
 
-// Обработчик события нажатия кнопки "ChatRefresh"
-document.getElementById('chatRefreshButton').addEventListener('click', () => {
-    // Очистим текущий чат перед обновлением
-    document.getElementById('chatMessages').innerHTML = '';
-    // Запросим историю чата заново с сервера
-    ws.send(JSON.stringify({ type: 'get-chat-history' }));
-  });
-
-// Обработка команды /get-chat-history
-if (parsedMessage.type === 'get-chat-history') {
-    // Отправляем историю чата текущему клиенту
-    ws.send(JSON.stringify({ type: 'chat-history', messages: messages.slice(-maxMessages) }));
-  }
-
-// Отображаем фейковое приветственное сообщение при открытии чата, если нет истории сообщений
-if (document.getElementById('chatMessages').children.length === 0) {
-  displayMessage({
-    type: 'chat',
-    text: 'Привет! Напиши /bot, чтобы отправить бетсигнал.',
-    time: getTimeString(),
-  });
-}
 
 function displayMessage(message) {
-  const chatMessages = document.getElementById('chatMessages');
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('chat-message');
-
-  // Добавляем текст сообщения с пробелом и временем
-  const messageTextWithTime = document.createElement('div');
-  messageTextWithTime.textContent = message.text + ' ' + message.time;
-  messageDiv.appendChild(messageTextWithTime);
-
-  // Добавляем класс в зависимости от типа сообщения (отправленное или полученное)
-  if (message.type === 'chat') {
-    messageDiv.classList.add('sent'); // Здесь можно использовать класс 'received' для полученных сообщений
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message');
+  
+    // Добавляем текст сообщения с пробелом и временем
+    const messageTextWithTime = document.createElement('div');
+  
+    // Если у сообщения есть имя пользователя, добавляем его к тексту сообщения
+    if (message.username) {
+      messageTextWithTime.textContent = `@${message.username}: ${message.text} ${message.time}`;
+    } else {
+      messageTextWithTime.textContent = `${message.text} ${message.time}`;
+    }
+  
+    messageDiv.appendChild(messageTextWithTime);
+  
+    // Добавляем класс в зависимости от типа сообщения (отправленное или полученное)
+    if (message.type === 'chat') {
+      messageDiv.classList.add('sent'); // Здесь можно использовать класс 'received' для полученных сообщений
+    }
+  
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
-
-  chatMessages.appendChild(messageDiv);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
 
 // Функция для получения текущего времени в формате "HH:mm"
 function getTimeString() {
@@ -68,30 +56,41 @@ function getTimeString() {
   return `${hours}:${minutes}`;
 }
 
-function sendMessage() {
-    const messageInput = document.getElementById('messageInput');
-    let messageText = messageInput.value.trim();
-  
-    if (messageText !== '') {
-      // Проверяем, является ли сообщение командой /regtg
-      if (messageText.toLowerCase() === '/regtg') {
-        // Открываем чат с ботом в новой вкладке браузера
-        window.open('tg://resolve?domain=decloudpay_bot', '_blank');
-      } else {
-        // Проверяем, содержит ли сообщение текст вида "/bot @username" и извлекаем @имя пользователя
-        const usernameMatch = messageText.match(/@(\w+)/);
-        if (usernameMatch) {
-          const username = usernameMatch[1];
-          messageText = messageText.replace(/@(\w+)/, ''); // Удаляем из сообщения текст с @именем пользователя
-          sendMessageToServer({ type: 'chat', text: messageText, username: username });
-        } else {
-          sendMessageToServer({ type: 'chat', text: messageText });
-        }
-      }
-  
-      messageInput.value = '';
-    }
+// Функция для загрузки истории чата с сервера
+function loadChatHistory() {
+    const getHistoryMessage = { type: 'get-chat-history' };
+    ws.send(JSON.stringify(getHistoryMessage));
   }
+
+// Обработчик события нажатия кнопки "Обновить чат"
+document.getElementById('chatRefreshButton').addEventListener('click', () => {
+    loadChatHistory();
+  });
+
+function sendMessage() {
+  const messageInput = document.getElementById('messageInput');
+  let messageText = messageInput.value.trim();
+
+  if (messageText !== '') {
+    // Проверяем, является ли сообщение командой /regtg
+    if (messageText.toLowerCase() === '/regtg') {
+      // Открываем чат с ботом в новой вкладке браузера
+      window.open('tg://resolve?domain=decloudpay_bot', '_blank');
+    } else {
+      // Проверяем, содержит ли сообщение текст вида "/bot @username" и извлекаем @имя пользователя
+      const usernameMatch = messageText.match(/@(\w+)/);
+      if (usernameMatch) {
+        const username = usernameMatch[1];
+        messageText = messageText.replace(/@(\w+)/, ''); // Удаляем из сообщения текст с @именем пользователя
+        sendMessageToServer({ type: 'chat', text: messageText, username: username });
+      } else {
+        sendMessageToServer({ type: 'chat', text: messageText });
+      }
+    }
+
+    messageInput.value = '';
+  }
+}
 
 async function sendMessageToServer(message) {
   const currentTime = getTimeString(); // Получаем текущее время в формате "HH:mm"
@@ -133,4 +132,3 @@ function handleMessage(message) {
       }
     }
   }
-  
