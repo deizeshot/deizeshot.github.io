@@ -54,15 +54,15 @@
 @media (max-width: 1080px) {
     .navigation-panel button {
       width: 80px;
-      height: 30px; /* Уменьшаем высоту кнопок */
-      font-size: 14px;
+      height: 25px; /* Уменьшаем высоту кнопок */
+      font-size: 12px;
     }
   }
 
   @media (max-width: 300px) {
     .navigation-panel button {
       width: 80px;
-      height: 30px; /* Уменьшаем высоту кнопок */
-      font-size: 14px;
+      height: 25px; /* Уменьшаем высоту кнопок */
+      font-size: 12px;
     }
   }
