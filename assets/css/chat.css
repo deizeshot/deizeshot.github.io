@@ -129,7 +129,8 @@
 }
 
 .chat-info p {
-  font-size: 18px;
+  font-size: 12px;
   text-align: left;
+  opacity: 0.5;
 }
 
