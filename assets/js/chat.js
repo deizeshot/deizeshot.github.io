@@ -2,9 +2,7 @@
 const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
 
 ws.onopen = () => {
-  console.log('Connected to the WebSocket server.');
-  loadChatHistory();
-  
+  console.log('Connected to the WebSocket server.');  
 };
 
 ws.onmessage = (event) => {
@@ -132,3 +130,12 @@ function handleMessage(message) {
       }
     }
   }
+
+  document.getElementById('chatRefreshButton').addEventListener('click', (event) => {
+    // Предотвращаем действие по умолчанию, чтобы не отправлять форму
+    event.preventDefault();
+  
+    // Отправляем команду на сервер для обновления чата
+    ws.send(JSON.stringify({ type: 'get-chat-history' }));
+  });
+  
