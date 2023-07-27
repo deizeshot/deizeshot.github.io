@@ -50,3 +50,9 @@
     top: 120px;
   }
   
+  /* Медиа-запрос для уменьшения ширины кнопок на маленьких экранах */
+@media (max-width: 768px) {
+    .navigation-panel button {
+      width: 100px;
+    }
+  }
