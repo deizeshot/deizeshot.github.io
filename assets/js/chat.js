@@ -1,3 +1,17 @@
+function checkPassword() {
+    const passwordInput = document.getElementById('password');
+    const password = passwordInput.value;
+  
+    // Здесь вы можете проверить введенный пароль и принять решение, показывать чат или нет
+    if (password === '1441') {
+      document.getElementById('passwordWrapper').style.display = 'none';
+      document.getElementById('chatWrapper').style.display = 'block';
+    } else {
+      alert('Неверный пароль');
+    }
+  }
+  
+
 const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
 ws.onopen = () => {
   console.log('Connected to the WebSocket server.');  
