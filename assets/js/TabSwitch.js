@@ -1,7 +1,6 @@
 const gamesButton = document.getElementById('gamesButton');
 const chatButton = document.getElementById('chatButton');
 const filesButton = document.getElementById('filesButton');
-const backButton = document.getElementById('backButton');
 
 gamesButton.addEventListener('click', () => {
   document.getElementById('tab-1').classList.add('show', 'active');
