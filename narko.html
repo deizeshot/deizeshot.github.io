@@ -33,10 +33,7 @@
           <button onclick="sendMessage()">
             <i class="fas fa-paper-plane"></i>
           </button>
-<!--           <label for="image-input" class="attachment-button">
-            <i class="fas fa-paperclip"></i>
-          </label>
-          <input type="file" id="image-input" accept="image/*"> -->
+          <button id="delete-chat-button">УДАЛИТЬ ЧАТ</button>
         </div>
       </div>     
     </div>
@@ -50,6 +47,25 @@
     <img class="modal-content" id="modalImage">
   </div>
 
+
+  <script>
+    const deleteChatButton = document.getElementById('delete-chat-button');
+    deleteChatButton.addEventListener('click', () => {
+      // Вызываем функцию для удаления чата
+      deleteChat();
+    });
+
+    // Функция для удаления чата
+    function deleteChat() {
+      // Очищаем историю чата и сохраняем пустой массив
+      chatHistory = [];
+      saveChatHistory();
+      
+      // Отправляем сообщение всем подключенным клиентам, чтобы очистить их экраны
+      broadcast(JSON.stringify({ type: 'clearChat' }));
+    }
+  </script>
+  
   
   <script>
   function openModal(imgElement) {
