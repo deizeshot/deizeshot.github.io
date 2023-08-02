@@ -11,7 +11,8 @@ body {
   }
   
   .chat-container {
-    width: 400px; /* Ширина контейнера чата */
+    width: 100vh;
+    height: 100vh;
     margin: 0 auto; /* Центрируем чат по горизонтали */
     border: 2px solid #333; /* Цвет рамки вокруг контейнера */
     background-color: #222; /* Цвет фона контейнера */
