@@ -1,0 +1,193 @@
+
+body {
+    background-color: #111; /* Темный цвет фона для body */
+    color: #fff; /* Цвет текста на темном фоне */
+    display: flex; /* Используем flexbox для центрирования элементов */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    height: 100vh; /* Занимаем всю высоту видимой области страницы */
+    margin: 0; /* Убираем внешние отступы у body */
+    padding: 0; /* Убираем внутренние отступы у body */
+  }
+  
+  .chat-container {
+    width: 400px; /* Ширина контейнера чата */
+    margin: 0 auto; /* Центрируем чат по горизонтали */
+    border: 2px solid #333; /* Цвет рамки вокруг контейнера */
+    background-color: #222; /* Цвет фона контейнера */
+    padding: 10px; /* Внутренние отступы контейнера */
+  }
+  
+  /* Стили для области отображения сообщений */
+  .chat-messages-container {
+    height: 300px; /* Высота области отображения сообщений */
+    overflow-y: auto; /* Включаем вертикальный скроллинг при необходимости */
+  }
+  
+  /* Стили для каждого сообщения */
+  .chat-message {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 5px; /* Внутренние отступы каждого сообщения */
+    color: #fff; /* Цвет текста сообщений */
+  }
+  
+  
+  
+  
+  .chat-input-box {
+    display: flex; /* Располагаем элементы в строку */
+    align-items: center; /* Выравнивание элементов по вертикали */
+    margin-top: 10px; /* Отступ сверху */
+  }
+  
+  .chat-input {
+    position: relative; /* Добавим позиционирование для элемента с полем ввода */
+    flex: 1; /* Растягиваем поле ввода на всю доступную ширину */
+  }
+  
+  /* Стиль для поля ввода текста */
+  .chat-input input {
+    width: 100%; /* Занимаем 100% ширины внутри элемента .chat-input */
+    background: rgba(68, 68, 68, 0.7); /* Полупрозрачный цвет фона поля ввода */
+    border: 0px solid #666;
+    color: #fff; /* Цвет текста в поле ввода */
+    border-radius: 5px; /* Закругляем углы поля ввода */
+    transition: border-color 0.3s ease-in-out; /* Анимация для активации поля ввода */
+    box-sizing: border-box; /* Включаем границы и внутренние отступы в расчет ширины элемента */
+    padding: 15px; /* Внутренние отступы каждого сообщения */
+  
+  }
+  
+  .send-button button i,
+  .attachment-button i {
+    font-size: 16px;
+  }
+  
+  /* Стиль для кнопки "Отправить" */
+  .send-button {
+    position: absolute; /* Позиционируем кнопку абсолютно внутри .chat-input */
+    right: 10px; /* Отодвигаем кнопку на 10px от правой границы .chat-input */
+    top: 50%; /* Перемещаем кнопку на 50% от верхней границы .chat-input */
+    transform: translateY(-50%); /* Центрируем кнопку вертикально */
+  }
+  
+  .send-button button {
+    background-color: transparent; /* Делаем фон кнопки прозрачным */
+    border: none; /* Убираем границы кнопки */
+    color: #fff; /* Цвет текста на кнопке */
+    padding: 8px 15px; /* Внутренние отступы кнопки */
+    border-radius: 5px; /* Закругляем углы кнопки */
+    cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+  }
+  
+  .send-button button:hover {
+    background-color: #666; /* Изменяем цвет фона кнопки при наведении */
+  }
+  
+  .attachment-button {
+    background-color: transparent; /* Делаем фон кнопки прозрачным */
+    border: none;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .attachment-button:hover {
+    background-color: #666;
+  }
+  
+  
+  /* Стиль для активированного поля ввода */
+  .chat-input input:focus {
+    outline: none; /* Убираем обводку при активации поля ввода */
+    border-color: #888; /* Изменяем цвет бордера при активации поля */
+  }
+  
+  /* Добавим стиль для поля выбора изображения */
+  .chat-input input[type="file"] {
+    display: none; /* Скроем стандартное поле выбора файла */
+  }
+  
+  .chat-message img {
+    max-width: 100%;
+    max-height: 300px; /* Ограничение максимальной высоты изображения */
+    display: block; /* Убираем пробелы снизу и сверху изображения */
+    margin: 10px 0; /* Отступы сверху и снизу для изображения */
+  }
+  
+  
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Центрируем галерею по горизонтали */
+    gap: 10px;
+    position: absolute;
+    bottom: 10px; /* Располагаем галерею внизу чат-контейнера */
+  }
+  
+  .image-gallery img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  /* Обновленные стили для модального окна */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Добавим стили для центрирования изображения по вертикали */
+  .modal-content img {
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Анимация появления модального окна */
+  .fade-in {
+    animation: fadeIn 0.3s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
