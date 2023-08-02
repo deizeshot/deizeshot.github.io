@@ -30,10 +30,10 @@
         <input type="text" id="chat-input" placeholder="Сообщение..." onkeypress="handleKeyPress(event)">
         
         <div class="send-button">
-          <button onclick="sendMessage()">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-          <button id="delete-chat-button">УДАЛИТЬ ЧАТ</button>
+
+        <button id="delete-chat-button">УДАЛИТЬ ЧАТ</button>
+        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+          
         </div>
       </div>     
     </div>
@@ -65,7 +65,7 @@
       broadcast(JSON.stringify({ type: 'clearChat' }));
     }
   </script>
-  
+
   
   <script>
   function openModal(imgElement) {
