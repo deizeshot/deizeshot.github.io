@@ -11,7 +11,7 @@ body {
   }
   
   .chat-container {
-    width: 400px;
+    width: 400px; /* Ширина контейнера чата */
     margin: 0 auto; /* Центрируем чат по горизонтали */
     border: 2px solid #333; /* Цвет рамки вокруг контейнера */
     background-color: #222; /* Цвет фона контейнера */
@@ -24,9 +24,6 @@ body {
     font-family: 'Arial', sans-serif;
     height: 300px; /* Высота области отображения сообщений */
     overflow-y: auto; /* Включаем вертикальный скроллинг при необходимости */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
   }
   
   /* Стили для каждого сообщения */
@@ -35,6 +32,9 @@ body {
     padding: 5px; /* Внутренние отступы каждого сообщения */
     color: #fff; /* Цвет текста сообщений */
   }
+  
+  
+  
   
   .chat-input-box {
     display: flex; /* Располагаем элементы в строку */
