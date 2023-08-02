@@ -24,6 +24,9 @@ body {
   .chat-messages-container {
     height: 300px; /* Высота области отображения сообщений */
     overflow-y: auto; /* Включаем вертикальный скроллинг при необходимости */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   
   /* Стили для каждого сообщения */
