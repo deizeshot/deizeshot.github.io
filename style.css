@@ -22,6 +22,7 @@ body {
   
   /* Стили для области отображения сообщений */
   .chat-messages-container {
+    font-family: 'Arial', sans-serif;
     height: 300px; /* Высота области отображения сообщений */
     overflow-y: auto; /* Включаем вертикальный скроллинг при необходимости */
     display: flex;
