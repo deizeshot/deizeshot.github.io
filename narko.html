@@ -32,22 +32,34 @@
     </div>
   </div>
   
-
   <script>
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
   
     ws.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-  if (data.type === 'chat-message') {
-    displayChatMessage(data.message);
-  } else if (data.type === 'chatHistory') {
-    displayChatHistory(data.history);
-  } else if (data.type === 'newChatMessage') {
-    displayChatMessage(data.message);
-  }
-};
+      const data = JSON.parse(event.data);
+      if (data.type === 'chat-message') {
+        displayChatMessage(data.message);
+      } else if (data.type === 'chatHistory') {
+        displayChatHistory(data.history);
+      } else if (data.type === 'newChatMessage') {
+        displayChatMessage(data.message);
+      }
+    };
   
     function displayChatMessage(message) {
+      const chatMessagesContainer = document.getElementById("chat-messages");
+      const listItem = document.createElement("li");
+
+      if (message.type === "chat") {
+        const textNode = document.createTextNode(`${message.time} ${message.text}`);
+        listItem.appendChild(textNode);
+      } else if (message.type === "chatImage") {
+        const image = document.createElement("img");
+        image.src = message.image;
+        listItem.appendChild(image);
+      }
+
+      chatMessagesContainer.appendChild(listItem);
     }
   
     function displayChatHistory(history) {
@@ -67,13 +79,15 @@
         chatMessagesContainer.appendChild(listItem);
       });
     }
+  
     function requestChatHistory() {
       const request = { type: 'requestHistory' };
       ws.send(JSON.stringify(request));
     }
-      requestChatHistory();
-
-      function sendMessage() {
+  
+    requestChatHistory();
+  
+    function sendMessage() {
       const chatInput = document.getElementById("chat-input");
       const message = chatInput.value.trim(); // Обрезаем лишние пробелы
       if (message !== '') {
@@ -82,15 +96,16 @@
         chatInput.value = '';
       }
     }
-      function handleKeyPress(event) {
+  
+    function handleKeyPress(event) {
       if (event.key === 'Enter') {
         sendMessage();
       }
     }
-      const chatInput = document.getElementById("chat-input");
+  
+    const chatInput = document.getElementById("chat-input");
     chatInput.addEventListener("keypress", handleKeyPress);
   </script>
-  
   
 </body>
 </html>
