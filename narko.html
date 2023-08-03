@@ -122,7 +122,6 @@ function closeModal() {
 <script>
 
   const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
-
   ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
     if (data.type === 'chatMessage') {
