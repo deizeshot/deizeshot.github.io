@@ -50,22 +50,32 @@
 
   <script>
 
-    // Добавьте этот код для обработки клика по иконке корзины
+    // Обработчик клика по иконке корзины
     const deleteChatButton = document.getElementById('delete-chat-button');
     deleteChatButton.addEventListener('click', () => {
-    // Вызываем функцию для удаления чата
-    clearChat();
+      // Отправляем запрос на сервер для удаления чата
+      deleteChat();
     });
 
-    function clearChat() {
-    chatHistory = []; // Очищаем историю чата
-    saveChatHistory(); // Сохраняем пустой массив в файл
-    broadcast(JSON.stringify({ type: 'clearChat' })); // Отправляем сообщение всем подключенным клиентам
-
-    // После очистки чата, перезагружаем страницу
-    window.location.reload();
+    function deleteChat() {
+      // Отправляем POST-запрос на сервер с указанием команды для удаления чата
+      fetch('/clearChat', {
+        method: 'POST',
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // После успешного удаления чата, перезагружаем страницу
+          window.location.reload();
+        } else {
+          console.error('Что-то пошло не так при удалении чата:', data.error);
+        }
+      })
+      .catch((error) => {
+        console.error('Произошла ошибка при отправке запроса на удаление чата:', error);
+      });
     }
-    
+
   </script>
 
   <script>
