@@ -124,7 +124,7 @@ function closeModal() {
     const chatMessagesContainer = document.querySelector('.chat-messages-container');
     const chatInput = document.getElementById('chat-input');
 
-    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/chat2');
+    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
