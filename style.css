@@ -65,6 +65,8 @@ body {
 /* Стиль для поля ввода текста */
 .chat-input input {
   font-size: 16px;
+  word-wrap: break-word;
+  overflow: hidden;
   width: 100%; /* Занимаем 100% ширины внутри элемента .chat-input */
   background: rgba(68, 68, 68, 0); /* Полупрозрачный цвет фона поля ввода */
   border: 0px solid #666;
@@ -73,7 +75,7 @@ body {
   transition: border-color 0.3s ease-in-out; /* Анимация для активации поля ввода */
   box-sizing: border-box; /* Включаем границы и внутренние отступы в расчет ширины элемента */
   padding: 15px; /* Внутренние отступы каждого сообщения */
-
+  white-space: pre-wrap; /* Сохраняем пробелы и переносы строк в тексте */
 }
 
 .send-button button i,
