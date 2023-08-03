@@ -52,30 +52,30 @@ body {
 }
 
 .chat-input-box {
-  display: flex; /* Располагаем элементы в строку */
-  align-items: center; /* Выравнивание элементов по вертикали */
-  margin-top: 10px; /* Отступ сверху */
+  display: flex; 
+  align-items: center;
+  margin-top: 10px;
 }
 
 .chat-input {
-  position: relative; /* Добавим позиционирование для элемента с полем ввода */
-  flex: 1; /* Растягиваем поле ввода на всю доступную ширину */
+  position: relative;
+  flex: 1; 
+  word-wrap: break-word;
+  overflow: hidden;
+  white-space: pre-wrap;
 }
 
 /* Стиль для поля ввода текста */
 .chat-input input {
   font-size: 16px;
-  word-wrap: break-word;
-  overflow: hidden;
-  width: 100%; /* Занимаем 100% ширины внутри элемента .chat-input */
-  background: rgba(68, 68, 68, 0); /* Полупрозрачный цвет фона поля ввода */
+  width: 100%; 
+  background: rgba(68, 68, 68, 0);
   border: 0px solid #666;
-  color: #fff; /* Цвет текста в поле ввода */
-  border-radius: 13px; /* Закругляем углы поля ввода */
-  transition: border-color 0.3s ease-in-out; /* Анимация для активации поля ввода */
-  box-sizing: border-box; /* Включаем границы и внутренние отступы в расчет ширины элемента */
-  padding: 15px; /* Внутренние отступы каждого сообщения */
-  white-space: pre-wrap; /* Сохраняем пробелы и переносы строк в тексте */
+  color: #fff;
+  border-radius: 13px;
+  transition: border-color 0.3s ease-in-out;
+  box-sizing: border-box;
+  padding: 15px;
 }
 
 .send-button button i,
