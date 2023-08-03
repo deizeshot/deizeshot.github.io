@@ -121,17 +121,37 @@ function closeModal() {
 
 <script>
 
-  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
-  ws.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    if (data.type === 'chatMessage') {
-      displayChatMessage(data.message);
-    } else if (data.type === 'chatHistory') {
-      data.history.forEach((message) => {
-        displayChatMessage(message);
-      });
-    }
-  };
+const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
+
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  if (data.type === 'chat-message') {
+    // Отображаем полученное сообщение чата на странице
+    displayChatMessage(data.message);
+  } else if (data.type === 'chatHistory') {
+    // Отображаем историю чата при подключении
+    data.history.forEach((message) => {
+      displayChatMessage(message);
+    });
+  }
+};
+
+function displayChatMessage(message) {
+  const chatMessagesContainer = document.getElementById("chat-messages");
+  const listItem = document.createElement("li");
+
+  if (message.type === "chat") {
+    const textNode = document.createTextNode(`${message.time} ${message.text}`);
+    listItem.appendChild(textNode);
+  } else if (message.type === "chatImage") {
+    const image = document.createElement("img");
+    image.src = message.image;
+    listItem.appendChild(image);
+  }
+
+  chatMessagesContainer.appendChild(listItem);
+}
+
 
   function loadChatHistory() {
     const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
@@ -152,6 +172,12 @@ function closeModal() {
 
   loadChatHistory();
 
+  function requestChatHistory() {
+  const request = { type: 'requestHistory' };
+  ws.send(JSON.stringify(request));
+  }
+
+
   // Функция для отправки сообщения чата
   function sendMessage() {
     const chatInput = document.getElementById("chat-input");
@@ -161,22 +187,6 @@ function closeModal() {
       ws.send(JSON.stringify(chatMessage));
       chatInput.value = '';
     }
-  }
-
-  function displayChatMessage(message) {
-    const chatMessagesContainer = document.getElementById("chat-messages");
-    const listItem = document.createElement("li");
-
-    if (message.type === "chatMessage") {
-      const textNode = document.createTextNode(message.message);
-      listItem.appendChild(textNode);
-    } else if (message.type === "chatImage") {
-      const image = document.createElement("img");
-      image.src = message.image;
-      listItem.appendChild(image);
-    }
-
-    chatMessagesContainer.appendChild(listItem);
   }
 
   // Функция для определения, является ли сообщение изображением
