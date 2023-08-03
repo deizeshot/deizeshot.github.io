@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DARK Chat</title>
+  <title>DARKChat</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
   <div class="chat-container">
     <div class="chat-messages-container">
       <ul id="chat-messages">
-        <!-- Сюда будут добавляться сообщения из WebSocket -->
+        
       </ul>
     </div>
     
@@ -36,7 +36,6 @@
 
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
     const chatMessagesContainer = document.getElementById("chat-messages");
-    let observer;
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -49,41 +48,58 @@
       }
     };
 
-    function scrollToBottom() {
-      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }
+
+
 
     function displayChatMessage(message) {
-      const listItem = document.createElement("li");
+  const messageContainer = document.createElement("div");
+  const timeSpan = document.createElement("span");
+  timeSpan.classList.add("time");
+  timeSpan.textContent = message.time;
+  messageContainer.appendChild(timeSpan);
 
-      if (message.type === "chat") {
-        const textNode = document.createTextNode(`${message.time} ${message.text}`);
-        listItem.appendChild(textNode);
-      } else if (message.type === "chatImage") {
-        const image = document.createElement("img");
-        image.src = message.image;
-        listItem.appendChild(image);
-      }
+  if (message.type === "chat") {
+    const textNode = document.createTextNode(message.text);
+    messageContainer.appendChild(textNode);
 
-      chatMessagesContainer.appendChild(listItem);
+    messageContainer.classList.add("received"); // Добавляем класс для полученных сообщений
+  } else if (message.type === "chatMessage") {
+    const textNode = document.createTextNode(message.text);
+    messageContainer.appendChild(textNode);
+
+    messageContainer.classList.add("sent"); // Добавляем класс для отправленных сообщений
+  }
+
+  chatMessagesContainer.appendChild(messageContainer);
+}
+
+function displayChatHistory(history) {
+  chatMessagesContainer.innerHTML = '';
+
+  history.forEach((message) => {
+    const messageContainer = document.createElement("div");
+    const timeSpan = document.createElement("span");
+    timeSpan.classList.add("time");
+    timeSpan.textContent = message.time;
+    messageContainer.appendChild(timeSpan);
+
+    if (message.type === "chat") {
+      const textNode = document.createTextNode(message.text);
+      messageContainer.appendChild(textNode);
+
+      messageContainer.classList.add("received"); // Добавляем класс для полученных сообщений
+    } else if (message.type === "chatMessage") {
+      const textNode = document.createTextNode(message.text);
+      messageContainer.appendChild(textNode);
+
+      messageContainer.classList.add("sent"); // Добавляем класс для отправленных сообщений
     }
+    chatMessagesContainer.appendChild(messageContainer);
+  });
+}
 
-    function displayChatHistory(history) {
-      chatMessagesContainer.innerHTML = '';
 
-      history.forEach((message) => {
-        const listItem = document.createElement("li");
-        if (message.type === "chat") {
-          const textNode = document.createTextNode(`${message.time} ${message.text}`);
-          listItem.appendChild(textNode);
-        } else if (message.type === "chatImage") {
-          const image = document.createElement("img");
-          image.src = message.image;
-          listItem.appendChild(image);
-        }
-        chatMessagesContainer.appendChild(listItem);
-      });
-    }
+
 
     function requestChatHistory() {
       const request = { type: 'requestHistory' };
@@ -107,14 +123,6 @@
         sendMessage();
       }
     }
-
-    function setupChatObserver() {
-      const config = { childList: true };
-      observer = new MutationObserver(scrollToBottom);
-      observer.observe(chatMessagesContainer, config);
-    }
-
-    setupChatObserver();
 
   </script>
   
