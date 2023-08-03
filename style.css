@@ -66,7 +66,7 @@ body {
 .chat-input input {
   /* max-width: 90%; */
   font-size: 16px;
-  width: 80%;
+  width: 75%;
   background: var(--input-bg-color); /* Используем переменную CSS для цвета фона */
   border: 0px solid #666;
   color: #fff;
