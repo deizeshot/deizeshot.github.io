@@ -26,33 +26,25 @@ body {
   }
 }
 
-
-
 .chat-container {
-  width: 400px; /* Ширина контейнера чата */
-  margin: 0 auto; /* Центрируем чат по горизонтали */
-  border: 2px solid #333; /* Цвет рамки вокруг контейнера */
-  background-color: #222; /* Цвет фона контейнера */
-  padding: 10px; /* Внутренние отступы контейнера */
+  width: 400px;
+  margin: 0 auto;
+  border: 0;
+  background-color: #222;
+  padding: 10px;
   border-radius: 15px;
 }
-
-/* Стили для области отображения сообщений */
 .chat-messages-container {
   font-family: 'Arial', sans-serif;
   height: 300px; /* Высота области отображения сообщений */
   overflow-y: auto; /* Включаем вертикальный скроллинг при необходимости */
 }
 
-/* Стили для каждого сообщения */
 .chat-message {
   list-style-type: none; /* Убираем маркеры списка */
   padding: 5px; /* Внутренние отступы каждого сообщения */
   color: #fff; /* Цвет текста сообщений */
 }
-
-
-
 
 .chat-input-box {
   display: flex; /* Располагаем элементы в строку */
