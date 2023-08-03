@@ -41,14 +41,16 @@ body {
 }
 .chat-messages-container {
   font-family: 'Arial', sans-serif;
-  height: 300px; /* Высота области отображения сообщений */
-  overflow-y: auto; /* Включаем вертикальный скроллинг при необходимости */
+  height: 300px;
+  overflow-y: auto;
+  display: flex; /* Добавьте этот стиль */
+  flex-direction: column; /* Добавьте этот стиль */
 }
 
 .chat-message {
-  list-style-type: none; /* Убираем маркеры списка */
-  padding: 5px; /* Внутренние отступы каждого сообщения */
-  color: #fff; /* Цвет текста сообщений */
+  list-style-type: none;
+  padding: 5px;
+  color: #fff;
 }
 
 .chat-input-box {

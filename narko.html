@@ -33,18 +33,27 @@
   </div>
   
   <script>
+
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
+    const chatMessagesContainer = document.getElementById("chat-messages");
   
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'chat-message') {
         displayChatMessage(data.message);
+        scrollToBottom(); // Прокручиваем до нового сообщения
       } else if (data.type === 'chatHistory') {
         displayChatHistory(data.history);
+        scrollToBottom(); // Прокручиваем до нового сообщения
       } else if (data.type === 'newChatMessage') {
         displayChatMessage(data.message);
+        scrollToBottom(); // Прокручиваем до нового сообщения
       }
     };
+
+    function scrollToBottom() {
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
   
     function displayChatMessage(message) {
       const chatMessagesContainer = document.getElementById("chat-messages");
@@ -60,6 +69,7 @@
       }
 
       chatMessagesContainer.appendChild(listItem);
+      scrollToBottom();
     }
   
     function displayChatHistory(history) {
@@ -78,6 +88,7 @@
         }
         chatMessagesContainer.appendChild(listItem);
       });
+      scrollToBottom();
     }
   
     function requestChatHistory() {
@@ -100,6 +111,7 @@
     function handleKeyPress(event) {
       if (event.key === 'Enter') {
         sendMessage();
+        scrollToBottom()
       }
     }
   
