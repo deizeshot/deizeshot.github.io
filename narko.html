@@ -141,12 +141,12 @@ ws.onmessage = (event) => {
 };
 
 
-    function loadChatHistory() {
-    const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
+  function loadChatHistory() {
+  const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
 
-    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/' + currentChat);
+  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/' + currentChat);
 
-ws.onmessage = (event) => {
+  ws.onmessage = (event) => {
   const data = JSON.parse(event.data);
   if (data.type === 'chatMessage') {
     // Отображаем полученное сообщение чата на странице
@@ -158,21 +158,8 @@ ws.onmessage = (event) => {
     });
   }
 };
-
-    // Функция для отправки запроса на получение истории чата
-    function requestChatHistory() {
-      const request = { type: 'chatHistory' };
-      ws.send(JSON.stringify(request));
-    }
-
-    // Вызываем функцию для отправки запроса на получение истории чата
-    requestChatHistory();
-  }
-
-    // Вызов функции loadChatHistory()
+}
     loadChatHistory();
-
-
 
     // Функция для отправки сообщения чата
     function sendMessage() {
