@@ -60,13 +60,13 @@ body {
 .chat-input {
   position: relative;
   flex: 1; 
-  max-width: 80%;
 }
 
 /* Стиль для поля ввода текста */
 .chat-input input {
+  max-width: 80%;
   font-size: 16px;
-  width: 100%; 
+  /* width: 100%;  */
   background: var(--input-bg-color); /* Используем переменную CSS для цвета фона */
   border: 0px solid #666;
   color: #fff;
