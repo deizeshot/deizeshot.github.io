@@ -128,8 +128,6 @@ body {
 
 
 
-
-
 .chat-input-box {
   display: flex; 
   align-items: center;
@@ -289,5 +287,19 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .chat-container {
+    width: 90%;
+  }
+  .chat-messages-container div {
+    font-size: 14px;
+  }
+  .send-button button,
+  .attachment-button {
+    font-size: 14px;
+    padding: 6px 10px;
   }
 }
