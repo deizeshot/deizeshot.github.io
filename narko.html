@@ -140,17 +140,40 @@ ws.onmessage = (event) => {
   }
 };
 
-// Функция для отправки запроса на получение истории чата
-function requestChatHistory(chatType) {
-  const request = { type: 'chatHistory', chatType };
-  ws.send(JSON.stringify(request));
-}
 
-// Вызываем функцию для отправки запроса на получение истории чата 1
-requestChatHistory('chat1');
+function loadChatHistory() {
+    const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
 
-// Вызываем функцию для отправки запроса на получение истории чата 2
-requestChatHistory('chat2');
+    // Создаем WebSocket для подключения к серверу
+    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/' + currentChat);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'chatMessage') {
+        // Отображаем полученное сообщение чата на странице
+        displayChatMessage(data.message);
+      } else if (data.type === 'chatHistory') {
+        // Отображаем историю чата при подключении
+        data.history.forEach((message) => {
+          displayChatMessage(message);
+        });
+      }
+    };
+
+    // Функция для отправки запроса на получение истории чата
+    function requestChatHistory() {
+      const request = { type: 'chatHistory' };
+      ws.send(JSON.stringify(request));
+    }
+
+    // Вызываем функцию для отправки запроса на получение истории чата
+    requestChatHistory();
+  }
+
+    // Вызов функции loadChatHistory()
+    loadChatHistory();
+
+
 
     // Функция для отправки сообщения чата
     function sendMessage() {
