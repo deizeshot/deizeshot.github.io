@@ -64,9 +64,9 @@ body {
 
 /* Стиль для поля ввода текста */
 .chat-input input {
-  max-width: 95%;
+  max-width: 90%;
   font-size: 16px;
-  /* width: 100%;  */
+  width: 90%;
   background: var(--input-bg-color); /* Используем переменную CSS для цвета фона */
   border: 0px solid #666;
   color: #fff;
