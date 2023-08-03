@@ -34,7 +34,7 @@
           <button id="delete-chat-button" onclick="clearChat()">
             <i class="fas fa-trash-alt"></i>
           </button>
-          
+
         <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
           
         </div>
@@ -49,14 +49,23 @@
   </div>
 
   <script>
-    function clearChat() {
-  chatHistory = []; // Очищаем историю чата
-  saveChatHistory(); // Сохраняем пустой массив в файл
-  broadcast(JSON.stringify({ type: 'clearChat' })); // Отправляем сообщение всем подключенным клиентам
 
-  // После очистки чата, перезагружаем страницу
-  window.location.reload();
-}
+    // Добавьте этот код для обработки клика по иконке корзины
+    const deleteChatButton = document.getElementById('delete-chat-button');
+    deleteChatButton.addEventListener('click', () => {
+    // Вызываем функцию для удаления чата
+    clearChat();
+    });
+
+    function clearChat() {
+    chatHistory = []; // Очищаем историю чата
+    saveChatHistory(); // Сохраняем пустой массив в файл
+    broadcast(JSON.stringify({ type: 'clearChat' })); // Отправляем сообщение всем подключенным клиентам
+
+    // После очистки чата, перезагружаем страницу
+    window.location.reload();
+    }
+    
   </script>
 
   <script>
