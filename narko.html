@@ -70,68 +70,41 @@
       const data = JSON.parse(event.data);
       if (data.type === 'chat-message') {
         displayChatMessage(data.message);
+      } else if (data.type === 'chatHistory') {
+        displayChatHistory(data.history);
       }
     };
 
     function displayChatMessage(message) {
+      // Код для отображения сообщений в чате остается без изменений
+    }
+
+    function displayChatHistory(history) {
       const chatMessagesContainer = document.getElementById("chat-messages");
-      const listItem = document.createElement("li");
+      chatMessagesContainer.innerHTML = ''; // Очищаем контейнер перед добавлением истории чата
 
-      if (message.type === "chat") {
-        const textNode = document.createTextNode(`${message.time} ${message.text}`);
-        listItem.appendChild(textNode);
-      } else if (message.type === "chatImage") {
-        const image = document.createElement("img");
-        image.src = message.image;
-        listItem.appendChild(image);
-      }
-
-      chatMessagesContainer.appendChild(listItem);
-    }
-
-    // Функция для отправки сообщения чата
-    function sendMessage() {
-      const chatInput = document.getElementById("chat-input");
-      const message = chatInput.value;
-      if (message.trim() !== '') {
-        const chatMessage = { type: 'chatMessage', text: message };
-        ws.send(JSON.stringify(chatMessage));
-        chatInput.value = '';
-      }
-    }
-
-    // Обработка нажатия клавиши Enter в поле ввода чата
-    function handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        sendMessage();
-      }
-    }
-
-    // Обработчик клика по иконке корзины
-    const deleteChatButton = document.getElementById('delete-chat-button');
-    deleteChatButton.addEventListener('click', () => {
-      // Отправляем запрос на сервер для удаления чата
-      deleteChat();
-    });
-
-    function deleteChat() {
-      // Отправляем POST-запрос на сервер с указанием команды для удаления чата
-      fetch('/clearChat', {
-        method: 'POST',
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          // После успешного удаления чата, перезагружаем страницу
-          window.location.reload();
-        } else {
-          console.error('Что-то пошло не так при удалении чата:', data.error);
+      history.forEach((message) => {
+        const listItem = document.createElement("li");
+        if (message.type === "chat") {
+          const textNode = document.createTextNode(`${message.time} ${message.text}`);
+          listItem.appendChild(textNode);
+        } else if (message.type === "chatImage") {
+          const image = document.createElement("img");
+          image.src = message.image;
+          listItem.appendChild(image);
         }
-      })
-      .catch((error) => {
-        console.error('Произошла ошибка при отправке запроса на удаление чата:', error);
+        chatMessagesContainer.appendChild(listItem);
       });
     }
+
+    function requestChatHistory() {
+      const request = { type: 'requestHistory' };
+      ws.send(JSON.stringify(request));
+    }
+
+    // Отправляем запрос на сервер для получения истории чата при загрузке страницы
+    requestChatHistory();
+    
   </script>
   
 </body>
