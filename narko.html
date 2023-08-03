@@ -121,10 +121,11 @@ function closeModal() {
 
   <script>
     
-    const chatMessagesContainer = document.querySelector('.chat-messages-container');
-    const chatInput = document.getElementById('chat-input');
+const chatMessagesContainer = document.querySelector(".chat-messages-container");
+const chatInput = document.getElementById("chat-input");
+const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
 
-    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
+const ws = new WebSocket(`wss://intermediate-easy-ship.glitch.me/${currentChat}`); // Формируем WebSocket URL
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
