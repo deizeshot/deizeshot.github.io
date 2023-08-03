@@ -31,7 +31,7 @@
         
         <div class="send-button">
 
-        <button id="delete-chat-button">УДАЛИТЬ ЧАТ</button>
+          <button id="delete-chat-button" onclick="clearChat()">УДАЛИТЬ ЧАТ</button>
         <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
           
         </div>
@@ -49,21 +49,14 @@
 
 
   <script>
-    const deleteChatButton = document.getElementById('delete-chat-button');
-    deleteChatButton.addEventListener('click', () => {
-      // Вызываем функцию для удаления чата
-      clearChat();
-    });
-
-    // Функция для удаления чата
     function clearChat() {
-      // Очищаем историю чата и сохраняем пустой массив
-      chatHistory = [];
-      saveChatHistory();
-      
-      // Отправляем сообщение всем подключенным клиентам, чтобы очистить их экраны
-      broadcast(JSON.stringify({ type: 'clearChat' }));
-    }
+  chatHistory = []; // Очищаем историю чата
+  saveChatHistory(); // Сохраняем пустой массив в файл
+  broadcast(JSON.stringify({ type: 'clearChat' })); // Отправляем сообщение всем подключенным клиентам
+
+  // После очистки чата, перезагружаем страницу
+  window.location.reload();
+}
   </script>
 
   
