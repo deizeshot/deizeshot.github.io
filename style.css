@@ -55,12 +55,12 @@ body {
   display: flex; 
   align-items: center;
   margin-top: 10px;
-  /* overflow-y: scroll; */
 }
 
 .chat-input {
   position: relative;
   flex: 1; 
+  max-width: 80%;
 }
 
 /* Стиль для поля ввода текста */
