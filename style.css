@@ -55,14 +55,14 @@ body {
   display: flex; 
   align-items: center;
   margin-top: 10px;
-  overflow-y: scroll; /* Добавляем вертикальную полосу прокрутки для всех сообщений */
+  /* overflow-y: scroll; */
 }
 
 .chat-input {
   position: relative;
   flex: 1; 
   word-wrap: break-word;
-  overflow: hidden; /* Возвращаем скрытие текста, выходящего за пределы контейнера */
+  /* overflow: hidden; */
   white-space: pre-wrap;
 }
 
