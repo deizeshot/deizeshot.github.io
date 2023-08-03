@@ -104,7 +104,18 @@
 
     // Отправляем запрос на сервер для получения истории чата при загрузке страницы
     requestChatHistory();
-    
+
+    // Функция для отправки сообщения чата
+  function sendMessage() {
+    const chatInput = document.getElementById("chat-input");
+    const message = chatInput.value;
+    if (message.trim() !== '') {
+      const chatMessage = { type: 'chatMessage', message };
+      ws.send(JSON.stringify(chatMessage));
+      chatInput.value = '';
+    }
+  }
+
   </script>
   
 </body>
