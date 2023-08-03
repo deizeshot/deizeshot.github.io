@@ -37,13 +37,15 @@
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
   
     ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'chat-message') {
-        displayChatMessage(data.message);
-      } else if (data.type === 'chatHistory') {
-        displayChatHistory(data.history);
-      }
-    };
+  const data = JSON.parse(event.data);
+  if (data.type === 'chat-message') {
+    displayChatMessage(data.message);
+  } else if (data.type === 'chatHistory') {
+    displayChatHistory(data.history);
+  } else if (data.type === 'newChatMessage') {
+    displayChatMessage(data.message);
+  }
+};
   
     function displayChatMessage(message) {
     }
