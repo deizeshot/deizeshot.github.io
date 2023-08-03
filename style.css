@@ -30,9 +30,14 @@ body {
   width: 400px;
   margin: 0 auto;
   border: 0;
-  background-color: #222;
+  background-color: #22222262;
   padding: 10px;
   border-radius: 15px;
+  -webkit-backdrop-filter: blur(5px);
+  -moz-backdrop-filter: blur(5px);
+  -ms-backdrop-filter: blur(5px);
+  -o-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 .chat-messages-container {
   font-family: 'Arial', sans-serif;
