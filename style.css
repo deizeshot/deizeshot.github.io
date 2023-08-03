@@ -55,13 +55,14 @@ body {
   display: flex; 
   align-items: center;
   margin-top: 10px;
+  overflow-y: scroll; /* Добавляем вертикальную полосу прокрутки для всех сообщений */
 }
 
 .chat-input {
   position: relative;
   flex: 1; 
   word-wrap: break-word;
-  overflow: hidden;
+  overflow: hidden; /* Возвращаем скрытие текста, выходящего за пределы контейнера */
   white-space: pre-wrap;
 }
 
@@ -69,13 +70,17 @@ body {
 .chat-input input {
   font-size: 16px;
   width: 100%; 
-  background: rgba(68, 68, 68, 0);
+  background: var(--input-bg-color); /* Используем переменную CSS для цвета фона */
   border: 0px solid #666;
   color: #fff;
   border-radius: 13px;
   transition: border-color 0.3s ease-in-out;
   box-sizing: border-box;
   padding: 15px;
+}
+
+.chat-input input:focus {
+  border-color: #fff; /* Белый цвет границы при фокусе */
 }
 
 .send-button button i,
