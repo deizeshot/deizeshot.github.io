@@ -119,101 +119,104 @@ function closeModal() {
 }
   </script>
 
-  <script>
-    
-    // Код WebSocket
+<script>
+  // Обработчик клика по иконке корзины
+  const deleteChatButton = document.getElementById('delete-chat-button');
+  deleteChatButton.addEventListener('click', () => {
+    // Отправляем запрос на сервер для удаления чата
+    deleteChat();
+  });
+
+  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
+
+  ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (data.type === 'chatMessage') {
+      displayChatMessage(data.message);
+    } else if (data.type === 'chatHistory') {
+      data.history.forEach((message) => {
+        displayChatMessage(message);
+      });
+    }
+  };
+
+  function loadChatHistory() {
+    const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'chatMessage') {
+        // Отображаем полученное сообщение чата на странице
         displayChatMessage(data.message);
       } else if (data.type === 'chatHistory') {
+        // Отображаем историю чата при подключении
         data.history.forEach((message) => {
           displayChatMessage(message);
         });
       }
     };
-
-    // Функция для отображения сообщения чата
-    function displayChatMessage(message) {
-      const chatMessagesContainer = document.getElementById("chat-messages");
-      const listItem = document.createElement("li");
-
-      if (message.type === "chatMessage") {
-        const textNode = document.createTextNode(message.message);
-        listItem.appendChild(textNode);
-      } else if (message.type === "chatImage") {
-        const image = document.createElement("img");
-        image.src = message.image;
-        listItem.appendChild(image);
-      }
-
-      chatMessagesContainer.appendChild(listItem);
-    }
-
-
-  function loadChatHistory() {
-  const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
-
-  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
-
-  ws.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-  if (data.type === 'chatMessage') {
-    // Отображаем полученное сообщение чата на странице
-    displayChatMessage(data.message);
-  } else if (data.type === 'chatHistory') {
-    // Отображаем историю чата при подключении
-    data.history.forEach((message) => {
-      displayChatMessage(message);
-    });
   }
-};
-}
-    loadChatHistory();
 
-    // Функция для отправки сообщения чата
-    function sendMessage() {
-      const message = chatInput.value;
-      if (message.trim() !== '') {
-        const chatMessage = { type: 'chatMessage', message };
-        ws.send(JSON.stringify(chatMessage));
-        chatInput.value = '';
-      }
+  loadChatHistory();
+
+  // Функция для отправки сообщения чата
+  function sendMessage() {
+    const chatInput = document.getElementById("chat-input");
+    const message = chatInput.value;
+    if (message.trim() !== '') {
+      const chatMessage = { type: 'chatMessage', message };
+      ws.send(JSON.stringify(chatMessage));
+      chatInput.value = '';
     }
-
-// Функция для определения, является ли сообщение изображением
-function isImageMessage(message) {
-  try {
-    const url = new URL(message);
-    return url.protocol === 'data:';
-  } catch (error) {
-    return false;
   }
-}
 
-    // Обработка нажатия клавиши Enter в поле ввода чата
-    function handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        sendMessage();
-      }
+  function displayChatMessage(message) {
+    const chatMessagesContainer = document.getElementById("chat-messages");
+    const listItem = document.createElement("li");
+
+    if (message.type === "chatMessage") {
+      const textNode = document.createTextNode(message.message);
+      listItem.appendChild(textNode);
+    } else if (message.type === "chatImage") {
+      const image = document.createElement("img");
+      image.src = message.image;
+      listItem.appendChild(image);
     }
-    
-    // Обработчик выбора изображения
-    document.getElementById('image-input').addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      const reader = new FileReader();
 
-      reader.onload = (e) => {
-        const imageBase64 = e.target.result;
-        const chatImage = { type: 'chatImage', image: imageBase64 };
-        ws.send(JSON.stringify(chatImage));
-      };
-      reader.readAsDataURL(file);
-    });
-    
-    const imageInput = document.getElementById('image-input');
+    chatMessagesContainer.appendChild(listItem);
+  }
 
+  // Функция для определения, является ли сообщение изображением
+  function isImageMessage(message) {
+    try {
+      const url = new URL(message);
+      return url.protocol === 'data:';
+    } catch (error) {
+      return false;
+    }
+  }
+
+  // Обработка нажатия клавиши Enter в поле ввода чата
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  }
+  
+  // Обработчик выбора изображения
+  document.getElementById('image-input').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const imageBase64 = e.target.result;
+      const chatImage = { type: 'chatImage', image: imageBase64 };
+      ws.send(JSON.stringify(chatImage));
+    };
+    reader.readAsDataURL(file);
+  });
+  
+  const imageInput = document.getElementById('image-input');
   imageInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -232,8 +235,7 @@ function isImageMessage(message) {
       ws.send(JSON.stringify(chatImage));
     }
   }
-    
-  </script>
+</script>
   
 </body>
 </html>
