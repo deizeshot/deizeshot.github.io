@@ -33,11 +33,11 @@ body {
   background-color: #22222262;
   padding: 10px;
   border-radius: 15px;
-  -webkit-backdrop-filter: blur(5px);
-  -moz-backdrop-filter: blur(5px);
-  -ms-backdrop-filter: blur(5px);
-  -o-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  -ms-backdrop-filter: blur(10px);
+  -o-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .chat-messages-container {
   font-family: 'Arial', sans-serif;
@@ -65,10 +65,10 @@ body {
 /* Стиль для поля ввода текста */
 .chat-input input {
   width: 100%; /* Занимаем 100% ширины внутри элемента .chat-input */
-  background: rgba(68, 68, 68, 0.7); /* Полупрозрачный цвет фона поля ввода */
+  background: rgba(68, 68, 68, 0); /* Полупрозрачный цвет фона поля ввода */
   border: 0px solid #666;
   color: #fff; /* Цвет текста в поле ввода */
-  border-radius: 5px; /* Закругляем углы поля ввода */
+  border-radius: 13px; /* Закругляем углы поля ввода */
   transition: border-color 0.3s ease-in-out; /* Анимация для активации поля ввода */
   box-sizing: border-box; /* Включаем границы и внутренние отступы в расчет ширины элемента */
   padding: 15px; /* Внутренние отступы каждого сообщения */
