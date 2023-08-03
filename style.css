@@ -217,9 +217,10 @@ body {
   }
 
   .chat-container {
-    margin-bottom: 60px; /* Увеличиваем отступ между контейнером сообщений и панелью ввода на мобильных */
-    height: 100%; /* Делаем контейнер сообщений занимать всю доступную высоту на мобильных */
-    border-radius: 0; /* Убираем скругление у контейнера сообщений на мобильных */
+    margin-bottom: 60px;
+    height: 100%; 
+    border-radius: 0; 
+    margin-bottom: 70px;
   }
 
   .chat-messages-container div {
