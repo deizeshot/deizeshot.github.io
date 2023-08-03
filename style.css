@@ -64,6 +64,7 @@ body {
 
 /* Стиль для поля ввода текста */
 .chat-input input {
+  font-size: 16px;
   width: 100%; /* Занимаем 100% ширины внутри элемента .chat-input */
   background: rgba(68, 68, 68, 0); /* Полупрозрачный цвет фона поля ввода */
   border: 0px solid #666;
