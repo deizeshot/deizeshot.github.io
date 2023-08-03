@@ -52,11 +52,11 @@
     const deleteChatButton = document.getElementById('delete-chat-button');
     deleteChatButton.addEventListener('click', () => {
       // Вызываем функцию для удаления чата
-      deleteChat();
+      clearChat();
     });
 
     // Функция для удаления чата
-    function deleteChat() {
+    function clearChat() {
       // Очищаем историю чата и сохраняем пустой массив
       chatHistory = [];
       saveChatHistory();
