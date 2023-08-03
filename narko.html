@@ -124,7 +124,7 @@ function closeModal() {
     const chatMessagesContainer = document.querySelector('.chat-messages-container'); // Новый контейнер
     const chatInput = document.getElementById('chat-input');
 
-    const ws = new WebSocket('wss://adhesive-fire-meteorology.glitch.me'); // Замените на ваш адрес
+    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me'); // Замените на ваш адрес
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
