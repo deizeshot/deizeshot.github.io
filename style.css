@@ -61,9 +61,6 @@ body {
 .chat-input {
   position: relative;
   flex: 1; 
-  word-wrap: break-word;
-  /* overflow: hidden; */
-  white-space: pre-wrap;
 }
 
 /* Стиль для поля ввода текста */
