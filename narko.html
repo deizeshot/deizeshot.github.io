@@ -16,34 +16,37 @@
   </div>
   <div class="boxglass">
   </div>
-  
+<!-- Обертка для всего чата -->
+<div class="chat-wrapper">
+  <!-- Контейнер для сообщений -->
   <div class="chat-container">
     <div class="chat-messages-container">
       <ul id="chat-messages">
-        
+        <!-- Здесь будут отображаться сообщения чата -->
       </ul>
     </div>
-    
-    <div class="chat-input-box">
-      <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="Сообщение..." onkeypress="handleKeyPress(event)">
-        
-        <div class="send-button">
-          <button id="delete-chat-button" onclick="clearChat()">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-
-          <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-        </div>
-      </div>     
-    </div>
   </div>
+
+  <!-- Панель ввода текста -->
+  <div class="chat-input-box">
+    <div class="chat-input">
+      <input type="text" id="chat-input" placeholder="Сообщение..." onkeypress="handleKeyPress(event)">
+      
+      <div class="send-button">
+        <button id="delete-chat-button" onclick="clearChat()">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+
+        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>     
+  </div>
+</div>
   
   <script>
 
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
     const chatMessagesContainer = document.getElementById("chat-messages");
-
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'chat-message') {
@@ -52,69 +55,68 @@
         displayChatHistory(data.history);
       } else if (data.type === 'newChatMessage') {
         displayChatMessage(data.message);
+        scrollToBottom();
       }
     };
+    
 
 
+window.onload = function () {
+  scrollToLastMessage();
+};
+function scrollToLastMessage() {
+  const messages = document.querySelectorAll(".chat-messages-container div");
+  if (messages.length > 0) {
+    messages[messages.length - 1].scrollIntoView();
+  }
+}
 
 
-    function displayChatMessage(message) {
+  function displayChatMessage(message) {
   const messageContainer = document.createElement("div");
   const timeSpan = document.createElement("span");
   timeSpan.classList.add("time");
   timeSpan.textContent = message.time;
   messageContainer.appendChild(timeSpan);
-
   if (message.type === "chat") {
     const textNode = document.createTextNode(message.text);
     messageContainer.appendChild(textNode);
-
-    messageContainer.classList.add("received"); // Добавляем класс для полученных сообщений
+    messageContainer.classList.add("received");
   } else if (message.type === "chatMessage") {
     const textNode = document.createTextNode(message.text);
     messageContainer.appendChild(textNode);
-
-    messageContainer.classList.add("sent"); // Добавляем класс для отправленных сообщений
+    messageContainer.classList.add("sent");
   }
-
   chatMessagesContainer.appendChild(messageContainer);
+  scrollToLastMessage();
 }
-
 function displayChatHistory(history) {
   chatMessagesContainer.innerHTML = '';
-
   history.forEach((message) => {
     const messageContainer = document.createElement("div");
     const timeSpan = document.createElement("span");
     timeSpan.classList.add("time");
     timeSpan.textContent = message.time;
     messageContainer.appendChild(timeSpan);
-
     if (message.type === "chat") {
       const textNode = document.createTextNode(message.text);
       messageContainer.appendChild(textNode);
-
-      messageContainer.classList.add("received"); // Добавляем класс для полученных сообщений
+      messageContainer.classList.add("received");
     } else if (message.type === "chatMessage") {
       const textNode = document.createTextNode(message.text);
       messageContainer.appendChild(textNode);
-
-      messageContainer.classList.add("sent"); // Добавляем класс для отправленных сообщений
+      messageContainer.classList.add("sent");
     }
     chatMessagesContainer.appendChild(messageContainer);
+    scrollToLastMessage();
   });
 }
-
-
-
 
     function requestChatHistory() {
       const request = { type: 'requestHistory' };
       ws.send(JSON.stringify(request));
     }
-
     requestChatHistory();
-
     function sendMessage() {
       const chatInput = document.getElementById("chat-input");
       const message = chatInput.value.trim();
