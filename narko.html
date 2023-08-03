@@ -144,7 +144,7 @@ ws.onmessage = (event) => {
   function loadChatHistory() {
   const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
 
-  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
+  const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me');
 
   ws.onmessage = (event) => {
   const data = JSON.parse(event.data);
