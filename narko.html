@@ -32,40 +32,10 @@
     </div>
   </div>
   
-  <!-- Модальное окно для увеличенного просмотра фото -->
-  <div class="modal" id="myModal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImage">
-  </div>
 
   <script>
-    function openModal(imgElement) {
-      const modal = document.getElementById('myModal');
-      const modalImg = document.getElementById('modalImage');
-
-      modal.style.display = 'block';
-      modalImg.src = imgElement.src;
-      modalImg.classList.add('fade-in');
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('myModal');
-      const modalImg = document.getElementById('modalImage');
-
-      modalImg.classList.remove('fade-in');
-      modal.style.display = 'none';
-    }
-
-    // Получаем все фотографии в чате
-    const chatImages = document.querySelectorAll('.chat-messages-container li img');
-
-    // Добавляем обработчик клика для каждой фотографии
-    chatImages.forEach((image) => {
-      image.addEventListener('click', () => openModal(image));
-    });
-
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
-
+  
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'chat-message') {
@@ -74,15 +44,14 @@
         displayChatHistory(data.history);
       }
     };
-
+  
     function displayChatMessage(message) {
-      // Код для отображения сообщений в чате остается без изменений
     }
-
+  
     function displayChatHistory(history) {
       const chatMessagesContainer = document.getElementById("chat-messages");
-      chatMessagesContainer.innerHTML = ''; // Очищаем контейнер перед добавлением истории чата
-
+      chatMessagesContainer.innerHTML = '';
+  
       history.forEach((message) => {
         const listItem = document.createElement("li");
         if (message.type === "chat") {
@@ -96,37 +65,30 @@
         chatMessagesContainer.appendChild(listItem);
       });
     }
-
     function requestChatHistory() {
       const request = { type: 'requestHistory' };
       ws.send(JSON.stringify(request));
     }
+      requestChatHistory();
 
-    // Отправляем запрос на сервер для получения истории чата при загрузке страницы
-    requestChatHistory();
-
-    // Функция для отправки сообщения чата
-  function sendMessage() {
-    const chatInput = document.getElementById("chat-input");
-    const message = chatInput.value;
-    if (message.trim() !== '') {
-      const chatMessage = { type: 'chatMessage', message };
-      ws.send(JSON.stringify(chatMessage));
-      chatInput.value = '';
+      function sendMessage() {
+      const chatInput = document.getElementById("chat-input");
+      const message = chatInput.value.trim(); // Обрезаем лишние пробелы
+      if (message !== '') {
+        const chatMessage = { type: 'chatMessage', message };
+        ws.send(JSON.stringify(chatMessage));
+        chatInput.value = '';
+      }
     }
-  }
-
-  // Обработка нажатия клавиши Enter в поле ввода чата
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      sendMessage();
+      function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
     }
-  }
-  // Вешаем обработчик на поле ввода чата, чтобы реагировать на нажатие клавиши Enter
-  const chatInput = document.getElementById("chat-input");
-  chatInput.addEventListener("keypress", handleKeyPress);
-
+      const chatInput = document.getElementById("chat-input");
+    chatInput.addEventListener("keypress", handleKeyPress);
   </script>
+  
   
 </body>
 </html>
