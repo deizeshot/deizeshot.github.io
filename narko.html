@@ -141,14 +141,16 @@ ws.onmessage = (event) => {
 };
 
 // Функция для отправки запроса на получение истории чата
-function requestChatHistory() {
-  const request = { type: 'chatHistory' };
+function requestChatHistory(chatType) {
+  const request = { type: 'chatHistory', chatType };
   ws.send(JSON.stringify(request));
 }
 
-// Вызываем функцию для отправки запроса на получение истории чата
-requestChatHistory();
+// Вызываем функцию для отправки запроса на получение истории чата 1
+requestChatHistory('chat1');
 
+// Вызываем функцию для отправки запроса на получение истории чата 2
+requestChatHistory('chat2');
 
     // Функция для отправки сообщения чата
     function sendMessage() {
