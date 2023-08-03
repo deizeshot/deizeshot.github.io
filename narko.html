@@ -125,20 +125,30 @@ const chatMessagesContainer = document.querySelector(".chat-messages-container")
 const chatInput = document.getElementById("chat-input");
 const currentChat = window.location.pathname.split("/")[1]; // Получаем текущий чат из URL
 
-const ws = new WebSocket(`wss://intermediate-easy-ship.glitch.me/${currentChat}`); // Формируем WebSocket URL
+const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/chat2');
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'chatMessage') {
-        // Отображаем полученное сообщение чата на странице
-        displayChatMessage(data.message);
-      } else if (data.type === 'chatHistory') {
-        // Отображаем историю чата при подключении
-        data.history.forEach((message) => {
-          displayChatMessage(message);
-        });
-      }
-    };
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  if (data.type === 'chatMessage') {
+    // Отображаем полученное сообщение чата на странице
+    displayChatMessage(data.message);
+  } else if (data.type === 'chatHistory') {
+    // Отображаем историю чата при подключении
+    data.history.forEach((message) => {
+      displayChatMessage(message);
+    });
+  }
+};
+
+// Функция для отправки запроса на получение истории чата
+function requestChatHistory() {
+  const request = { type: 'chatHistory' };
+  ws.send(JSON.stringify(request));
+}
+
+// Вызываем функцию для отправки запроса на получение истории чата
+requestChatHistory();
+
 
     // Функция для отправки сообщения чата
     function sendMessage() {
