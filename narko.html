@@ -120,12 +120,6 @@ function closeModal() {
   </script>
 
 <script>
-  // Обработчик клика по иконке корзины
-  const deleteChatButton = document.getElementById('delete-chat-button');
-  deleteChatButton.addEventListener('click', () => {
-    // Отправляем запрос на сервер для удаления чата
-    deleteChat();
-  });
 
   const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
 
