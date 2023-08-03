@@ -207,20 +207,23 @@ body {
   }
 
   .chat-wrapper {
-    width: 100%; /* Чтобы чат занимал всю ширину на мобильных */
+    width: 90%; /* Чтобы чат занимал всю ширину на мобильных */
     height: 100%; /* Чтобы чат занимал всю высоту на мобильных */
     max-height: calc(100vh - 50px); /* Ограничиваем максимальную высоту чата на мобильных, чтобы учитывать высоту панели ввода текста */
     position: fixed; /* Зафиксируем чат, чтобы он растягивался по всей странице */
     top: 0;
     left: 0;
     z-index: 9999; /* Устанавливаем высокий z-index, чтобы чат был поверх других элементов */
+    margin-left: 10px; 
+    margin-right: 10px;
   }
 
   .chat-container {
-    margin-bottom: 60px;
     height: 100%; 
     border-radius: 0; 
-    margin-bottom: 70px;
+    margin-bottom: 20px;
+    margin-left: 10px; 
+    margin-right: 10px;
   }
 
   .chat-messages-container div {
