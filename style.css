@@ -118,12 +118,12 @@ body {
 }
 
 .chat-messages-container div:hover {
-  background-color: #f0f0f0;
+  background-color: #f0f0f023;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transform: translateY(-2px);
   transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 
