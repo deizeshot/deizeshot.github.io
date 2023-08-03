@@ -171,23 +171,22 @@ ws.onmessage = (event) => {
       }
     }
 
-    // Функция для отображения сообщения чата
-function displayChatMessage(message) {
-  const listItem = document.createElement('li');
+    function displayChatMessage(message) {
+  const chatMessagesContainer = document.getElementById("chat-messages");
+  const listItem = document.createElement("li");
 
-  if (isImageMessage(message)) {
-    const image = document.createElement('img');
-    image.src = message;
+  if (message.type === "chatMessage") {
+    const textNode = document.createTextNode(message.message);
+    listItem.appendChild(textNode);
+  } else if (message.type === "chatImage") {
+    const image = document.createElement("img");
+    image.src = message.image;
     listItem.appendChild(image);
-  } else {
-    listItem.textContent = message;
   }
 
-  listItem.classList.add('chat-message', 'right', 'compact'); // Добавляем класс 'compact'
-
-  chatMessagesContainer.appendChild(listItem); // Прокручиваем внутренний контейнер
-  chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight; // Прокручиваем к новому сообщению
+  chatMessagesContainer.appendChild(listItem);
 }
+
 
 // Функция для определения, является ли сообщение изображением
 function isImageMessage(message) {
