@@ -116,6 +116,16 @@
     }
   }
 
+  // Обработка нажатия клавиши Enter в поле ввода чата
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  }
+  // Вешаем обработчик на поле ввода чата, чтобы реагировать на нажатие клавиши Enter
+  const chatInput = document.getElementById("chat-input");
+  chatInput.addEventListener("keypress", handleKeyPress);
+
   </script>
   
 </body>
