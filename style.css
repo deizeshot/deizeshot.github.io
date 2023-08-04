@@ -194,7 +194,13 @@ body {
   transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
   color: rgb(255, 255, 255);
 }
+.chat-messages-container a {
+  color: rgb(255, 0, 183);
+  text-dergb(0, 132, 255)tion: underline;
+}
 
+.chat-messages-container a:hover {
+  color: purple;
 
 
 /* Общие стили для body, .box, .boxglass и т.д. оставляем без изменений */
