@@ -72,6 +72,17 @@ function scrollToLastMessage() {
 }
 
 
+function makeLinksClickable() {
+  const chatMessages = document.querySelectorAll(".chat-messages-container div");
+  chatMessages.forEach((message) => {
+    const messageText = message.textContent;
+    const linkRegex = /(https?:\/\/[^\s]+)/g;
+    const linkedText = messageText.replace(linkRegex, "<a href='$1' target='_blank'>$1</a>");
+    message.innerHTML = linkedText;
+  });
+}
+
+
   function displayChatMessage(message) {
   const messageContainer = document.createElement("div");
   const timeSpan = document.createElement("span");
@@ -89,6 +100,7 @@ function scrollToLastMessage() {
   }
   chatMessagesContainer.appendChild(messageContainer);
   scrollToLastMessage();
+  makeLinksClickable();
 }
 function displayChatHistory(history) {
   chatMessagesContainer.innerHTML = '';
