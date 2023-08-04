@@ -195,8 +195,25 @@ body {
   color: rgb(255, 255, 255);
 }
 .chat-messages-container a {
-  color: rgb(255, 0, 183);
-  text-dergb(0, 132, 255)tion: underline;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.chat-messages-container .chat-message-link:hover {
+  background-color: #455da0;
+}
+
+```
+
+Затем, в вашем JavaScript-коде, в функции `displayChatMessage()`, замените создание обычного элемента `<span>` на создание элемента `<a>` с классом `chat-message-link`:
+
+```javascript
+const linkElement = document.createElement("a");
+
 }
 
 .chat-messages-container a:hover {
