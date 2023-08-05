@@ -33,6 +33,7 @@
       <input type="text" id="chat-input" placeholder="Сообщение..." onkeypress="handleKeyPress(event)">
       
       <div class="send-button">
+
         <button id="delete-chat-button" onclick="clearChat()">
           <i class="fas fa-trash-alt"></i>
         </button>
@@ -138,6 +139,23 @@ function displayChatHistory(history) {
         ws.send(JSON.stringify(chatMessage));
         chatInput.value = '';
       }
+    }
+    
+    // function clearChat() {
+    //     const chatMessagesContainer = document.getElementById("chat-messages");
+    //     chatMessagesContainer.remove();
+
+    //     const chatHistoryContainer = document.getElementById("chat-history");
+    //     chatHistoryContainer.remove();
+
+    //     const chatInput = document.getElementById("chat-input");
+    //     chatInput.value = "";
+    // }
+
+    function clearChat() {
+    const request = { type: 'clearChat' };
+    ws.send(JSON.stringify(request));
+    chatMessagesContainer.innerHTML = '';
     }
 
     function handleKeyPress(event) {

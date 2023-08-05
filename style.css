@@ -66,10 +66,6 @@ body {
   }
 }
 
-
-
-
-
 .chat-wrapper {
   position: relative;
   display: flex;
@@ -204,16 +200,7 @@ body {
 }
 
 .chat-messages-container .chat-message-link:hover {
-  background-color: #455da0;
-}
-
-```
-
-Затем, в вашем JavaScript-коде, в функции `displayChatMessage()`, замените создание обычного элемента `<span>` на создание элемента `<a>` с классом `chat-message-link`:
-
-```javascript
-const linkElement = document.createElement("a");
-
+  background-color: #45a049;
 }
 
 .chat-messages-container a:hover {
@@ -272,4 +259,4 @@ const linkElement = document.createElement("a");
     font-size: 14px; /* Уменьшаем размер шрифта кнопок отправки и вложения на мобильных */
     padding: 6px 10px; /* Уменьшаем отступы кнопок на мобильных */
   }
-}
+}}
