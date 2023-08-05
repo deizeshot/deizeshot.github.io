@@ -140,7 +140,7 @@ function displayChatHistory(history) {
         chatInput.value = '';
       }
     }
-    
+
     // function clearChat() {
     //     const chatMessagesContainer = document.getElementById("chat-messages");
     //     chatMessagesContainer.remove();
@@ -156,6 +156,20 @@ function displayChatHistory(history) {
     const request = { type: 'clearChat' };
     ws.send(JSON.stringify(request));
     chatMessagesContainer.innerHTML = '';
+    fetch('/narko', {
+    method: 'DELETE'
+  })
+  .then(function(response) {
+    if (response.ok) {
+      console.log('История чата успешно очищена');
+      chatMessagesContainer.innerHTML = '';
+    } else {
+      console.log('Ошибка при очистке истории чата');
+    }
+  })
+  .catch(function(error) {
+    console.log('Произошла ошибка:', error.message);
+  });
     }
 
     function handleKeyPress(event) {
