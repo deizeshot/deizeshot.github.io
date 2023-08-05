@@ -157,7 +157,7 @@ function displayChatHistory(history) {
     ws.send(JSON.stringify(request));
     chatMessagesContainer.innerHTML = '';
     fetch('/narko', {
-    method: 'DELETE'
+    method: 'delete'
   })
   .then(function(response) {
     if (response.ok) {
