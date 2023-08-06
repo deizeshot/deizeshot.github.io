@@ -81,18 +81,20 @@ function sendPhoto() {
   const photo = photoInput.files[0];
   
   if (photo) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      const photoData = event.target.result;
-      
-      // Отправка данных на сервер через WebSocket
-      const message = {
-        type: 'photo',
-        data: photoData
-      };
-      ws.send(JSON.stringify(message));
-    };
-    reader.readAsDataURL(photo);
+    const formData = new FormData();
+    formData.append("photo", photo);
+    
+    fetch("/upload-photo", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+      } else {
+      }
+    })
+    .catch(error => {
+    });
   }
 }
 
