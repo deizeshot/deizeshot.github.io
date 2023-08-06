@@ -167,32 +167,29 @@ function displayChatHistory(history) {
     }
 
     function clearChat() {
-    const request = { type: 'clearChat' };
-    ws.send(JSON.stringify(request));
-    chatMessagesContainer.innerHTML = '';
-    fetch('/narko', {
-    method: 'delete'
+  const request = { type: 'clearChat' };
+  ws.send(JSON.stringify(request));
+  chatMessagesContainer.innerHTML = '';
+  fetch('/narko', {
+    method: 'DELETE'
   })
   .then(function(response) {
     if (response.ok) {
       console.log('История чата успешно очищена');
       chatMessagesContainer.innerHTML = '';
 
-      setTimeout(function() {
       location.reload(true);
       location.replace(location.href);
       location.href = location.href;
       window.location.reload();
-      }, 500);
-
-      } else {
+    } else {
       console.log('Ошибка при очистке истории чата');
-      }
-    })
+    }
+  })
   .catch(function(error) {
     console.log('Произошла ошибка:', error.message);
   });
-    }
+}
 
     function handleKeyPress(event) {
       if (event.key === 'Enter') {
