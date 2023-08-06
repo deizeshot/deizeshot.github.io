@@ -48,7 +48,7 @@
   </div>
 </div>
   
-  <script>
+    <script>
 
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
     const chatMessagesContainer = document.getElementById("chat-messages");
@@ -127,8 +127,8 @@ function makeLinksClickable() {
   chatMessagesContainer.appendChild(messageContainer);
   scrollToLastMessage();
   makeLinksClickable();
-}
-function displayChatHistory(history) {
+  }
+  function displayChatHistory(history) {
   chatMessagesContainer.innerHTML = '';
   history.forEach((message) => {
     const messageContainer = document.createElement("div");
