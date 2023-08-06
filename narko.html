@@ -38,17 +38,25 @@
           <i class="fas fa-trash-alt"></i>
         </button>
 
-        <input type="file" id="photo-input">
-        <button onclick="sendPhoto()"><i class="fas fa-camera"></i>
-        </button>
+        <label for="photo-input">
+          <i class="fas fa-camera"></i>
+        </label>
+        <input type="file" id="photo-input" style="display: none;">
+        <!-- <button onclick="sendPhoto()"><i class="fas fa-paper-plane"></i></button> -->
 
         <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+
       </div>
     </div>     
   </div>
 </div>
   
     <script>
+
+    const photoInput = document.getElementById("photo-input");
+    photoInput.addEventListener("change", () => {
+    sendPhoto();
+  });
 
     const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
     const chatMessagesContainer = document.getElementById("chat-messages");
@@ -78,25 +86,33 @@ function scrollToLastMessage() {
 
 function sendPhoto() {
   const photoInput = document.getElementById("photo-input");
-  const photo = photoInput.files[0];
-  
-  if (photo) {
-    const formData = new FormData();
-    formData.append("photo", photo);
-    
-    fetch("/upload-photo", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-      } else {
-      }
-    })
-    .catch(error => {
-    });
+  const file = photoInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const photoData = event.target.result.split(",")[1]; // Extracting base64 data
+      const hiddenField = document.createElement("input");
+      hiddenField.type = "hidden";
+      hiddenField.id = "photo-data";
+      hiddenField.value = photoData; // Store the photo data in the hidden field
+      document.body.appendChild(hiddenField);
+
+      const message = { type: 'photo', data: photoData };
+      ws.send(JSON.stringify(message));
+
+      document.body.removeChild(hiddenField);
+
+      photoInput.value = "";
+    };
+
+    reader.readAsDataURL(file);
   }
 }
+
+
+
 
 function makeLinksClickable() {
   const chatMessages = document.querySelectorAll(".chat-messages-container div");
@@ -123,11 +139,17 @@ function makeLinksClickable() {
     const textNode = document.createTextNode(message.text);
     messageContainer.appendChild(textNode);
     messageContainer.classList.add("sent");
+  } else if (message.type === "photo") {
+    const photo = new Image();
+    photo.src = "data:image/jpeg;base64," + message.data;
+    messageContainer.appendChild(photo);
+    messageContainer.classList.add("photo-message");
   }
   chatMessagesContainer.appendChild(messageContainer);
   scrollToLastMessage();
   makeLinksClickable();
-  }
+}
+
   function displayChatHistory(history) {
   chatMessagesContainer.innerHTML = '';
   history.forEach((message) => {
@@ -144,6 +166,11 @@ function makeLinksClickable() {
       const textNode = document.createTextNode(message.text);
       messageContainer.appendChild(textNode);
       messageContainer.classList.add("sent");
+    } else if (message.type === "photo") {
+    const photo = new Image();
+    photo.src = "data:image/jpeg;base64," + message.data;
+    messageContainer.appendChild(photo);
+    messageContainer.classList.add("photo-message");
     }
     chatMessagesContainer.appendChild(messageContainer);
     scrollToLastMessage();
