@@ -272,14 +272,14 @@ body {
 label {
   display: inline-block;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #4169E1;
   color: #fff;
   padding: 8px 16px;
   border-radius: 4px;
 }
 
 label i {
-  margin-right: 8px;
+  margin-right: 0px;
 }
 
 /* Hide the file input's default appearance */
