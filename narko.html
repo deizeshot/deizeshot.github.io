@@ -177,6 +177,11 @@ function displayChatHistory(history) {
     if (response.ok) {
       console.log('История чата успешно очищена');
       chatMessagesContainer.innerHTML = '';
+
+      setTimeout(function() {
+        location.reload();
+      }, 500);
+
     } else {
       console.log('Ошибка при очистке истории чата');
     }
