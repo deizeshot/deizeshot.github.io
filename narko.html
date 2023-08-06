@@ -179,14 +179,16 @@ function displayChatHistory(history) {
       chatMessagesContainer.innerHTML = '';
 
       setTimeout(function() {
-        location.reload(true);
-        location.replace(location.href);
+      location.reload(true);
+      location.replace(location.href);
+      location.href = location.href;
+      window.location.reload();
       }, 500);
 
-    } else {
+      } else {
       console.log('Ошибка при очистке истории чата');
-    }
-  })
+      }
+    })
   .catch(function(error) {
     console.log('Произошла ошибка:', error.message);
   });
