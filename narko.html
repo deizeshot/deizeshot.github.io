@@ -38,6 +38,10 @@
           <i class="fas fa-trash-alt"></i>
         </button>
 
+        <input type="file" id="photo-input">
+        <button onclick="sendPhoto()"><i class="fas fa-camera"></i>
+        </button>
+
         <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>     
@@ -72,6 +76,25 @@ function scrollToLastMessage() {
   }
 }
 
+function sendPhoto() {
+  const photoInput = document.getElementById("photo-input");
+  const photo = photoInput.files[0];
+  
+  if (photo) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const photoData = event.target.result;
+      
+      // Отправка данных на сервер через WebSocket
+      const message = {
+        type: 'photo',
+        data: photoData
+      };
+      ws.send(JSON.stringify(message));
+    };
+    reader.readAsDataURL(photo);
+  }
+}
 
 function makeLinksClickable() {
   const chatMessages = document.querySelectorAll(".chat-messages-container div");
@@ -140,17 +163,6 @@ function displayChatHistory(history) {
         chatInput.value = '';
       }
     }
-
-    // function clearChat() {
-    //     const chatMessagesContainer = document.getElementById("chat-messages");
-    //     chatMessagesContainer.remove();
-
-    //     const chatHistoryContainer = document.getElementById("chat-history");
-    //     chatHistoryContainer.remove();
-
-    //     const chatInput = document.getElementById("chat-input");
-    //     chatInput.value = "";
-    // }
 
     function clearChat() {
     const request = { type: 'clearChat' };
