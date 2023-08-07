@@ -39,6 +39,9 @@
         </label>
         <input type="file" id="photo-input" style="display: none;">
 
+        <!-- <button onclick="requestNotificationPermission()">Request Permission</button>
+        <button onclick="sendTestNotification()">Send Test Notification</button> -->
+
         <button id="delete-chat-button" onclick="clearChat()">
           <i class="fas fa-trash-alt"></i>
         </button>
@@ -47,10 +50,30 @@
 
       </div>
     </div>     
+
   </div>
+
 </div>
+
+
   
     <script>
+
+
+function requestNotificationPermission() {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+        } else if (permission === 'denied') {
+          console.log('Notification permission denied.');
+        } else if (permission === 'default') {
+          console.log('Notification permission dismissed.');
+        }
+      });
+    }
+
+  
+
 
     const photoInput = document.getElementById("photo-input");
     photoInput.addEventListener("change", () => {
@@ -68,6 +91,7 @@
       } else if (data.type === 'newChatMessage' || data.type === 'photoMessage') {
         displayMessage(data.message);
         scrollToLastMessage();
+        requestNotificationPermission();
         showNotification(data.message.text);
   }
     };
@@ -75,6 +99,7 @@
 
 
 window.onload = function () {
+  requestNotificationPermission();
   scrollToLastMessage();
 };
 function scrollToLastMessage() {
@@ -107,7 +132,6 @@ function displayMessage(message) {
   chatMessagesContainer.appendChild(messageContainer);
   scrollToLastMessage();
   makeLinksClickable();
-  showNotification(data.message.text);
 }
 
 function displayPhoto(url) {
@@ -171,8 +195,6 @@ function createMessageElement(message) {
   return messageContainer;
 }
 
-
-
 function displayChatMessage(message) {
   const messageContainer = createMessageElement(message);
   chatMessagesContainer.appendChild(messageContainer);
@@ -189,8 +211,6 @@ function displayChatHistory(history) {
   scrollToLastMessage();
   makeLinksClickable();
 }
-
-
 
     function requestChatHistory() {
       const request = { type: 'requestHistory' };
