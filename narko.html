@@ -61,7 +61,7 @@
 
 
 
-    // Запрос разрешения на отправку push-уведомлений
+ // Запрос разрешения на отправку push-уведомлений
 async function requestPushPermission() {
   if (Notification.permission === 'default') {
     const permission = await Notification.requestPermission();
@@ -75,10 +75,10 @@ async function subscribeToPushNotifications() {
   try {
     const permission = await requestPushPermission();
     console.log('Push notification permission:', permission);
-    
+
     if (permission === 'granted' && 'serviceWorker' in navigator) {
       const registration = await navigator.serviceWorker.ready;
-      
+
       if (!registration.pushManager) {
         console.log('Push manager not available');
         return;
@@ -135,6 +135,7 @@ function urlBase64ToUint8Array(base64String) {
 
 // Вызываем функцию для подписки на push-уведомления
 subscribeToPushNotifications();
+
 
 
 
