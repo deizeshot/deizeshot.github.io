@@ -65,10 +65,11 @@
         displayChatMessage(data.message);
       } else if (data.type === 'chatHistory') {
         displayChatHistory(data.history);
-      } else if (data.type === 'newChatMessage') {
-        displayChatMessage(data.message);
-        scrollToBottom();
-      }
+      } else if (data.type === 'newChatMessage' || data.type === 'photoMessage') {
+        displayMessage(data.message);
+        scrollToLastMessage();
+        showNotification(data.message.text);
+  }
     };
     
 
@@ -91,18 +92,9 @@ function sendPhoto() {
     const reader = new FileReader();
 
     reader.onload = function (event) {
-      const photoData = event.target.result.split(",")[1]; // Extracting base64 data
-      const hiddenField = document.createElement("input");
-      hiddenField.type = "hidden";
-      hiddenField.id = "photo-data";
-      hiddenField.value = photoData; // Store the photo data in the hidden field
-      document.body.appendChild(hiddenField);
-
-      const message = { type: 'photo', data: photoData };
+      const photoData = event.target.result.split(",")[1]; // Извлекаем base64-кодированные данные фотографии
+      const message = { type: "photoMessage", data: photoData };
       ws.send(JSON.stringify(message));
-
-      document.body.removeChild(hiddenField);
-
       photoInput.value = "";
     };
 
@@ -110,15 +102,35 @@ function sendPhoto() {
   }
 }
 
-function displayPhoto(data) {
-      const messageContainer = document.createElement("div");
-      const photo = new Image();
-      photo.src = "data:image/jpeg;base64," + data;
-      messageContainer.appendChild(photo);
-      messageContainer.classList.add("photo-message");
-      chatMessagesContainer.appendChild(messageContainer);
-      scrollToLastMessage();
-    }
+
+function displayMessage(message) {
+  const messageContainer = createMessageElement(message);
+  chatMessagesContainer.appendChild(messageContainer);
+  scrollToLastMessage();
+  makeLinksClickable();
+}
+
+function displayPhoto(url) {
+  const photo = new Image();
+  photo.src = url; // The URL already contains the correct data URI format
+  photo.classList.add("chat-photo");
+  const message = { type: "photo", data: url };
+  displayMessage(message);
+}
+
+function showNotification(message) {
+  // Проверяем, поддерживает ли браузер Notifications API
+  if ('Notification' in window) {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        const notification = new Notification('Новое сообщение в чате', {
+          body: message,
+          icon: 'path/to/notification-icon.png', // Замените на путь к иконке уведомления
+        });
+      }
+    });
+  }
+}
 
 
 function makeLinksClickable() {
@@ -131,7 +143,6 @@ function makeLinksClickable() {
   });
 }
 
-// Функция для создания элемента сообщения
 function createMessageElement(message) {
   const messageContainer = document.createElement("div");
   const timeSpan = document.createElement("span");
@@ -139,22 +150,28 @@ function createMessageElement(message) {
   timeSpan.textContent = message.time;
   messageContainer.appendChild(timeSpan);
 
-  const textNode = document.createTextNode(message.text);
-  messageContainer.appendChild(textNode);
+  if (message.type === "chat" || message.type === "chatMessage") {
+    const textNode = document.createTextNode(message.text);
+    messageContainer.appendChild(textNode);
+  } else if (message.type === "photo") {
+    const photo = new Image();
+    photo.src = `data:image/jpeg;base64,${message.data}`; // Здесь мы указываем прямо base64-кодированную фотографию
+    photo.classList.add("chat-photo");
+    messageContainer.appendChild(photo);
+  }
 
   if (message.type === "chat") {
     messageContainer.classList.add("received");
   } else if (message.type === "chatMessage") {
     messageContainer.classList.add("sent");
   } else if (message.type === "photo") {
-    const photo = new Image();
-    photo.src = "data:image/jpeg;base64," + message.data;
-    messageContainer.appendChild(photo);
     messageContainer.classList.add("photo-message");
   }
 
   return messageContainer;
 }
+
+
 
 function displayChatMessage(message) {
   const messageContainer = createMessageElement(message);
@@ -165,11 +182,14 @@ function displayChatMessage(message) {
 
 function displayChatHistory(history) {
   chatMessagesContainer.innerHTML = '';
-  const messageElements = history.map(createMessageElement);
-  chatMessagesContainer.append(...messageElements);
+  history.forEach((message) => {
+    const messageContainer = createMessageElement(message);
+    chatMessagesContainer.appendChild(messageContainer);
+  });
   scrollToLastMessage();
   makeLinksClickable();
 }
+
 
 
     function requestChatHistory() {
