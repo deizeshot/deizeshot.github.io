@@ -59,6 +59,20 @@
   
     <script>
 
+// Запрос разрешения на отправку push-уведомлений
+async function requestPushPermission() {
+  if (Notification.permission === 'default') {
+    const permission = await Notification.requestPermission();
+    return permission;
+  }
+  return Notification.permission;
+}
+
+requestPushPermission().then(permission => {
+  console.log('Push notification permission:', permission);
+});
+
+
 
 function requestNotificationPermission() {
       Notification.requestPermission().then((permission) => {
