@@ -25,19 +25,24 @@ self.addEventListener('install', (event) => {
     );
   });
   
-  // Слушаем событие "push" (получение уведомления с сервера)
-  self.addEventListener('push', (event) => {
-    if (event.data) {
-      const message = event.data.text();
-      event.waitUntil(showNotification(message));
-    }
+  self.addEventListener('push', event => {
+    const options = {
+      body: event.data.text(), // Текст уведомления
+    //   icon: 'assets/icon.png', // Путь к иконке уведомления
+    //   badge: 'assets/badge.png' // Путь к значку уведомления
+    };
+  
+    event.waitUntil(
+      self.registration.showNotification('Новое уведомление', options)
+    );
   });
   
-  // Показываем уведомление
-  function showNotification(message) {
-    return self.registration.showNotification('Новое сообщение в чате', {
-      body: message,
-      icon: 'assets/img/668287.png', // Путь к иконке уведомления
-    });
-  }
+  
+//   // Показываем уведомление
+//   function showNotification(message) {
+//     return self.registration.showNotification('Новое сообщение в чате', {
+//       body: message,
+//       icon: 'assets/img/668287.png', // Путь к иконке уведомления
+//     });
+//   }
   
