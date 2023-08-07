@@ -59,6 +59,8 @@
   
     <script>
 
+
+
     // Запрос разрешения на отправку push-уведомлений
 async function requestPushPermission() {
   if (Notification.permission === 'default') {
@@ -98,6 +100,7 @@ async function subscribeToPushNotifications() {
 }
 
 function sendSubscriptionToServer(subscription) {
+  console.log('Sending subscription to server:', subscription);
   fetch('https://intermediate-easy-ship.glitch.me/subscribe', {
     method: 'POST',
     headers: {
