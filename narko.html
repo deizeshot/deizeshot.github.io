@@ -59,85 +59,80 @@
   
     <script>
 
+    // Запрос разрешения на отправку push-уведомлений
 async function requestPushPermission() {
-    if (Notification.permission === 'default') {
-      const permission = await Notification.requestPermission();
-      return permission;
-    }
-    return Notification.permission;
+  if (Notification.permission === 'default') {
+    const permission = await Notification.requestPermission();
+    return permission;
   }
+  return Notification.permission;
+}
 
-  // Вызов функции для запроса разрешения на отправку push-уведомлений
-  requestPushPermission().then(permission => {
+// Функция для подписки на push-уведомления
+async function subscribeToPushNotifications() {
+  try {
+    const permission = await requestPushPermission();
     console.log('Push notification permission:', permission);
-    if (permission === 'granted') {
-      subscribeToPushNotifications();
+    
+    if (permission === 'granted' && 'serviceWorker' in navigator) {
+      const registration = await navigator.serviceWorker.ready;
+      
+      if (!registration.pushManager) {
+        console.log('Push manager not available');
+        return;
+      }
+
+      const publicKey = 'BBr1LdM2xYEcTDccVUkSyLVwtf6h01OCWFRmZc6xb5lPhJZm5Y4k7WZZdc7TzYHuSXFM2qMhR4Ww82OQKPm179w';
+      const options = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicKey)
+      };
+
+      const subscription = await registration.pushManager.subscribe(options);
+      console.log('Push notification subscription successful:', JSON.stringify(subscription));
+      sendSubscriptionToServer(subscription);
     }
-  });
-
-  // Функция для подписки на push-уведомления
-  function subscribeToPushNotifications() {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.ready.then(registration => {
-        if (!registration.pushManager) {
-          console.log('Push manager not available');
-          return;
-        }
-
-        // Получаем публичный ключ VAPID с сервера
-        const publicKey = 'BBr1LdM2xYEcTDccVUkSyLVwtf6h01OCWFRmZc6xb5lPhJZm5Y4k7WZZdc7TzYHuSXFM2qMhR4Ww82OQKPm179w';
-
-        // Опции подписки
-        const options = {
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(publicKey)
-        };
-
-        registration.pushManager.subscribe(options)
-          .then(subscription => {
-            console.log('Push notification subscription successful:', JSON.stringify(subscription));
-            sendSubscriptionToServer(subscription);
-          })
-          .catch(error => {
-            console.error('Push notification subscription error:', error);
-          });
-      });
-    }
+  } catch (error) {
+    console.error('Error during push notification subscription:', error);
   }
+}
 
-  // Функция для отправки подписки на сервер
-  function sendSubscriptionToServer(subscription) {
-    fetch('/subscribe', {
+// Отправка подписки на сервер
+async function sendSubscriptionToServer(subscription) {
+  try {
+    const response = await fetch('/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(subscription)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to store subscription on server');
-      }
-      console.log('Subscription sent to server');
-    })
-    .catch(error => {
-      console.error('Error sending subscription to server:', error);
     });
-  }
 
-  // Вспомогательная функция для преобразования base64 в Uint8Array
-  function urlBase64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-      .replace(/-/g, '+')
-      .replace(/_/g, '/');
-    const rawData = window.atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
-    for (let i = 0; i < rawData.length; ++i) {
-      outputArray[i] = rawData.charCodeAt(i);
+    if (!response.ok) {
+      throw new Error('Failed to store subscription on server');
     }
-    return outputArray;
+    console.log('Subscription sent to server');
+  } catch (error) {
+    console.error('Error sending subscription to server:', error);
   }
+}
+
+// Преобразование base64 в Uint8Array
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+// Вызываем функцию для подписки на push-уведомления
+subscribeToPushNotifications();
 
 
 
