@@ -54,46 +54,7 @@
 </div>
 
 
-<script type="module">
-  
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBVEsG8vOsP0HmqwV5grrU5xFSQW9ETK0A",
-    authDomain: "deizeshotgithub.firebaseapp.com",
-    projectId: "deizeshotgithub",
-    storageBucket: "deizeshotgithub.appspot.com",
-    messagingSenderId: "275421484194",
-    appId: "1:275421484194:web:b347777d3bdcc2a7dbf3fb",
-    measurementId: "G-10WQVHKK6K"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const messaging = firebase.messaging();
-
-  // Получение токена устройства и отправка на сервер
-  Notification.requestPermission().then((permission) => {
-  if (permission === "granted") {
-    console.log("Разрешение на уведомления получено");
-    getTokenAndSendToServer(); // Функция, которая получает токен и отправляет на сервер
-  } else {
-    console.log("Разрешение на уведомления не получено");
-  }
-});
-
-function getTokenAndSendToServer() {
-  messaging.getToken().then((token) => {
-    console.log("Токен устройства:", token);
-    // Отправьте этот токен на сервер через WebSocket
-    const tokenMessage = { type: 'token', token };
-    ws.send(JSON.stringify(tokenMessage));
-  }).catch((error) => {
-    console.log("Ошибка получения токена:", error);
-  });
-}
+<script>
 
     const photoInput = document.getElementById("photo-input");
     photoInput.addEventListener("change", () => {
@@ -277,6 +238,46 @@ function displayChatHistory(history) {
     }
   </script>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBVEsG8vOsP0HmqwV5grrU5xFSQW9ETK0A",
+    authDomain: "deizeshotgithub.firebaseapp.com",
+    projectId: "deizeshotgithub",
+    storageBucket: "deizeshotgithub.appspot.com",
+    messagingSenderId: "275421484194",
+    appId: "1:275421484194:web:b347777d3bdcc2a7dbf3fb",
+    measurementId: "G-10WQVHKK6K"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const messaging = firebase.messaging();
+
+  // Получение токена устройства и отправка на сервер
+  Notification.requestPermission().then((permission) => {
+  if (permission === "granted") {
+    console.log("Разрешение на уведомления получено");
+    getTokenAndSendToServer(); // Функция, которая получает токен и отправляет на сервер
+  } else {
+    console.log("Разрешение на уведомления не получено");
+  }
+});
+
+function getTokenAndSendToServer() {
+  messaging.getToken().then((token) => {
+    console.log("Токен устройства:", token);
+    // Отправьте этот токен на сервер через WebSocket
+    const tokenMessage = { type: 'token', token };
+    ws.send(JSON.stringify(tokenMessage));
+  }).catch((error) => {
+    console.log("Ошибка получения токена:", error);
+  });
+}
+</script>
 
 
 </body>
