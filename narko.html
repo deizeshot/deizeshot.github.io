@@ -34,10 +34,10 @@
       
       <div class="send-button">
 
-        <!-- <label for="photo-input">
+        <label for="photo-input">
           <i class="fas fa-camera"></i>
         </label>
-        <input type="file" id="photo-input" style="display: none;"> -->
+        <input type="file" id="photo-input" style="display: none;">
 
         <!-- <button onclick="requestNotificationPermission()">Request Permission</button>
         <button onclick="sendTestNotification()">Send Test Notification</button> -->
@@ -53,15 +53,12 @@
   </div>
 </div>
 
+
 <script type="module">
-  // Import the functions you need from the SDKs you need
+  
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyBVEsG8vOsP0HmqwV5grrU5xFSQW9ETK0A",
     authDomain: "deizeshotgithub.firebaseapp.com",
@@ -78,7 +75,7 @@
   const messaging = firebase.messaging();
 
   // Получение токена устройства и отправка на сервер
-Notification.requestPermission().then((permission) => {
+  Notification.requestPermission().then((permission) => {
   if (permission === "granted") {
     console.log("Разрешение на уведомления получено");
     getTokenAndSendToServer(); // Функция, которая получает токен и отправляет на сервер
@@ -90,38 +87,13 @@ Notification.requestPermission().then((permission) => {
 function getTokenAndSendToServer() {
   messaging.getToken().then((token) => {
     console.log("Токен устройства:", token);
-    // Отправьте этот токен на ваш сервер для отправки уведомлений
-    sendTokenToServer(token);
+    // Отправьте этот токен на сервер через WebSocket
+    const tokenMessage = { type: 'token', token };
+    ws.send(JSON.stringify(tokenMessage));
   }).catch((error) => {
     console.log("Ошибка получения токена:", error);
   });
 }
-
-function sendTokenToServer(token) {
-  // Отправьте токен на сервер, например, с использованием fetch или другого метода
-  fetch('/send-token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ token: token })
-  })
-  .then((response) => {
-    if (response.ok) {
-      console.log('Токен успешно отправлен на сервер');
-    } else {
-      console.log('Ошибка при отправке токена на сервер');
-    }
-  })
-  .catch((error) => {
-    console.log('Произошла ошибка:', error.message);
-  });
-}
-
-</script>
-
-
-<script>
 
     const photoInput = document.getElementById("photo-input");
     photoInput.addEventListener("change", () => {
@@ -304,6 +276,8 @@ function displayChatHistory(history) {
       });
     }
   </script>
+
+
 
 </body>
 </html>
