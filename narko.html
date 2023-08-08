@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
   
@@ -59,6 +60,48 @@
   
     <script>
 
+
+// Ваш API-ключ, полученный с Google Cloud Console
+const apiKey = "AIzaSyBEjpKWhDzYPqFC_f5BCd6yIDxU128agYY";
+
+// Инициализация GCM с API-ключом
+gapi.load("gcm", () => {
+  gcm.apiKey = apiKey;
+});
+
+// Проверяем, предоставлено ли разрешение на уведомления
+if (Notification.permission === "granted") {
+  // Разрешение уже предоставлено, создаем и отправляем уведомление
+  var notification = new Notification("Новое уведомление!", {
+    body: "Это текст уведомления",
+    icon: "https://example.com/image.png"
+  });
+} else {
+  // Если разрешение не предоставлено, запрашиваем его
+  Notification.requestPermission().then(function(permission) {
+    if (permission === "granted") {
+      // Разрешение получено, создаем и отправляем уведомление
+      var notification = new Notification("Новое уведомление!", {
+        body: "Это текст уведомления",
+        icon: "https://example.com/image.png"
+      });
+    }
+  });
+}
+
+
+// Функция для отправки уведомления
+function sendNotification() {
+  // Параметры уведомления
+  const notification = {
+    title: "Заголовок уведомления",
+    body: "Текст уведомления",
+    icon: "https://example.com/icon.png"
+  };
+
+  // Отправка уведомления
+  gcm.sendNotification(notification);
+}
 
 
  // Запрос разрешения на отправку push-уведомлений
@@ -277,6 +320,7 @@ function displayChatMessage(message) {
   chatMessagesContainer.appendChild(messageContainer);
   scrollToLastMessage();
   makeLinksClickable();
+  
 }
 
 function displayChatHistory(history) {
