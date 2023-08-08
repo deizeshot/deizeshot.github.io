@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
   
@@ -57,52 +56,32 @@
 </div>
 
 
-  
-    <script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-
-// Ваш API-ключ, полученный с Google Cloud Console
-const apiKey = "AIzaSyBEjpKWhDzYPqFC_f5BCd6yIDxU128agYY";
-
-// Инициализация GCM с API-ключом
-gapi.load("gcm", () => {
-  gcm.apiKey = apiKey;
-});
-
-// Проверяем, предоставлено ли разрешение на уведомления
-if (Notification.permission === "granted") {
-  // Разрешение уже предоставлено, создаем и отправляем уведомление
-  var notification = new Notification("Новое уведомление!", {
-    body: "Это текст уведомления",
-    icon: "https://example.com/image.png"
-  });
-} else {
-  // Если разрешение не предоставлено, запрашиваем его
-  Notification.requestPermission().then(function(permission) {
-    if (permission === "granted") {
-      // Разрешение получено, создаем и отправляем уведомление
-      var notification = new Notification("Новое уведомление!", {
-        body: "Это текст уведомления",
-        icon: "https://example.com/image.png"
-      });
-    }
-  });
-}
-
-
-// Функция для отправки уведомления
-function sendNotification() {
-  // Параметры уведомления
-  const notification = {
-    title: "Заголовок уведомления",
-    body: "Текст уведомления",
-    icon: "https://example.com/icon.png"
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBVEsG8vOsP0HmqwV5grrU5xFSQW9ETK0A",
+    authDomain: "deizeshotgithub.firebaseapp.com",
+    projectId: "deizeshotgithub",
+    storageBucket: "deizeshotgithub.appspot.com",
+    messagingSenderId: "275421484194",
+    appId: "1:275421484194:web:b347777d3bdcc2a7dbf3fb",
+    measurementId: "G-10WQVHKK6K"
   };
 
-  // Отправка уведомления
-  gcm.sendNotification(notification);
-}
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
+  
+<script>
 
     const photoInput = document.getElementById("photo-input");
     photoInput.addEventListener("change", () => {
