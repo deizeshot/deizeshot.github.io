@@ -92,6 +92,11 @@
   }).catch((error) => {
     console.log("Уведомления запрещены:", error);
   });
+  // Прослушивание событий приема уведомлений
+  messaging.onMessage(function(payload) {
+      console.log("Received message:", payload);
+      // Здесь вы можете обработать полученное уведомление
+    });
 </script>
 
   
