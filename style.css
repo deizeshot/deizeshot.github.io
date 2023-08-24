@@ -92,7 +92,7 @@ body {
   height: -moz-calc(100% - 60px);
   height: calc(100% - 60px);
   overflow: hidden; 
-  overflow-y: scroll;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-margin-top: auto;
   scroll-padding-bottom: 60px;
