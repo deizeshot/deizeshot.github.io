@@ -135,7 +135,7 @@ function createMessageElement(message) {
   messageContainer.appendChild(timeSpan);
 
   if (message.type === "chat" || message.type === "chatMessage") {
-    const textNode = document.createTextNode(message.text);
+    const textNode = document.createTextNode(message.text); // Замените "message.message" на "message.text"
     messageContainer.appendChild(textNode);
   } else if (message.type === "photo") {
     const photo = new Image();
@@ -154,6 +154,7 @@ function createMessageElement(message) {
 
   return messageContainer;
 }
+
 
 function displayChatMessage(message) {
   const messageContainer = createMessageElement(message);
@@ -178,15 +179,17 @@ function displayChatHistory(history) {
       ws.send(JSON.stringify(request));
     }
     requestChatHistory();
+
     function sendMessage() {
-      const chatInput = document.getElementById("chat-input");
-      const message = chatInput.value.trim();
-      if (message !== '') {
-        const chatMessage = { type: 'chatMessage', message };
-        ws.send(JSON.stringify(chatMessage));
-        chatInput.value = '';
-      }
-    }
+  const chatInput = document.getElementById("chat-input");
+  const message = chatInput.value.trim();
+  if (message !== '') {
+    const chatMessage = { type: 'chatMessage', text: message };
+    ws.send(JSON.stringify(chatMessage));
+    chatInput.value = '';
+  }
+}
+
 
     function clearChat() {
   const request = { type: 'clearChat' };
