@@ -98,6 +98,10 @@ body {
   -ms-overflow-style: none; /* Скрываем нативные полосы прокрутки в IE/Edge */
 }
 
+.chat-container::-webkit-scrollbar {
+  width: 0; /* Скрываем нативные полосы прокрутки в Chrome и Safari */
+}
+
 .chat-input-box {
   display: flex;
   align-items: center;
