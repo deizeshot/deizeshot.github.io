@@ -32,8 +32,8 @@ body {
 }
 
 .blinking-element {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   animation: blink-animation 2s infinite;
   position: absolute;
   top: 50%;
