@@ -32,8 +32,8 @@ body {
 }
 
 .blinking-element {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   animation: blink-animation 2s infinite;
   position: absolute;
   top: 50%;
@@ -46,7 +46,7 @@ body {
 
 .blinking-element.blue {
   background-color: blue;
-  animation-delay: 0.01s;
+  animation-delay: 0.05s;
 }
 
 .blinking-element.red {
