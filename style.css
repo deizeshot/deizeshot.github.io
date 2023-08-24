@@ -102,7 +102,9 @@ body {
 
 .chat-container::-webkit-scrollbar {
   width: 0;
+  background: transparent;
 }
+
 
 .chat-input-box {
   display: flex;
