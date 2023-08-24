@@ -16,8 +16,9 @@
   </div>
   <div class="boxglass">
   </div>
-
+<!-- Обертка для всего чата -->
 <div class="chat-wrapper">
+  <!-- Контейнер для сообщений -->
   <div class="chat-container">
     <div class="chat-messages-container">
       <ul id="chat-messages">
@@ -26,19 +27,30 @@
     </div>
   </div>
 
+  <!-- Панель ввода текста -->
   <div class="chat-input-box">
     <div class="chat-input">
       <input type="text" id="chat-input" placeholder="Сообщение..." onkeypress="handleKeyPress(event)">
       
       <div class="send-button">
+
+        <label for="photo-input">
+          <i class="fas fa-camera"></i>
+        </label>
+        <input type="file" id="photo-input" style="display: none;">
+
+
         <button id="delete-chat-button" onclick="clearChat()">
           <i class="fas fa-trash-alt"></i>
         </button>
+
         <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+
       </div>
     </div>     
   </div>
 </div>
+
 
 <script>
   const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
@@ -77,32 +89,11 @@
 
   function createMessageElement(message) {
     const messageContainer = document.createElement("div");
-    messageContainer.textContent = message.text;
+    messageContainer.textContent = message;
     return messageContainer;
   }
-
-  function sendMessage() {
-    const chatInput = document.getElementById("chat-input");
-    const message = chatInput.value.trim();
-    if (message !== '') {
-      const chatMessage = { type: 'chatMessage', text: message };
-      ws.send(JSON.stringify(chatMessage));
-      chatInput.value = '';
-    }
-  }
-
-  function clearChat() {
-    const request = { type: 'clearChat' };
-    ws.send(JSON.stringify(request));
-    chatMessagesContainer.innerHTML = '';
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      sendMessage();
-    }
-  }
 </script>
+
 
 </body>
 </html>
