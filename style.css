@@ -9,6 +9,7 @@ body {
   padding: 0;
   animation: gradientAnimation 100s ease infinite;
   background-size: 1000% 1000%;  
+  overflow: hidden;
 }
 
 .box {
