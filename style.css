@@ -51,7 +51,7 @@ body {
 
 .blinking-element.red {
   background-color: red;
-  animation-delay: 0.1s;
+  animation-delay: 0.2s;
 }
 
 @keyframes blink-animation {
