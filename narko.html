@@ -55,6 +55,10 @@
 
 <script>
 
+  const chatContainer = document.querySelector(".chat-container");
+  chatContainer.classList.add("no-scrollbar"); // Добавляем класс для скрытия полосы прокрутки
+
+
   const photoInput = document.getElementById("photo-input");
   photoInput.addEventListener("change", () => {
   sendPhoto();
