@@ -54,31 +54,47 @@
 
 <script>
 
-    const photoInput = document.getElementById("photo-input");
-    photoInput.addEventListener("change", () => {
-    sendPhoto();
-  });
+const photoInput = document.getElementById("photo-input");
+photoInput.addEventListener("change", sendPhoto);
 
-    const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
-    const chatMessagesContainer = document.getElementById("chat-messages");
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'chat-message') {
-        displayChatMessage(data.message);
-      } else if (data.type === 'chatHistory') {
-        displayChatHistory(data.history);
-      } else if (data.type === 'newChatMessage' || data.type === 'photoMessage') {
-        displayMessage(data.message);
-        scrollToLastMessage();  }
-    };
-    
-window.onload = function () {
-  scrollToLastMessage();
+const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
+const chatMessagesContainer = document.getElementById("chat-messages");
+
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  if (data.type === 'chat-message') {
+    displayChatMessage(data.message);
+  } else if (data.type === 'chatHistory') {
+    displayChatHistory(data.history);
+  } else if (data.type === 'newChatMessage' || data.type === 'photoMessage') {
+    displayMessage(data.message);
+    scrollToLastMessage();
+  }
 };
+
+window.onload = scrollToLastMessage;
+
 function scrollToLastMessage() {
   const messages = document.querySelectorAll(".chat-messages-container div");
   if (messages.length > 0) {
     messages[messages.length - 1].scrollIntoView();
+  }
+}
+
+function sendPhoto() {
+  const photoInput = document.getElementById("photo-input");
+  const file = photoInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const photoData = event.target.result.split(",")[1];
+      const message = { type: "photoMessage", data: photoData };
+      ws.send(JSON.stringify(message));
+      photoInput.value = "";
+    };
+    reader.readAsDataURL(file);
   }
 }
 
@@ -88,15 +104,6 @@ function displayMessage(message) {
   scrollToLastMessage();
   makeLinksClickable();
 }
-
-function displayPhoto(url) {
-  const photo = new Image();
-  photo.src = url;
-  photo.classList.add("chat-photo");
-  const message = { type: "photo", data: url };
-  displayMessage(message);
-}
-
 
 function makeLinksClickable() {
   const chatMessages = document.querySelectorAll(".chat-messages-container div");
@@ -108,16 +115,6 @@ function makeLinksClickable() {
   });
 }
 
-function sendMessage() {
-  const chatInput = document.getElementById("chat-input");
-  const message = chatInput.value.trim();
-  if (message !== '') {
-    const chatMessage = { type: 'chatMessage', text: message };  // Здесь исправлено на 'text'
-    ws.send(JSON.stringify(chatMessage));
-    chatInput.value = '';
-  }
-}
-
 function createMessageElement(message) {
   const messageContainer = document.createElement("div");
   const timeSpan = document.createElement("span");
@@ -125,35 +122,26 @@ function createMessageElement(message) {
   timeSpan.textContent = message.time;
   messageContainer.appendChild(timeSpan);
 
-  if (message.type === "chat" || message.type === "chatMessage") { // Здесь исправлено на "chatMessage"
-    const textNode = document.createTextNode(message.text);
-    messageContainer.appendChild(textNode);
-  } else if (message.type === "photo") {
+  const textNode = document.createTextNode(message.text);
+  messageContainer.appendChild(textNode);
+
+  if (message.type === "photo") {
     const photo = new Image();
     photo.src = `data:image/jpeg;base64,${message.data}`;
     photo.classList.add("chat-photo");
     messageContainer.appendChild(photo);
   }
 
-  if (message.type === "chat") {
-    messageContainer.classList.add("received");
-  } else if (message.type === "chatMessage") {
-    messageContainer.classList.add("sent");
-  } else if (message.type === "photo") {
-    messageContainer.classList.add("photo-message");
-  }
+  messageContainer.classList.add("received");
 
   return messageContainer;
 }
-
-
 
 function displayChatMessage(message) {
   const messageContainer = createMessageElement(message);
   chatMessagesContainer.appendChild(messageContainer);
   scrollToLastMessage();
   makeLinksClickable();
-  
 }
 
 function displayChatHistory(history) {
@@ -166,53 +154,39 @@ function displayChatHistory(history) {
   makeLinksClickable();
 }
 
-    function requestChatHistory() {
-      const request = { type: 'requestHistory' };
-      ws.send(JSON.stringify(request));
-    }
-    requestChatHistory();
-
-    function sendMessage() {
-  const chatInput = document.getElementById("chat-input");
-  const message = chatInput.value.trim();
-  if (message !== '') {
-    const chatMessage = { type: 'chatMessage', text: message };
-    ws.send(JSON.stringify(chatMessage));
-    chatInput.value = '';
-  }
+function requestChatHistory() {
+  const request = { type: 'requestHistory' };
+  ws.send(JSON.stringify(request));
 }
+requestChatHistory();
 
-
-    function clearChat() {
+function clearChat() {
   const request = { type: 'clearChat' };
   ws.send(JSON.stringify(request));
   chatMessagesContainer.innerHTML = '';
   fetch('/narko', {
     method: 'DELETE'
   })
-  .then(function(response) {
-    if (response.ok) {
-      console.log('История чата успешно очищена');
-      chatMessagesContainer.innerHTML = '';
-
-      location.reload(true);
-      location.replace(location.href);
-      location.href = location.href;
-      window.location.reload();
-    } else {
-      console.log('Ошибка при очистке истории чата');
-    }
-  })
-  .catch(function(error) {
-    console.log('Произошла ошибка:', error.message);
-  });
+    .then(function(response) {
+      if (response.ok) {
+        console.log('История чата успешно очищена');
+        chatMessagesContainer.innerHTML = '';
+        location.reload(true);
+      } else {
+        console.log('Ошибка при очистке истории чата');
+      }
+    })
+    .catch(function(error) {
+      console.log('Произошла ошибка:', error.message);
+    });
 }
 
-    function handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        sendMessage();
-      }
-    }
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    sendMessage();
+  }
+}
+
 
   </script>
 
