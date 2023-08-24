@@ -39,8 +39,6 @@
         </label>
         <input type="file" id="photo-input" style="display: none;">
 
-        <!-- <button onclick="requestNotificationPermission()">Request Permission</button>
-        <button onclick="sendTestNotification()">Send Test Notification</button> -->
 
         <button id="delete-chat-button" onclick="clearChat()">
           <i class="fas fa-trash-alt"></i>
@@ -103,7 +101,6 @@ function sendPhoto() {
   }
 }
 
-
 function displayMessage(message) {
   const messageContainer = createMessageElement(message);
   chatMessagesContainer.appendChild(messageContainer);
@@ -113,7 +110,7 @@ function displayMessage(message) {
 
 function displayPhoto(url) {
   const photo = new Image();
-  photo.src = url; // The URL already contains the correct data URI format
+  photo.src = url;
   photo.classList.add("chat-photo");
   const message = { type: "photo", data: url };
   displayMessage(message);
@@ -223,62 +220,6 @@ function displayChatHistory(history) {
     }
 
   </script>
-  
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then((registration) => {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          })
-          .catch((error) => {
-            console.log('ServiceWorker registration failed: ', error);
-          });
-      });
-    }
-  </script>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  import { messaging } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBVEsG8vOsP0HmqwV5grrU5xFSQW9ETK0A",
-    authDomain: "deizeshotgithub.firebaseapp.com",
-    projectId: "deizeshotgithub",
-    storageBucket: "deizeshotgithub.appspot.com",
-    messagingSenderId: "275421484194",
-    appId: "1:275421484194:web:b347777d3bdcc2a7dbf3fb",
-    measurementId: "G-10WQVHKK6K"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const messaging = firebase.messaging();
-
-  // Получение токена устройства и отправка на сервер
-  Notification.requestPermission().then((permission) => {
-  if (permission === "granted") {
-    console.log("Разрешение на уведомления получено");
-    getTokenAndSendToServer(); // Функция, которая получает токен и отправляет на сервер
-  } else {
-    console.log("Разрешение на уведомления не получено");
-  }
-});
-
-function getTokenAndSendToServer() {
-  messaging.getToken().then((token) => {
-    console.log("Токен устройства:", token);
-    // Отправьте этот токен на сервер через WebSocket
-    const tokenMessage = { type: 'token', token };
-    ws.send(JSON.stringify(tokenMessage));
-  }).catch((error) => {
-    console.log("Ошибка получения токена:", error);
-  });
-}
-</script>
 
 
 </body>
