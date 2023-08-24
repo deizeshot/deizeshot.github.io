@@ -72,8 +72,6 @@
         scrollToLastMessage();  }
     };
     
-
-
 window.onload = function () {
   scrollToLastMessage();
 };
@@ -81,23 +79,6 @@ function scrollToLastMessage() {
   const messages = document.querySelectorAll(".chat-messages-container div");
   if (messages.length > 0) {
     messages[messages.length - 1].scrollIntoView();
-  }
-}
-
-function sendPhoto() {
-  const photoInput = document.getElementById("photo-input");
-  const file = photoInput.files[0];
-
-  if (file) {
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-      const photoData = event.target.result.split(",")[1]; // Извлекаем base64-кодированные данные фотографии
-      const message = { type: "photoMessage", data: photoData };
-      ws.send(JSON.stringify(message));
-      photoInput.value = "";
-    };
-    reader.readAsDataURL(file);
   }
 }
 
@@ -127,6 +108,16 @@ function makeLinksClickable() {
   });
 }
 
+function sendMessage() {
+  const chatInput = document.getElementById("chat-input");
+  const message = chatInput.value.trim();
+  if (message !== '') {
+    const chatMessage = { type: 'chatMessage', text: message };  // Здесь исправлено на 'text'
+    ws.send(JSON.stringify(chatMessage));
+    chatInput.value = '';
+  }
+}
+
 function createMessageElement(message) {
   const messageContainer = document.createElement("div");
   const timeSpan = document.createElement("span");
@@ -134,7 +125,7 @@ function createMessageElement(message) {
   timeSpan.textContent = message.time;
   messageContainer.appendChild(timeSpan);
 
-  if (message.type === "chat" || message.type === "chatMessage") {
+  if (message.type === "chat" || message.type === "chatMessage") { // Здесь исправлено на "chatMessage"
     const textNode = document.createTextNode(message.text);
     messageContainer.appendChild(textNode);
   } else if (message.type === "photo") {
@@ -154,6 +145,7 @@ function createMessageElement(message) {
 
   return messageContainer;
 }
+
 
 
 function displayChatMessage(message) {
