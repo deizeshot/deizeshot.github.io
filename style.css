@@ -10,6 +10,7 @@ body {
   animation: gradientAnimation 100s ease infinite;
   background-size: 1000% 1000%;  
   overflow: hidden;
+  overflow-y: hidden;
 }
 
 .box {
@@ -74,6 +75,8 @@ body {
   height: 500px;
   justify-content: flex-end;
 }
+
+
 .chat-container {
   width: 100%;
   margin: 0 auto;
@@ -91,20 +94,14 @@ body {
   height: -webkit-calc(100% - 60px);
   height: -moz-calc(100% - 60px);
   height: calc(100% - 60px);
-  overflow: hidden; 
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
   scroll-margin-top: auto;
   scroll-padding-bottom: 60px;
-  scrollbar-width: none; 
-  -ms-overflow-style: none;
 }
 
 .chat-container::-webkit-scrollbar {
   width: 0;
   background: transparent;
 }
-
 
 .chat-input-box {
   display: flex;
@@ -165,12 +162,27 @@ body {
 .chat-input input[type="file"] {
   display: none;
 }
+
+
+
+
+/* ЧАТ СООБЩЕНИЯ ОКНО */
 .chat-messages-container {
   font-family: 'Arial', sans-serif;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
 }
+.chat-messages-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+
+
 .chat-messages-container div {
   margin: 5px 0;
   max-width: 70%;
@@ -223,7 +235,7 @@ body {
 /* Общие стили для body, .box, .boxglass и т.д. оставляем без изменений */
 
 /* Адаптивные стили для мобильных устройств */
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   body {
     justify-content: flex-start; /* Чтобы чат не был по центру на мобильных */
     overflow: hidden; /* Скрываем вертикальный скролл на мобильных */
@@ -247,6 +259,13 @@ body {
     margin-bottom: 20px;
     margin-left: 10px; 
     margin-right: 10px;
+    overflow: hidden; 
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-margin-top: auto;
+  scroll-padding-bottom: 60px;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
   }
 
   .chat-messages-container div {

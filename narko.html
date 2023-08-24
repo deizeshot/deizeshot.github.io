@@ -35,10 +35,10 @@
       
       <div class="send-button">
 
-        <label for="photo-input">
+        <!-- <label for="photo-input">
           <i class="fas fa-camera"></i>
         </label>
-        <input type="file" id="photo-input" style="display: none;">
+        <input type="file" id="photo-input" style="display: none;"> -->
 
 
         <button id="delete-chat-button" onclick="clearChat()">
@@ -59,10 +59,10 @@
   chatContainer.classList.add("no-scrollbar"); // Добавляем класс для скрытия полосы прокрутки
 
 
-  const photoInput = document.getElementById("photo-input");
-  photoInput.addEventListener("change", () => {
-  sendPhoto();
-});
+//   const photoInput = document.getElementById("photo-input");
+//   photoInput.addEventListener("change", () => {
+//   sendPhoto();
+// });
 
   const ws = new WebSocket('wss://intermediate-easy-ship.glitch.me/narko');
   const chatMessagesContainer = document.getElementById("chat-messages");
