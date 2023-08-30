@@ -1,27 +1,27 @@
 [
   {
-    "Title": "Ты находишься перед тем самым рестораном \"Красти Крабс\" в Бикини Боттом. Ночь наступила, и улицы пустынны. Тусклый свет фонарей бросает жуткие тени на дорожку перед рестораном. Внутри виднеется слабое сияние. Войдешь внутрь?",
-    "ChoiceA": "Пройти мимо",
+    "Title": "You are standing in front of the famous restaurant \"Krusty Krab\" in Bikini Bottom. Night has fallen, and the streets are deserted. The dim light of the street lamps casts eerie shadows on the path in front of the restaurant. Inside, a faint glow is visible. Will you...",
+    "ChoiceA": "Walk past it",
     "NextPageA": 1,
-    "ChoiceB": "Войти внутрь",
+    "ChoiceB": "Enter inside",
     "NextPageB": 2,
-    "ChoiceC": "Заглянуть в окно",
+    "ChoiceC": "Peek through the window",
     "NextPageC": 3,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/kurstykrab.webp"
   },
   {
-    "Title": "Ты решаешь пойти по улице дальше, покидая зону света, что остается от фонарей. Темнота становится все глубже, и холодный ветер начинает пронизывать до костей. Ты слышишь странные шорохи вокруг, и кажется, что кто-то следит за тобой. Вдруг, из тени выпрыгивает огромный морской монстр с острыми клыками.",
-    "ChoiceA": "Укрыться в ресторане",
+    "Title": "You decide to continue down the street, leaving the dim area of light from the street lamps. The darkness grows deeper, and the cold wind begins to cut to the bone. You hear strange rustling around you, and it feels like someone is watching you. Suddenly, a massive sea monster with sharp fangs leaps out from the shadows.",
+    "ChoiceA": "Take refuge in the restaurant",
     "NextPageA": 2,
-    "ChoiceB": "Сражаться",
+    "ChoiceB": "Fight",
     "NextPageB": 4,
     "ChoiceC": "",
     "NextPageC": null,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/kurstykrab.webp"
   },
   {
-    "Title": "Ты осторожно открываешь дверь и входишь в ресторан \"Красти Крабс\". Внутри витает странная атмосфера, воздух словно плотный и непроницаемый. Темные тени бросаются на стены, создавая зловещие очертания предметов. Ты видишь столики, покрытые грязными скатертями, а посуда разбросана, как будто кто-то схватился за нее в ужасе.\nПеред тобой стоит касса, а за ней стоит сам Губка Боб, но его облик выглядит искаженным и страшным. Он обращается к тебе: \"Добро пожаловать, мой маленький ужас! Ты готов попробовать наш особый ужин?\"",
-    "ChoiceA": "Осмотреться",
+    "Title": "You cautiously open the door and enter the Krusty Krab restaurant. Inside, a strange atmosphere lingers, the air feeling dense and impenetrable. Dark shadows dance on the walls, casting ominous outlines of objects. You see tables covered with dirty tablecloths, and dishes are scattered about as if someone grabbed them in horror.\nBefore you stands the cash register, and behind it is SpongeBob SquarePants himself, but his appearance looks distorted and terrifying. He addresses you: Welcome, my little horror! Are you ready to try our special dinner?",
+    "ChoiceA": "Look around",
     "NextPageA": 10,
     "ChoiceB": "",
     "NextPageB": null,
@@ -30,18 +30,18 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/kurstykrab.webp"
   },
   {
-    "Title": "Ты подходишь к окну и заглядываешь внутрь. Внутри видишь, как все столики и стулья перевернуты вверх ногами. На стенах пятна краски образуют какие-то странные узоры, напоминающие лица. В углу комнаты ты замечаешь теневую фигуру, склонившуюся над одним из столов. Вдруг она резко поворачивается в твою сторону, и ты видишь мерцающие глаза и улыбку, раскрывающую острые зубы.",
-    "ChoiceA": "Войти внутрь",
+    "Title": "You approach the window and peer inside. Inside, you see that all the tables and chairs are flipped upside down. Paint stains on the walls form strange patterns resembling faces. In the corner of the room, you notice a shadowy figure leaning over one of the tables. Suddenly, it sharply turns towards you, and you see flickering eyes and a smile revealing sharp teeth.",
+    "ChoiceA": "Enter inside",
     "NextPageA": 4,
-    "ChoiceB": "Пойти домой",
+    "ChoiceB": "Go home",
     "NextPageB": 0,
     "ChoiceC": "",
     "NextPageC": null,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/kurstykrab.webp"
   },
   {
-    "Title": "Ты начал бежать в панике, но чем быстрее ты двигался, тем сильнее ощущение, что кто-то или что-то преследует тебя, становилось. Ты услышал громкий шум за спиной и обернулся, чтобы посмотреть, что это. В следующее мгновение ты почувствовал, как что-то холодное и острое пронзило твою спину. Твой взгляд затуманился, а мир померк вокруг.",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You began to run in panic, but the faster you moved, the stronger the feeling that someone or something was chasing you became. You heard a loud noise behind you and turned around to see what it was. In the next moment, you felt something cold and sharp pierce your back. Your vision blurred, and the world darkened around you.",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -50,8 +50,8 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/dead3.webp"
   },
   {
-    "Title": "Ты решаешь, что лучше вернуться домой и забыть об этом мрачном месте. Но как только ты разворачиваешься, внезапно за спиной раздается шумное хлопанье. Ты оборачиваешься в ужасе и видишь огромного морского монстра с острыми клыками, выползающего из ресторана. Твой последний взгляд падает на его глаза, полные голодной жажды, перед тем как его пасть закрывается над тобой. Твои крики затихают во мраке...(конец)",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You decide it's best to head back home and forget about this eerie place. But as you turn around, suddenly there's a loud thud behind you. You turn around in horror and see a massive sea monster with sharp fangs emerging from the restaurant. Your final glimpse falls upon its eyes, full of ravenous hunger, before its jaws close over you. Your screams fade into the darkness... (end)",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -100,28 +100,28 @@
     "ImageLink": ""
   },
   {
-    "Title": "Ты оглядываешься по сторонам, пытаясь проникнуть во мрак ресторана. Зал оказывается заброшенным и запущенным. Столы и стулья перевернуты, по полу валяются обломки посуды. На стенах видны размазанные пятна, словно кто-то попытался что-то стереть. Кассовый прилавок пуст, но ты замечаешь слабое мерцание света из-за двери, ведущей в кухню.",
-    "ChoiceA": "“Кто здесь?”",
+    "Title": "You look around, trying to peer into the darkness of the restaurant. The dining area appears abandoned and neglected. Tables and chairs are overturned, and shards of dishes litter the floor. Smudged stains are visible on the walls, as if someone tried to erase something. The cash register is empty, but you notice a faint flicker of light coming from the door leading to the kitchen.",
+    "ChoiceA": "Who's here?",
     "NextPageA": 11,
-    "ChoiceB": "Войти на кухню",
+    "ChoiceB": "Enter the kitchen",
     "NextPageB": 12,
-    "ChoiceC": "Пойти в туалет",
+    "ChoiceC": "Go to the restroom",
     "NextPageC": 13,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Story_S_2.webp"
   },
   {
-    "Title": "Твой крик разносится по залу и замирает в темных углах. В ответ ты слышишь лишь приглушенное эхо своего голоса. Но внезапно слышится тихий шорох за спиной. Ты быстро оборачиваешься, но никого не видишь",
-    "ChoiceA": "Бежать на улицу",
+    "Title": "Your scream reverberates through the hall and fades into the dark corners. In response, you only hear the muted echo of your own voice. But suddenly, a faint rustling sound reaches your ears from behind. You quickly turn around, but you see no one there.",
+    "ChoiceA": "Run outside",
     "NextPageA": 14,
-    "ChoiceB": "Пойти на кухню",
+    "ChoiceB": "Go to the kitchen",
     "NextPageB": 20,
     "ChoiceC": "",
     "NextPageC": null,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Story_S_2.webp"
   },
   {
-    "Title": "Ты осторожно направляешься к двери, ведущей на кухню. Перед тобой открывается мрачное помещение. Ослепительный свет фонарей освещает беспорядок: разбросанные кастрюли, кучи недоваренной пищи и темные пятна на стенах. В центре кухни стоит гигантская кастрюля, из которой доносится странный звук. Звук начинает усиливаться, и ты осознаешь, что это шепот, словно тысячи голосов прошептывают что-то невразумительное.",
-    "ChoiceA": "Взять нож",
+    "Title": "You cautiously make your way to the door leading to the kitchen. Before you unfolds a grim space. The blinding light of the lanterns illuminates the chaos: scattered pots, heaps of undercooked food, and dark stains on the walls. In the center of the kitchen stands a gigantic cauldron, from which emanates a strange sound. The sound grows louder, and you realize it's a whisper, as if thousands of voices are murmuring something unintelligible.",
+    "ChoiceA": "Take the knife",
     "NextPageA": 20,
     "ChoiceB": "",
     "NextPageB": null,
@@ -130,18 +130,18 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Story_S_2.webp"
   },
   {
-    "Title": "Ты направляешься к кассе, расположенной у входа. Коробка с кассой открыта, а деньги и монеты исчезли. Внезапно слышится шорох за спиной. Обернувшись, ты видишь тень, исчезающую за углом",
-    "ChoiceA": "Пойти на кухню",
+    "Title": "You head towards the cash register near the entrance. The cash box is open, and the money and coins have disappeared. Suddenly, a rustling sound comes from behind you. When you turn around, you catch a glimpse of a shadow disappearing around the corner.",
+    "ChoiceA": "Go to the kitchen",
     "NextPageA": 20,
-    "ChoiceB": "Преследовать тень",
+    "ChoiceB": "Chase the shadow",
     "NextPageB": 15,
     "ChoiceC": "",
     "NextPageC": null,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Story_S_2.webp"
   },
   {
-    "Title": "Ты резко бросаешься к выходу, но твои ноги запутываются в обломках и ты падаешь, ударившись головой о пол. Взгляд твой затуманивается, а вокруг становится темно. Зловещий шепот нарастает, и ты больше не способен двигаться. Твои попытки сбежать оборачиваются тщетой. Твоя история заканчивается здесь...",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You rush towards the exit, but your feet get entangled in debris, causing you to fall and hit your head on the floor. Your vision blurs, and darkness envelops you. The ominous whisper grows louder, and you find yourself unable to move. Your attempts to escape prove futile. Your story ends here...",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -150,8 +150,8 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/dead1.webp"
   },
   {
-    "Title": "Ты решаешь преследовать тень, но она скользит быстрее, чем ты ожидал. Пронзительный крик разрывает воздух, и перед тобой возникает фигура с искаженным лицом Красти Крабса. Твои ноги словно приклеились к полу, и ты не можешь двигаться. Существо медленно приближается, пока все не погружается во мрак. Твой крик утонул в ночи.",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You decide to chase the shadow, but it moves faster than you anticipated. A piercing scream rends the air, and before you emerges a figure with Krusty Krab's distorted face. Your legs feel glued to the floor, and you can't move. The entity slowly approaches until everything plunges into darkness. Your scream gets swallowed by the night.",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -200,28 +200,28 @@
     "ImageLink": ""
   },
   {
-    "Title": "Ты подходишь к стойке, где обычно держатся ножи для приготовления пищи. Твои руки дрожат, когда ты берешь в руки большой нож с затупленным лезвием. Вдруг шум становится громче, и ты чувствуешь, что что-то приближается к тебе. Страх охватывает тебя, и ты слышишь шуршание и шаги позади. Обернешься?",
-    "ChoiceA": "Обернуться",
+    "Title": "You approach the counter where kitchen knives are usually kept. Your hands tremble as you pick up a large knife with a dull blade. Suddenly, the noise grows louder, and you feel something approaching you. Fear grips you, and you hear rustling and footsteps behind you. Will you turn around?",
+    "ChoiceA": "Turn around",
     "NextPageA": 21,
-    "ChoiceB": "Выбежать в зал",
+    "ChoiceB": "Dash into the dining area",
     "NextPageB": 22,
-    "ChoiceC": "Замереть",
+    "ChoiceC": "Freeze",
     "NextPageC": 23,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/кухня.webp"
   },
   {
-    "Title": "Ты резко оборачиваешься, но позади ничего не видно. Только мрак и тишина. Твои сердцебиение учащается, и чувство тревоги становится сильнее. Вдруг, слышится тихий смешок, и в воздухе возникает холодный поток ветра. Когда ты вглядываешься во мрак, перед тобой появляется размытая фигура в клоунском костюме с огромными глазами. Твои ноги словно приросли к полу. Фигура начинает медленно приближаться.",
-    "ChoiceA": "Сражаться",
+    "Title": "You swiftly turn around, but there's nothing visible behind you. Just darkness and silence. Your heart races, and a sense of unease intensifies. Suddenly, a soft laughter fills the air, and a cold gust of wind sweeps through. As you peer into the darkness, a blurred figure in a clown costume with huge eyes materializes before you. Your legs feel glued to the floor. The figure starts approaching slowly.",
+    "ChoiceA": "Fight",
     "NextPageA": 24,
-    "ChoiceB": "Выбежать в зал",
+    "ChoiceB": "Dash into the dining area",
     "NextPageB": 22,
     "ChoiceC": "",
     "NextPageC": null,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/кухня.webp"
   },
   {
-    "Title": "Ты бросаешь нож на кухонный стол и быстро поворачиваешься, побежав обратно в зал. Все вокруг кажется еще более мрачным, а зловещий шепот не утихает. Ты возвращаешься в зал, и внезапно свет фонарей начинает мерцать, словно вспыхивает и гаснет. В углу зала ты замечаешь контур фигуры, медленно двигающейся в твою сторону.",
-    "ChoiceA": "Убежать в туалет",
+    "Title": "You toss the knife onto the kitchen table and swiftly turn around, racing back into the dining area. Everything around seems even darker, and the ominous whisper doesn't subside. Returning to the dining area, the lantern light suddenly starts flickering, as if pulsating. In the corner of the room, you notice the outline of a figure moving slowly toward you.",
+    "ChoiceA": "Escape to the restroom",
     "NextPageA": 30,
     "ChoiceB": "",
     "NextPageB": null,
@@ -230,10 +230,10 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/кухня.webp"
   },
   {
-    "Title": "Ты замираешь, сжимая нож в руке. Шуршание и шаги становятся всё ближе, а звуки шепота окружают тебя. Твои глаза напряжены, и ты чувствуешь, как сердце бьется сильнее. Вдруг из мрака впереди появляется тень, но ты не видишь, что именно это. Всё внимание сосредоточено на ощущениях. Секунды тянутся медленно, словно время замедлилось.",
-    "ChoiceA": "Выбежать в зал",
+    "Title": "You freeze, clutching the knife in your hand. The rustling and footsteps draw nearer, and the whispers surround you. Your eyes strain, and you can feel your heart pounding faster. Suddenly, a shadow emerges from the darkness ahead, but you can't discern what exactly it is. All your attention is focused on your senses. Seconds stretch slowly, as if time itself has slowed down.",
+    "ChoiceA": "Dash into the dining area",
     "NextPageA": 22,
-    "ChoiceB": "Напасть на тень",
+    "ChoiceB": "Attack the shadow",
     "NextPageB": 25,
     "ChoiceC": "",
     "NextPageC": null,
@@ -250,8 +250,8 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/dead1.webp"
   },
   {
-    "Title": "Ты, сжимая нож в руке, решаешь напасть на приближающуюся тень. Сердце колотится в груди, а адреналин заставляет тебя действовать без раздумий. Ты бросаешься вперед, но в следующий момент твои ноги запутываются в чем-то, и ты теряешь равновесие. Ты падаешь на пол, нож выскальзывает из твоей руки. Тень приближается ещё ближе, и только сейчас ты понимаешь, что это множество тонких, липких щупалец. Они обвивают твое тело, сдавливая и окутывая тебя. Шепот становится громче, и ты понимаешь, что больше не сможешь сопротивляться. Тьма поглощает тебя, и ты больше не чувствуешь ничего...",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "Clutching the knife in your hand, you decide to attack the approaching shadow. Your heart pounds in your chest, and adrenaline drives you without hesitation. You lunge forward, but in the next moment, your feet get entangled in something, and you lose your balance. You fall to the floor, the knife slipping from your hand. The shadow comes even closer, and only now do you realize that it's a multitude of thin, sticky tendrils. They wrap around your body, constricting and enveloping you. The whisper grows louder, and you understand that you can't resist any longer. Darkness consumes you, and you no longer feel anything...",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -300,28 +300,28 @@
     "ImageLink": ""
   },
   {
-    "Title": "Ты мчишься к двери, ведущей в туалет. Сердце бьется в унисон с твоими быстрыми шагами, а шум и шепот становятся все более громкими. Ты врываешься в туалет и захлопываешь за собой дверь. Внутри темно и зловеще. За зеркалом кажется, что что-то движется. Твой дыхание перехватывает, когда ты осознаешь, что ты здесь не один. Что планируешь сделать?",
-    "ChoiceA": "Медленно подойти",
+    "Title": "You rush towards the door leading to the restroom. Your heart beats in rhythm with your rapid steps, while the noise and whispers grow louder. You burst into the restroom and slam the door shut behind you. Inside, it's dark and ominous. Behind the mirror, it seems like something is moving. Your breath catches as you realize you're not alone here. What do you plan to do?",
+    "ChoiceA": "Approach slowly",
     "NextPageA": 31,
-    "ChoiceB": "Сбежать в окно",
+    "ChoiceB": "Escape through the window",
     "NextPageB": 32,
-    "ChoiceC": "“Кто вы?”",
+    "ChoiceC": "“Who are you?”",
     "NextPageC": 33,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Туалет.webp"
   },
   {
-    "Title": "Ты медленно приближаешься к фигуре, сердце бешено колотится. С каждым шагом ты разглядываешь больше деталей: изодранная одежда, бледное лицо, волосы, прилипшие к коже от пота. Когда ты находишься на расстоянии вытянутой руки, фигура резко оборачивается. Перед тобой стоит ужасающий облик - высокий, искаженный уродливыми чертами, с красными глазами, светящимися в темноте. Ты не можешь сдержать крик ужаса.",
-    "ChoiceA": "Сражаться",
+    "Title": "You approach the figure cautiously, your heart pounding wildly. With each step, you make out more details: tattered clothing, pale face, hair sticking to the skin from sweat. When you're within arm's reach, the figure abruptly turns around. Before you stands a horrifying sight – tall, distorted by grotesque features, with red eyes gleaming in the darkness. You can't suppress a scream of terror.",
+    "ChoiceA": "Fight",
     "NextPageA": 35,
-    "ChoiceB": "Сбежать в окно",
+    "ChoiceB": "Escape through the window",
     "NextPageB": 32,
     "ChoiceC": "",
     "NextPageC": null,
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Туалет.webp"
   },
   {
-    "Title": "Ты моментально оглядываешься и замечаешь окно на противоположной стороне туалета. Ты быстро бежитшь к нему и трясущемися руками открываешь. Открыв окно, ты видишь мрак и ночной город за его пределами. Шум и шепот все еще преследуют тебя, но у тебя нет времени на раздумья. Ты затачиваешь свои последние силы и выбираешься через окно. Падение короткое, но удачное, и ты оказываешься на холодном мокром асфальте вдали от зловещего ресторана. Твоя дыхание неровное, а сердце бьется как бешеное. Ты спасся... по крайней мере, пока.",
-    "ChoiceA": "Осмотреться",
+    "Title": "You swiftly look around and notice a window on the opposite side of the restroom. You rush towards it, trembling hands opening it. As the window opens, you see darkness and the nighttime city beyond. The noise and whispers still chase you, but you have no time for contemplation. Summoning your last reserves of strength, you crawl through the window. The fall is brief but successful, and you land on the cold wet asphalt far from the ominous restaurant. Your breath is uneven, and your heart races wildly. You've escaped... at least for now.",
+    "ChoiceA": "Look around",
     "NextPageA": 40,
     "ChoiceB": "",
     "NextPageB": null,
@@ -330,10 +330,10 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Туалет.webp"
   },
   {
-    "Title": "С горечью в горле ты выдавливаешь из себя слова: \"Кто это?\" Твой голос звучит слабо в этом мрачном месте. Фигура останавливается, и ты чувствуешь, как холодный ветерок пронизывает комнату. Шепот усиливается, словно становится более четким, но все равно невразумительным. Фигура медленно приближается, и ты видишь, что это искаженное лицо морской Губки Боба. Вдруг свет погасает, окутывая тебя полной тьмой.",
-    "ChoiceA": "Сбежать в окно",
+    "Title": "With a bitter taste in your throat, you force out the words, \"Who's there?\" Your voice sounds feeble in this dark place. The figure halts, and a cold breeze seems to pierce the room. The whispers intensify, becoming clearer but still incomprehensible. The figure slowly approaches, and you see that it's the distorted face of SpongeBob SquarePants. Suddenly, the light fades, enveloping you in complete darkness.",
+    "ChoiceA": "Escape through the window",
     "NextPageA": 32,
-    "ChoiceB": "Драться",
+    "ChoiceB": "Fight",
     "NextPageB": 35,
     "ChoiceC": "",
     "NextPageC": null,
@@ -350,8 +350,8 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/Туалет.webp"
   },
   {
-    "Title": "Ты вырываешься на полном ходу, бросаясь на фигуру с искаженным лицом. Схватка начинается во мраке, и ты чувствуешь, как что-то холодное и влажное касается твоей кожи. Силы у тебя на исходе, но ты не сдается. Внезапно, ты ощущаешь жгучую боль, и твои силы оставляют тебя. Темнота поглощает тебя, и ты теряешь сознание. Твой страшный путь в ресторане \"Красти Крабс\" на Бикини Боттом завершается.",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You sprint at full speed, lunging at the figure with the distorted face. The struggle commences in the darkness, and you feel something cold and moist touching your skin. Your strength is waning, but you refuse to give up. Suddenly, you feel searing pain, and your strength abandons you. Darkness engulfs you, and you lose consciousness. Your harrowing journey in the \"Krusty Krab\" restaurant in Bikini Bottom comes to an end.",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -400,48 +400,48 @@
     "ImageLink": ""
   },
   {
-    "Title": "Ты осматриваешься вокруг, стараясь оценить, где ты находишься. Ты находишься на узкой улочке с высокими заборами по обе стороны. Вдали виднеется мерцающий свет нескольких фонарей, но улица выглядит пустынной и безлюдной. Мокрый асфальт блестит от оставшейся после дождя воды. Здесь тихо, и ты ощущаешь непонятную тревогу. Что будешь делать дальше?",
-    "ChoiceA": "Тихо уходить",
+    "Title": "You look around, trying to assess where you are. You find yourself on a narrow alley with tall fences on both sides. In the distance, the flickering light of a few lanterns is visible, but the street appears deserted and devoid of people. The wet asphalt glistens from the water left after the rain. It's quiet here, and you feel an unexplainable unease. What will you do next?",
+    "ChoiceA": "Quietly leave",
     "NextPageA": 41,
-    "ChoiceB": "Бежать",
+    "ChoiceB": "Run",
     "NextPageB": 42,
-    "ChoiceC": "Звать на помощь",
+    "ChoiceC": "Call for help",
     "NextPageC": 43,
-    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/9.webp"
+    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/PreScene.webp"
   },
   {
-    "Title": "Ты начинаешь тихо отступать по узкой улочке, надеясь удалиться как можно дальше от места кошмара. Однако, твои шаги кажутся громкими и навязчивыми, словно они отражаются эхом. Ты останавливаешься, чтобы вздохнуть и оценить ситуацию. Шум и шепот, которые ты слышал в ресторане, начинают возрастать вокруг тебя. Ты внезапно чувствуешь, что не один здесь. Что-то невидимое преследует тебя, его присутствие настойчиво и неумолимо приближается.",
-    "ChoiceA": "Спрятаться",
+    "Title": "You start to quietly retreat down the narrow alley, hoping to distance yourself as far as possible from the nightmare place. However, your steps seem loud and persistent, echoing back at you. You stop to catch your breath and assess the situation. The noise and whispers you heard in the restaurant begin to escalate around you. You suddenly feel you're not alone here. Something invisible is pursuing you, its presence persistently and relentlessly closing in.",
+    "ChoiceA": "Hide",
     "NextPageA": 44,
-    "ChoiceB": "Бежать",
+    "ChoiceB": "Run",
     "NextPageB": 42,
     "ChoiceC": "",
     "NextPageC": null,
-    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/9.webp"
+    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/PreScene.webp"
   },
   {
-    "Title": "Ты начинаешь бежать вдоль улицы, пытаясь уйти как можно дальше от зловещего ресторана и места, где ты только что оказался. Твои шаги ритмично стучат по асфальту, а твои мысли метутся, пытаясь понять, что произошло и что это было за место.\nПока ты бежишь, ты замечаешь, что между заборами начинают появляться мерцающие тени. Они плывут в твоем направлении, словно что-то следит за тобой. Твои ноги устали, но ты чувствуешь, что не можешь останавливаться. Что ты решаешь делать дальше?",
-    "ChoiceA": "Ускориться",
+    "Title": "You start running along the street, trying to get as far away as possible from the ominous restaurant and the place you've just been. Your steps rhythmically echo on the asphalt, and your thoughts whirl, trying to make sense of what happened and what that place was. As you run, you notice that shimmering shadows begin to appear between the fences. They glide in your direction, as if something is following you. Your legs are tired, but you feel you can't stop. What do you decide to do next?",
+    "ChoiceA": "Accelerate",
     "NextPageA": 50,
     "ChoiceB": "",
     "NextPageB": null,
     "ChoiceC": "",
     "NextPageC": null,
-    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/9.webp"
+    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/PreScene.webp"
   },
   {
-    "Title": "Ты вскрикиваешь, зовя на помощь, но только эхо твоего голоса отдается в ответ. Улица остается пустой, и никакого ответа не следует. Твой крик, кажется, усугубил твою тревогу, и ты начинаешь чувствовать, что не один на этой улице. Темнота и тишина становятся еще более угрожающими. Что планируешь делать дальше?",
-    "ChoiceA": "Бежать",
+    "Title": "You scream for help, but only the echo of your voice responds. The street remains empty, and there's no answer. Your cry seems to have worsened your anxiety, and you start to feel you're not alone on this street. The darkness and silence become even more menacing. What do you plan to do next?",
+    "ChoiceA": "Run",
     "NextPageA": 42,
-    "ChoiceB": "Бежать с криком",
+    "ChoiceB": "Run and scream",
     "NextPageB": 45,
     "ChoiceC": "",
     "NextPageC": null,
-    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/9.webp"
+    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/PreScene.webp"
   },
   {
-    "Title": "Ты бросаешься в поисках укрытия, но вокруг нет ничего, что могло бы тебя спрятать. Твои дыхание и сердцебиение громко раздается в тишине. Ты чувствуешь, как что-то холодное и тяжелое прикасается к твоей спине. Облако ужаса окутывает твои мысли, и в следующий миг... все замирает.\nТемнота поглощает тебя.",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You scramble to find shelter, but there's nothing around that could hide you. Your breathing and heartbeat resound loudly in the silence. You feel something cold and heavy touch your back. A cloud of terror envelops your thoughts, and in the next moment... everything freezes.\nThe darkness consumes you.",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -450,8 +450,8 @@
     "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/dead1.webp"
   },
   {
-    "Title": "Ты решаешь бежать вдоль улицы, крича на всю глотку в надежде на то, что кто-то услышит и придет на помощь. Твои ноги несут тебя вперед, но кажется, что улица бесконечно долгая. Твой крик перекликается с грозовым шумом ветра, и вдруг ты спотыкаешься и падаешь. Вставая на колени, ты оглядываешься назад и видишь силуэты темных фигур, медленно приближающихся к тебе. Сердце у тебя в груди замирает, и ты понимаешь, что попал в западню. Твои крики смешиваются с невразумительными шепотами, и темнота поглощает тебя, оставив лишь неведомое будущее.",
-    "ChoiceA": "ЗАНОВО",
+    "Title": "You decide to run along the street, shouting at the top of your lungs, hoping someone will hear and come to your aid. Your legs carry you forward, but the street seems infinitely long. Your cries blend with the roar of the wind, and suddenly you trip and fall. Getting up on your knees, you look back and see the silhouettes of dark figures slowly approaching you. Your heart in your chest freezes, and you realize you've walked into a trap. Your screams mix with unintelligible whispers, and darkness engulfs you, leaving only an unknown future.",
+    "ChoiceA": "START OVER",
     "NextPageA": 0,
     "ChoiceB": "",
     "NextPageB": null,
@@ -500,13 +500,13 @@
     "ImageLink": ""
   },
   {
-    "Title": "Ты впечатываешься в бег еще глубже, ускоряя свои шаги до предела. Тени все еще пытаются догнать тебя, но твоя решимость и страх сливаются в едином порыве. Ты бежишь, пока наконец не оказываешься на более освещенной улице, где люди гуляют и машины проезжают.\nТвои ноги сами собой замедляются, а сердце перестает биться так быстро. Ты осознаешь, что ты в безопасности, и облегчение заливает твою душу. Подсознательно оглядываясь, ты понимаешь, что тени исчезли.\nТы сворачиваешь в ближайший кафе, покупаешь горячий кофе и садишься за столик, пытаясь прийти в себя. За окном светит яркая уличная лампа, а снаружи доносится обыденный городской шум.\nТы вдыхаешь аромат кофе и улыбаешься — ты жив, ты сбежал от нечто таинственного и ужасного. В этот момент ты осознаешь свою силу и решимость. Ты пережил хоррор, который переплетался с реальностью, и теперь ты готов встретить будущее с более смелым взглядом.",
-    "ChoiceA": "КОНЦОВКА",
+    "Title": "You plunge deeper into the run, pushing your steps to the limit. The shadows still attempt to catch up with you, but your determination and fear merge into a single surge. You run until you finally find yourself on a well-lit street where people stroll and cars pass by.\nYour legs naturally slow down, and your heart stops beating so fast. You realize that you're safe, and relief floods your soul. Subconsciously glancing around, you understand that the shadows have vanished.\nYou turn into the nearest cafe, buy a hot coffee, and sit down at a table, trying to collect yourself. Bright streetlights shine outside the window, and the ordinary urban noise fills the air.\nYou breathe in the aroma of the coffee and smile – you're alive, you've escaped from something mysterious and dreadful. In this moment, you realize your strength and determination. You've survived the horror that intertwined with reality, and now you're ready to face the future with a bolder gaze.",
+    "ChoiceA": "ENDING",
     "NextPageA": 100,
     "ChoiceB": "",
     "NextPageB": null,
     "ChoiceC": "",
     "NextPageC": null,
-    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/10.webp"
+    "ImageLink": "https://raw.githubusercontent.com/deizeshot/deizeshot.github.io/main/scenefinal.webp"
   }
 ]
